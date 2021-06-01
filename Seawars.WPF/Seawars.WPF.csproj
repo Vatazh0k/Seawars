@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MathCore.WPF" Version="0.0.14" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Seawars.DAL.SqlServer\Seawars.DAL.SqlServer.csproj" />
     <ProjectReference Include="..\Seawars.Domain\Seawars.Domain.csproj" />
     <ProjectReference Include="..\Seawars.Interfaces\Seawars.Interfaces.csproj" />
