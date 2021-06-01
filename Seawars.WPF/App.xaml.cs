@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Windows;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Seawars.DAL.Context;
 using Seawars.WPF.View.Windows;
 using Seawars.WPF.ViewModels;
 
@@ -27,6 +31,11 @@ namespace Seawars.WPF
         private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
             services.AddScoped<AuthorizationWindowViewModel>();
+
+
+            services.AddDbContext<DataBaseContext>(x =>
+                x.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Seawars;Trusted_Connection=True", o =>
+                    o.MigrationsAssembly("Seawars.DAL.SqlServer")));
         }
 
         protected override async void OnStartup(StartupEventArgs e)

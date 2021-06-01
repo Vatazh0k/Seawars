@@ -9,7 +9,7 @@ namespace Seawars.Interfaces.Repositories
 {
     public interface IRepository<T> where T : IEntity
     {
-        List<T> GetAllUser();
+        List<T> GetAll();
         T GetById(int id);
         void Add();
         void Update();

@@ -15,10 +15,6 @@ namespace Seawars.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<DataBaseContext>(x =>
-                x.UseSqlServer(configuration.GetConnectionString("MsSqlConnectionString"), o =>
-                    o.MigrationsAssembly("Seawars.DAL.SqlServer")));
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

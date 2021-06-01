@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{68484318
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seawars.UnitTests", "Seawars.UnitTests\Seawars.UnitTests.csproj", "{E7DBC739-2B77-43BB-BB79-E2616EF78B7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seawars.Console", "Seawars.Console\Seawars.Console.csproj", "{F17CC984-7284-4BAA-ABD7-6F4196684B51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{E7DBC739-2B77-43BB-BB79-E2616EF78B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7DBC739-2B77-43BB-BB79-E2616EF78B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7DBC739-2B77-43BB-BB79-E2616EF78B7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F17CC984-7284-4BAA-ABD7-6F4196684B51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F17CC984-7284-4BAA-ABD7-6F4196684B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F17CC984-7284-4BAA-ABD7-6F4196684B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F17CC984-7284-4BAA-ABD7-6F4196684B51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{7BD933AA-0190-44E9-BFFD-961A44B7959C} = {267D7085-8B97-4F12-A003-F36D7C5B153C}
 		{271B7E0D-877A-4D45-AB74-28DEB9867ACB} = {CFB1E401-B346-4D26-A302-97A55EEC734F}
 		{E7DBC739-2B77-43BB-BB79-E2616EF78B7F} = {68484318-7206-4E43-AC9E-A243AE6EC5DD}
+		{F17CC984-7284-4BAA-ABD7-6F4196684B51} = {2CC4ED27-C459-4440-8FA8-B84B6BD630B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A210A9B8-7839-450A-8E62-A331F8EE2FE4}
