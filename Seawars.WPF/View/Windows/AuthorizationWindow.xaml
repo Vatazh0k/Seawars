@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Seawars.WPF.View.Windows"
         mc:Ignorable="d"
         DataContext="{Binding AuthorizationWindowViewModel ,Source={StaticResource Locator}}"
-        Title="AuthorizationWindow" Height="450" Width="800">
+        Title="Authorization" Height="450" Width="800">
     <Grid>
         
     </Grid>
