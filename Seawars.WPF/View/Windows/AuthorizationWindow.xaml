@@ -2,12 +2,115 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:cmd="clr-namespace:Seawars.WPF.Common.Commands"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Seawars.WPF.View.Windows"
         mc:Ignorable="d"
-        DataContext="{Binding AuthorizationWindowViewModel ,Source={StaticResource Locator}}"
-        Title="Authorization" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Height="500" Width="620"
+        MinHeight="500" MinWidth="620"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        DataContext="{Binding AuthorizationWindowViewModel ,Source={StaticResource Locator}}">
+
+    <Border 
+        Background="#272537"
+        CornerRadius="20">
+
+        <Grid>
+
+            <Label Content="Create accaunt!"
+               FontSize="24"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Center"
+               Margin="50"
+               FontFamily="MV Boli">
+
+            </Label>
+
+
+            <TextBox Width="250" Height="40"
+                     VerticalContentAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Margin="175,115,0,345"
+                     Name="Name"
+                     Style="{StaticResource ModernTextBox}"/>
+
+
+
+            <TextBox Width="250" Height="40"
+                     VerticalContentAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Margin="175,179,0,281"
+                     Name="Username"
+                     
+                     Style="{StaticResource ModernTextBox}"/>
+
+            <TextBox Width="250" Height="40"
+                     VerticalContentAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Margin="175,250,0,210"
+                     Name="Password"
+                     Style="{StaticResource ModernTextBox}"/>
+
+
+
+            <TextBox Width="250" Height="40"
+                     VerticalContentAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Margin="175,315,0,145"
+                     Name="Repeat_Password"
+                     
+                     Style="{StaticResource ModernTextBox}"/>
+
+
+            <Button 
+                    HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+          
+                    Content="register"
+                    Margin="343,379,0,0"
+                    FontSize="18"
+                    Style="{StaticResource LightweightButton}">
+                <Button.Command>
+                    <cmd:CloseCommand/>
+                </Button.Command>
+            </Button>
+
+
+            <Button 
+                 Content="If you already have an account Login in here!"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Left"
+                   Margin="34,0,0,33"
+                   FontSize="24"
+                    Style="{StaticResource LightweightButton}">
+                <Button.Command>
+                    <cmd:CloseCommand/>
+                </Button.Command>
+            </Button>
+
+
+
+
+
+            <Button
+                    HorizontalAlignment="Right"
+                    Width="40"
+                    Content="X"
+                    Margin="0,23,10,20"
+                    FontSize="26"
+                    FontFamily="Bahnschrift SemiBold"
+                    Style="{StaticResource LightweightButton}">
+                <Button.Command>
+                    <cmd:CloseCommand/>
+                </Button.Command>
+            </Button>
+
+
+        </Grid>
+
+    </Border>
+
 </Window>

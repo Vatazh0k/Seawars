@@ -10,7 +10,7 @@ using Seawars.DAL.Context;
 namespace Seawars.DAL.SqlServer.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20210601185651_Init")]
+    [Migration("20210601203705_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,6 +73,9 @@ namespace Seawars.DAL.SqlServer.Migrations
 
                     b.Property<int?>("GamesWithComputer")
                         .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");

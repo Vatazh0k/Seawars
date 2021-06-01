@@ -13,6 +13,7 @@ namespace Seawars.DAL.SqlServer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TotalGamesCount = table.Column<int>(type: "int", nullable: true),
                     GamesWithComputer = table.Column<int>(type: "int", nullable: true),

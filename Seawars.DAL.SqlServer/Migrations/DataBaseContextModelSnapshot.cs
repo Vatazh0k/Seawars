@@ -72,6 +72,9 @@ namespace Seawars.DAL.SqlServer.Migrations
                     b.Property<int?>("GamesWithComputer")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
