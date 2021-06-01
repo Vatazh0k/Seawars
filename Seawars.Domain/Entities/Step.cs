@@ -8,7 +8,7 @@ using Seawars.Interfaces.Entities;
 
 namespace Seawars.Domain.Entities
 {
-    public class Step
+    public class Step : IEntity
     {
         [Key]
         public int Id { get; set; }
