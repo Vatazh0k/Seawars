@@ -11,21 +11,29 @@ namespace Seawars.DAL.Context
     public class DataBaseContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Games> Games { get; set; }
-        public DbSet<Steps> Steps { get; set; }
+        public DbSet<Game> Games { get; set; }
+        public DbSet<Step> Steps { get; set; }
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
         {
             
         }
 
-        protected override void OnModelCreating(ModelBuilder model)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(model);
+            base.OnModelCreating(builder);
 
-            model.Entity<User>()
-                .HasMany<Games>()
-                .WithOne(x => x.Steps)
+            builder.Entity<User>()
+                .HasIndex(u => u.UserName)
+                .IsUnique();
+
+
+            builder.Entity<User>()
+                .HasMany<Game>()
+                .WithOne(x => x.User)
                 .OnDelete(DeleteBehavior.Cascade);
+
+
+
         }
     }
 }
