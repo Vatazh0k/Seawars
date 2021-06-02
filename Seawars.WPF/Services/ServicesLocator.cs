@@ -2,6 +2,7 @@
 using Seawars.WPF.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Seawars.DAL.Context;
+using Seawars.DAL.SqlServer.Repositories;
 
 namespace Seawars.WPF.Services
 {
@@ -13,5 +14,17 @@ namespace Seawars.WPF.Services
 
         public static DataBaseContext DataBaseContext =>
             App.Services.GetRequiredService<DataBaseContext>();
+
+
+        public static UserRepository UserRepository =>
+            App.Services.GetRequiredService<UserRepository>();
+
+
+        public static GameRepository GameRepository =>
+            App.Services.GetRequiredService<GameRepository>();
+
+
+        public static StepRepository StepRepository =>
+            App.Services.GetRequiredService<StepRepository>();
     }
 }

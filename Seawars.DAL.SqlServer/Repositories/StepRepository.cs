@@ -9,7 +9,7 @@ using Seawars.Interfaces.Repositories;
 
 namespace Seawars.DAL.SqlServer.Repositories
 {
-    class StepRepository : IRepository<Step>
+    public class StepRepository : IRepository<Step>
     {
         private readonly DataBaseContext _context;
         public StepRepository(DataBaseContext context)

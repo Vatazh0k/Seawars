@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Seawars.DAL.Context;
 using Seawars.WPF.View.Windows;
 using Seawars.WPF.ViewModels;
+using Seawars.DAL.SqlServer.Repositories;
 
 namespace Seawars.WPF
 {
@@ -32,8 +33,10 @@ namespace Seawars.WPF
         {
             services.AddScoped<AuthorizationWindowViewModel>();
 
-            
 
+            services.AddScoped<UserRepository>();
+            services.AddScoped<GameRepository>();
+            services.AddScoped<StepRepository>();
 
             services.AddDbContext<DataBaseContext>(x =>
                 x.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Seawars;Trusted_Connection=True", o =>

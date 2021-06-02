@@ -9,7 +9,7 @@ using Seawars.Interfaces.Repositories;
 
 namespace Seawars.DAL.SqlServer.Repositories
 {
-    class GameRepository : IRepository<Game>
+    public class GameRepository : IRepository<Game>
     {
         private readonly DataBaseContext _context;
         public GameRepository(DataBaseContext context)

@@ -9,7 +9,7 @@ using Seawars.Interfaces.Repositories;
 
 namespace Seawars.DAL.SqlServer.Repositories
 {
-    class UserRepository : IRepository<User>
+    public class UserRepository : IRepository<User>
     {
         private readonly DataBaseContext _context;
         public UserRepository(DataBaseContext context)
@@ -19,7 +19,7 @@ namespace Seawars.DAL.SqlServer.Repositories
 
         public List<User> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Users.Select(x => x).ToList();
         }
 
         public User GetById(int id)

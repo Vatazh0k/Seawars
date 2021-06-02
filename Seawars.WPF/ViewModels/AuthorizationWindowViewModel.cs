@@ -2,8 +2,12 @@
 using System.Security.AccessControl;
 using System.Windows.Input;
 using Microsoft.Extensions.Hosting;
+using System.Linq;
+using System.Windows;
+using Seawars.Domain.Entities;
 using Seawars.WPF.Common;
 using Seawars.WPF.Common.Commands;
+using Seawars.WPF.Services;
 
 namespace Seawars.WPF.ViewModels
 {
@@ -40,13 +44,8 @@ namespace Seawars.WPF.ViewModels
 
         public AuthorizationWindowViewModel()
         {
-            RegisterCommand = new Command(RegisterCommandAction, CanUserRegisterCommand);
+            RegisterCommand = new Command(RegisterCommandAction, x=>true);
             LoginCommand = new Command(LoginCommandAction, x => true);
-        }
-
-        private bool CanUserRegisterCommand(object arg)
-        {
-            return true;//TODO: logic
         }
 
         private void LoginCommandAction(object obj)
@@ -54,6 +53,15 @@ namespace Seawars.WPF.ViewModels
         }
         private void RegisterCommandAction(object obj)
         {
+            var Users = ServicesLocator.UserRepository.GetAll();
+            var SameUserExit = Users.Exists(x => x.UserName == Username);
+
+            if (SameUserExit)//Change validation 
+            {
+                MessageBox.Show("This Username is already used... Try another", "Error", MessageBoxButton.OK, MessageBoxImage.Information );
+
+                return;
+            }
         }
     }
 }

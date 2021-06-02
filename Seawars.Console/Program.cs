@@ -37,28 +37,29 @@ namespace Seawars.Console
         {
             var context = Connection.Hosting.Services.GetRequiredService<DataBaseContext>();
 
-            //var user = new User()
-            //{
-            //    UserName = "Anton",
-            //    Password = "0601",
+            var user = new User()
+            {
+                Name = "Anton",
+                UserName = "Antonio",
+                Password = "0601",
 
-            //};
+            };
 
-            //context.Users.Add(user);
-            //context.Games.Add(new Game()
-            //{
-            //    User = user,
-            //    Steps = new List<Step>()
-            //    {
-            //        new Step()
-            //        {
-            //            X = 4,
-            //            Y = 5
-            //        }
-            //    }
-            //});
+            context.Users.Add(user);
+            context.Games.Add(new Game()
+            {
+                User = user,
+                Steps = new List<Step>()
+                {
+                    new Step()
+                    {
+                        X = 4,
+                        Y = 5
+                    }
+                }
+            });
 
-            //context.SaveChanges();
+            context.SaveChanges();
 
             //var user = context.Users.FirstOrDefault(x => x.Id == 1);
             //var game = context.Games.Include(x => x.Steps).FirstOrDefault(x => x.Id == user.Id);
