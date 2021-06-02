@@ -4,15 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:cmd="clr-namespace:Seawars.WPF.Common.Commands"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Seawars.WPF.View.Windows"
+        xmlns:local="clr-namespace:Seawars.WPF.View.Windows" 
+       
+        xmlns:viewmodels="clr-namespace:Seawars.WPF.ViewModels"
         mc:Ignorable="d"
         Height="500" Width="620"
         MinHeight="500" MinWidth="620"
         WindowStyle="None"
         ResizeMode="NoResize"
         AllowsTransparency="True"
+        Background="Transparent"
         WindowStartupLocation="CenterScreen"
-        DataContext="{Binding AuthorizationWindowViewModel ,Source={StaticResource Locator}}">
+    DataContext="{Binding AuthorizationWindowViewModel ,Source={StaticResource Locator}}">
 
     <Border 
         Background="#272537"
@@ -30,40 +33,74 @@
             </Label>
 
 
-            <TextBox Width="250" Height="40"
+            <TextBox Width="200" Height="40"
                      VerticalContentAlignment="Center"
                      HorizontalAlignment="Left"
-                     Margin="175,115,0,345"
-                     Name="Name"
-                     Style="{StaticResource ModernTextBox}"/>
+                     Margin="203,114,0,346"
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                     Tag="Name"
+                     FontSize="14"
+                     Foreground="White"
+                     Style="{StaticResource WaterMark}" >
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </TextBox.Resources>
+
+            </TextBox>
 
 
-
-            <TextBox Width="250" Height="40"
+            <TextBox Width="200" Height="40"
                      VerticalContentAlignment="Center"
                      HorizontalAlignment="Left"
-                     Margin="175,179,0,281"
-                     Name="Username"
-                     
-                     Style="{StaticResource ModernTextBox}"/>
+                     Margin="200,179,0,281"
+                     Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                     Tag="Username"
+                     FontSize="14"
+                     Foreground="White"
+                     Style="{StaticResource WaterMark}" >
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </TextBox.Resources>
 
-            <TextBox Width="250" Height="40"
+            </TextBox>
+
+            <TextBox Width="200" Height="40"
                      VerticalContentAlignment="Center"
                      HorizontalAlignment="Left"
-                     Margin="175,250,0,210"
-                     Name="Password"
-                     Style="{StaticResource ModernTextBox}"/>
+                     Margin="200,250,0,210"
+                     Text="{Binding Passwrod, UpdateSourceTrigger=PropertyChanged}"
+                     Tag="Password"
+                     FontSize="14"
+                     Foreground="White"
+                     Style="{StaticResource WaterMark}" >
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </TextBox.Resources>
 
+            </TextBox>
 
-
-            <TextBox Width="250" Height="40"
+            <TextBox Width="200" Height="40"
                      VerticalContentAlignment="Center"
                      HorizontalAlignment="Left"
-                     Margin="175,315,0,145"
-                     Name="Repeat_Password"
-                     
-                     Style="{StaticResource ModernTextBox}"/>
+                     Margin="200,316,0,144"
+                     Text="{Binding RepeatedPassword, UpdateSourceTrigger=PropertyChanged}"
+                     Tag="Repeat password"
+                     FontSize="14"
+                     Foreground="White"
+                     Style="{StaticResource WaterMark}" >
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </TextBox.Resources>
 
+            </TextBox>
 
             <Button 
                     HorizontalAlignment="Left"
@@ -71,24 +108,22 @@
           
                     Content="register"
                     Margin="343,379,0,0"
+                    Command="{Binding RegisterCommand}"
                     FontSize="18"
                     Style="{StaticResource LightweightButton}">
-                <Button.Command>
-                    <cmd:CloseCommand/>
-                </Button.Command>
+
             </Button>
 
 
             <Button 
-                 Content="If you already have an account Login in here!"
+                 Content="If you already have an account click here!"
                    VerticalAlignment="Bottom"
                    HorizontalAlignment="Left"
                    Margin="34,0,0,33"
                    FontSize="24"
+                 Command="{Binding LoginCommand}"
                     Style="{StaticResource LightweightButton}">
-                <Button.Command>
-                    <cmd:CloseCommand/>
-                </Button.Command>
+           
             </Button>
 
 

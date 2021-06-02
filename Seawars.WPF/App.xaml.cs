@@ -32,6 +32,8 @@ namespace Seawars.WPF
         {
             services.AddScoped<AuthorizationWindowViewModel>();
 
+            
+
 
             services.AddDbContext<DataBaseContext>(x =>
                 x.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Seawars;Trusted_Connection=True", o =>
