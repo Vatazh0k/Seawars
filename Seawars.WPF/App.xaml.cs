@@ -38,6 +38,8 @@ namespace Seawars.WPF
         private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
             services.AddScoped<AuthorizationPageViewModel>();
+            services.AddScoped<UserPageViewModel>();
+
             services.AddSingleton<PageService>();
 
             services.AddScoped<UserRepository>();

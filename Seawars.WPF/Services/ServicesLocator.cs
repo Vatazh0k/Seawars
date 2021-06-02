@@ -11,7 +11,11 @@ namespace Seawars.WPF.Services
         public static AuthorizationPageViewModel AuthorizationWindowViewModel =>
             App.Services.GetRequiredService<AuthorizationPageViewModel>();
 
-        
+
+        public static UserPageViewModel UserPageViewModel =>
+          App.Services.GetRequiredService<UserPageViewModel>();
+
+
         public static PageService PageService =>
            App.Services.GetRequiredService<PageService>();
 
