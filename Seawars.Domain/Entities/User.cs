@@ -8,6 +8,7 @@ namespace Seawars.Domain.Entities
 {
     public class User : IEntity
     {
+
         [Key]
         public int Id { get; set; }
         public string UserName { get; set; }
@@ -16,5 +17,17 @@ namespace Seawars.Domain.Entities
         public int? TotalGamesCount { get; set; }
         public int? GamesWithComputer { get; set; }
         public int? CountOfWonGames { get; set; }
+
+        public User()
+        {
+
+        }
+
+        public User(string userName, string name, string password)
+        {
+            UserName = userName;
+            Name = name;
+            Password = password;
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Seawars.DAL.Context;
 using Seawars.Domain.Entities;
+using Seawars.Interfaces.Entities;
 using Seawars.Interfaces.Repositories;
 
 namespace Seawars.DAL.SqlServer.Repositories
@@ -27,9 +28,10 @@ namespace Seawars.DAL.SqlServer.Repositories
             throw new NotImplementedException();
         }
 
-        public void Add()
+        public void Add<T>(T User)
         {
-            throw new NotImplementedException();
+            _context.Users.Add(User as User);
+            _context.SaveChanges();
         }
 
         public void Update()

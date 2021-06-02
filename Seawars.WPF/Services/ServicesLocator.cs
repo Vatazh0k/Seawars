@@ -8,8 +8,12 @@ namespace Seawars.WPF.Services
 {
     internal class ServicesLocator
     {
-        public static AuthorizationWindowViewModel AuthorizationWindowViewModel =>
-            App.Services.GetRequiredService<AuthorizationWindowViewModel>();
+        public static AuthorizationPageViewModel AuthorizationWindowViewModel =>
+            App.Services.GetRequiredService<AuthorizationPageViewModel>();
+
+        
+        public static PageService PageService =>
+           App.Services.GetRequiredService<PageService>();
 
 
         public static UserRepository UserRepository =>

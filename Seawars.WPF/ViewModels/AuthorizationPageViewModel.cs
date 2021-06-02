@@ -12,7 +12,7 @@ using Seawars.Infrastructure.Validation;
 
 namespace Seawars.WPF.ViewModels
 {
-    internal class AuthorizationWindowViewModel : ViewModelBase
+    internal class AuthorizationPageViewModel : ViewModelBase
     {
         public ICommand RegisterCommand { get; set; }
         public ICommand LoginCommand { get; set; }
@@ -43,7 +43,7 @@ namespace Seawars.WPF.ViewModels
             set => Set(ref _name, value);
         }
 
-        public AuthorizationWindowViewModel()
+        public AuthorizationPageViewModel()
         {
             RegisterCommand = new Command(RegisterCommandAction, x=> true);
             LoginCommand = new Command(LoginCommandAction, x => true);
@@ -51,6 +51,7 @@ namespace Seawars.WPF.ViewModels
 
         private void LoginCommandAction(object obj)
         {
+            //ServicesLocator.PageService.SetPage(new ...Page)
         }
         private void RegisterCommandAction(object obj)
         {
@@ -63,7 +64,7 @@ namespace Seawars.WPF.ViewModels
             }
             if (ServicesLocator.UserRepository.GetAll().Exists(x => x.UserName == Username))
             {
-                ShowInformationMessage("This Username is already used... Try another");
+                ShowInformationMessage($"This Username '{Username}' is already used... Try another");
 
                 return;
             }
@@ -74,7 +75,10 @@ namespace Seawars.WPF.ViewModels
                 return;
             }
 
+            ServicesLocator.UserRepository.Add<User>(new User(Username, Name, Passwrod));
 
+
+            ////TODO: get next page
 
         }
 

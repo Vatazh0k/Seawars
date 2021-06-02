@@ -11,7 +11,7 @@ namespace Seawars.Interfaces.Repositories
     {
         List<T> GetAll();
         T GetById(int id);
-        void Add();
+        void Add<T>(T entity);
         void Update();
         void Delete();
         void DeleteById(int id);

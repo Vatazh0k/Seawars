@@ -27,7 +27,7 @@ namespace Seawars.DAL.SqlServer.Repositories
             throw new NotImplementedException();
         }
 
-        public void Add()
+        public void Add<T>(T Steps)
         {
             throw new NotImplementedException();
         }
