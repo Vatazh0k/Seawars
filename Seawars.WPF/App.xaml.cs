@@ -29,14 +29,16 @@ namespace Seawars.WPF
             .CreateDefaultBuilder(args)
             .ConfigureServices(ConfigureServices);
 
+
+       private static readonly string MsSqlConnectionString = ConfigurationManager.ConnectionStrings["MsSqlConnectionString"].ConnectionString;
+
         private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
             services.AddScoped<AuthorizationWindowViewModel>();
 
-
             services.AddScoped<UserRepository>();
             services.AddScoped<GameRepository>();
-            services.AddScoped<StepRepository>();
+            services.AddScoped<StepRepository>();   
 
             services.AddDbContext<DataBaseContext>(x =>
                 x.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Seawars;Trusted_Connection=True", o =>
@@ -48,7 +50,6 @@ namespace Seawars.WPF
             var host = Hosting;
             base.OnStartup(e);
             await host.StartAsync().ConfigureAwait(true);
-            //Services.GetRequiredService<AuthorizationWindow>().Show();
         }
 
         protected override async void OnExit(ExitEventArgs e)

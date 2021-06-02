@@ -8,6 +8,7 @@ using Seawars.Domain.Entities;
 using Seawars.WPF.Common;
 using Seawars.WPF.Common.Commands;
 using Seawars.WPF.Services;
+using Seawars.Infrastructure.Validation;
 
 namespace Seawars.WPF.ViewModels
 {
@@ -44,7 +45,7 @@ namespace Seawars.WPF.ViewModels
 
         public AuthorizationWindowViewModel()
         {
-            RegisterCommand = new Command(RegisterCommandAction, x=>true);
+            RegisterCommand = new Command(RegisterCommandAction, x=> true);
             LoginCommand = new Command(LoginCommandAction, x => true);
         }
 
@@ -53,15 +54,30 @@ namespace Seawars.WPF.ViewModels
         }
         private void RegisterCommandAction(object obj)
         {
-            var Users = ServicesLocator.UserRepository.GetAll();
-            var SameUserExit = Users.Exists(x => x.UserName == Username);
-
-            if (SameUserExit)//Change validation 
+            
+            if (Validator.NullExist(Name, Username, Passwrod, RepeatedPassword))
             {
-                MessageBox.Show("This Username is already used... Try another", "Error", MessageBoxButton.OK, MessageBoxImage.Information );
+                ShowInformationMessage("Please input all fields!");
 
                 return;
             }
+            if (ServicesLocator.UserRepository.GetAll().Exists(x => x.UserName == Username))
+            {
+                ShowInformationMessage("This Username is already used... Try another");
+
+                return;
+            }
+            if (Passwrod != RepeatedPassword)
+            {
+                ShowInformationMessage("Passwrods are diffrent. . .");
+
+                return;
+            }
+
+
+
         }
+
+        private void ShowInformationMessage(string message) => MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 }

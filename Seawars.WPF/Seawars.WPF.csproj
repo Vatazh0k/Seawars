@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Seawars.DAL.SqlServer\Seawars.DAL.SqlServer.csproj" />
     <ProjectReference Include="..\Seawars.Domain\Seawars.Domain.csproj" />
+    <ProjectReference Include="..\Seawars.Infrastructure\Seawars.Infrastructure.csproj" />
     <ProjectReference Include="..\Seawars.Interfaces\Seawars.Interfaces.csproj" />
     <ProjectReference Include="..\Seawars.WebApi.Clients\Seawars.WebApi.Clients.csproj" />
   </ItemGroup>

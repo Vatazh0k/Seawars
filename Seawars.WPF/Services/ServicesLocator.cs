@@ -12,10 +12,6 @@ namespace Seawars.WPF.Services
             App.Services.GetRequiredService<AuthorizationWindowViewModel>();
 
 
-        public static DataBaseContext DataBaseContext =>
-            App.Services.GetRequiredService<DataBaseContext>();
-
-
         public static UserRepository UserRepository =>
             App.Services.GetRequiredService<UserRepository>();
 
