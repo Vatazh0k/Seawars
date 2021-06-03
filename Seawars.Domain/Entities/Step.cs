@@ -14,5 +14,6 @@ namespace Seawars.Domain.Entities
         public int Id { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
+        public Game Game { get; set; }
     }
 }

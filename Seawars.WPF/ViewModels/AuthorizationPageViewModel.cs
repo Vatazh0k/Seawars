@@ -91,6 +91,8 @@ namespace Seawars.WPF.ViewModels
         {
             ServicesLocator.PageService.SetPage(new UserPage());
 
+            App.CuurentUser = ServicesLocator.UserRepository.GetAll().FirstOrDefault(x => x.UserName == Username);
+
             return MessageBoxResult.OK;
         }
         private MessageBoxResult SuccsessRegister(string message)
@@ -98,6 +100,8 @@ namespace Seawars.WPF.ViewModels
             ServicesLocator.UserRepository.Add<User>(new User(Username, Name, Passwrod));
 
             ServicesLocator.PageService.SetPage(new UserPage());
+
+            App.CuurentUser = ServicesLocator.UserRepository.GetAll().FirstOrDefault(x => x.UserName == Username);
 
             return MessageBoxResult.OK;
         }

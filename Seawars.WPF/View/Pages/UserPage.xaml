@@ -73,7 +73,11 @@
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenueButtonTheme}"/>
+                             Style="{StaticResource MenueButtonTheme}">
+                    <RadioButton.Command>
+                        <cmd:DeleteAccountCommand/>
+                    </RadioButton.Command>
+                </RadioButton>
 
 
                 <RadioButton Content="Log out" 

@@ -19,7 +19,7 @@ namespace Seawars.DAL.SqlServer.Repositories
 
         public List<Step> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Steps.Select(x => x).ToList();
         }
 
         public Step GetById(int id)

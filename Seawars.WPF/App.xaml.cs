@@ -17,7 +17,8 @@ namespace Seawars.WPF
 {
     public partial class App : Application
     {
-        public static User User;
+        public static User CuurentUser;
+        public static Game CurrentGame;
         public static Window WindowActive => Current.Windows.Cast<Window>().FirstOrDefault(w => w.IsActive);
         public static Window WindowFocused => Current.Windows.Cast<Window>().FirstOrDefault(w => w.IsFocused);
         public static Window WindowCurrent => WindowFocused ?? WindowActive;

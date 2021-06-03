@@ -33,42 +33,84 @@ namespace Seawars.Console
 
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args)//Выяснить проблему с айдишкой(при удалении записи айди продолжает инкриментиться с той итерации что и была до удаления)
         {
             var context = Connection.Hosting.Services.GetRequiredService<DataBaseContext>();
 
-            var user = new User()
-            {
-                Name = "Anton",
-                UserName = "Antonio",
-                Password = "0601",
+            //var user = new User()
+            //{
+            //    Name = "Anton",
+            //    UserName = "Anton",
+            //    Password = "0601",
+            //    CountOfWonGames = 1,
+            //    GamesWithComputer = 1,
+            //    TotalGamesCount = 2,
 
-            };
+            //};
 
-            context.Users.Add(user);
-            context.Games.Add(new Game()
-            {
-                User = user,
-                Steps = new List<Step>()
-                {
-                    new Step()
-                    {
-                        X = 4,
-                        Y = 5
-                    }
-                }
-            });
+            //context.Users.Add(user);
+            //var game = new Game();
 
-            context.SaveChanges();
+            //game.User = user;
+            //game.Steps = new List<Step>()
+            //{
 
-            //var user = context.Users.FirstOrDefault(x => x.Id == 1);
-            //var game = context.Games.Include(x => x.Steps).FirstOrDefault(x => x.Id == user.Id);
-            //var steps = context.Steps.FirstOrDefault(x => x.Id == 1);
-            //context.Steps.Remove(steps);
+            //        new Step()
+            //        {
+            //            X = 7,
+            //            Y = 9,
+            //            Game =game,
+            //        },
+            //           new Step()
+            //        {
+            //            X = 6,
+            //            Y = 8,
+            //           Game =game,
+            //        },
+
+            //          new Step()
+            //        {
+            //            X = 9,
+            //            Y = 7,
+            //              Game =game,
+            //        },
+            //           new Step()
+            //        {
+            //            X = 3,
+            //            Y = 4,
+            //              Game =game,
+
+            //        }
+
+            //};
+
+            //context.Games.Add(game);
+
+
+            //context.SaveChanges();
+
+
+            //var Game = context.Games.FirstOrDefault(x => x.Id == 4);
+            //context.Steps.Add(new Step() { X = 3, Y = 9, Game = Game });
+            //context.SaveChanges();
+
+
+            //var user = context.Users.FirstOrDefault(x => x.UserName == "Antonio");
+            //var game = context.Games.Include(x => x.Steps).FirstOrDefault(x => x.User == user);
+            //var steps = context.Steps.Where(x => x.Id >= 1).Select(x => x);
+            //context.Steps.RemoveRange(steps);
             //context.Games.Remove(game);
             //context.Users.Remove(user);
             //context.SaveChanges();
 
+
+
+            //var user = context.Users.FirstOrDefault(x => x.UserName == "Vova");
+            //var game = context.Games.Include(x => x.Steps).FirstOrDefault(x => x.User == user);
+
+            //context.Users.Remove(user);
+            //context.Games.Remove(game);
+            //context.SaveChanges();
         }
     }
 }

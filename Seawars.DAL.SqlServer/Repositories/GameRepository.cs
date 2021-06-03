@@ -19,7 +19,7 @@ namespace Seawars.DAL.SqlServer.Repositories
         
         public List<Game> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Games.Select(x => x).ToList();
         }
 
         public Game GetById(int id)
