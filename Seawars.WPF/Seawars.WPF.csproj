@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Seawars.WebApi.Clients\Seawars.WebApi.Clients.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Infrastructure\Extentions\" />
+  </ItemGroup>
+
 </Project>

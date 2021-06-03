@@ -13,10 +13,15 @@ namespace Seawars.WPF.ViewModels
 {
     internal class AuthorizationPageViewModel : ViewModelBase
     {
+        #region Commands
         public ICommand RegisterCommand { get; set; }
         public ICommand GoToLoginWindowCommand { get; set; }
         public ICommand LoginCommand { get; set; }
+        public ICommand BackCommand { get; set; }
 
+        #endregion
+
+        #region Data
         private string _name;
         private string _username;
         private string _passwords;
@@ -42,71 +47,62 @@ namespace Seawars.WPF.ViewModels
             get => _name;
             set => Set(ref _name, value);
         }
-
+        #endregion
         public AuthorizationPageViewModel()
         {
             RegisterCommand = new Command(RegisterCommandAction, x=> true);
             GoToLoginWindowCommand = new Command(GoToLoginWindowAction, x => true);
             LoginCommand = new Command(LoginCommandAction, x => true);
+            BackCommand = new Command(BackCommandAction, x => true);
         }
 
-        private void GoToLoginWindowAction(object obj) => ServicesLocator.PageService.SetPage(new LoginPage());
-        private void ShowInformationMessage(string message) => MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+        private void BackCommandAction(object obj) => ServicesLocator.PageService.SetPage<AuthorizationPage>(new AuthorizationPage());
+        private void GoToLoginWindowAction(object obj) => ServicesLocator.PageService.SetPage<LoginPage>(new LoginPage());
+
+        private MessageBoxResult ErrorMessage(string message) => MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
         private void LoginCommandAction(object obj)
         {
-            if (Validator.NullExist(Username, Passwrod))
-            {
-                ShowInformationMessage("Please input all fields!");
-
-                return;
-            }
-
             var Users = ServicesLocator.UserRepository.GetAll();
 
-            if (Users.Exists(x => x.UserName == Username) is false)
-            {
-                ShowInformationMessage($"Username '{Username}' doesnt exist!");
+                _ = Validator.NullExist(Username, Passwrod) is true
 
-                return;
-            }
+                ? ErrorMessage("Please input all fields!") : Users.Exists(x => x.UserName == Username) is false
 
-            if (Users.Exists(x => x.Password == Passwrod) is false)
-            {
-                ShowInformationMessage($"Incorrect password!");
+                ? ErrorMessage($"Username '{Username}' doesnt exist!") : Users.Exists(x => x.Password == Passwrod) is false
 
-                return;
-            }
-
-            ServicesLocator.PageService.SetPage(new UserPage());
+                ? ErrorMessage($"Incorrect password!") : SuccsessLogin($"Wlcome, {Username}!");
 
         }
         private void RegisterCommandAction(object obj)
         {
-            
-            if (Validator.NullExist(Name, Username, Passwrod, RepeatedPassword))
-            {
-                ShowInformationMessage("Please input all fields!");
+            _ = Validator.NullExist(Name, Username, Passwrod, RepeatedPassword) is true
 
-                return;
-            }
-            if (ServicesLocator.UserRepository.GetAll().Exists(x => x.UserName == Username))
-            {
-                ShowInformationMessage($"This Username '{Username}' is already used... Try another");
+                ? ErrorMessage("Please input all fields!") : ServicesLocator.UserRepository.GetAll().Exists(x => x.UserName == Username) is true
 
-                return;
-            }
-            if (Passwrod != RepeatedPassword)
-            {
-                ShowInformationMessage("Passwrods are diffrent. . .");
+                ? ErrorMessage($"This Username '{Username}' is already used... Try another") : Passwrod != RepeatedPassword 
 
-                return;
-            }
+                ? ErrorMessage("Passwrods are diffrent. . .") : SuccsessRegister("Yout accaunt has been created!");           
+
+        }
+
+        private MessageBoxResult SuccsessLogin(string message)
+        {
+            var result = MessageBox.Show(message, "Succsess", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            ServicesLocator.PageService.SetPage(new UserPage());
+
+            return result;
+        }
+        private MessageBoxResult SuccsessRegister(string message)
+        {
+            var result = MessageBox.Show(message, "Succsess", MessageBoxButton.OK, MessageBoxImage.Information);
 
             ServicesLocator.UserRepository.Add<User>(new User(Username, Name, Passwrod));
 
             ServicesLocator.PageService.SetPage(new UserPage());
 
+            return result;
         }
 
     }

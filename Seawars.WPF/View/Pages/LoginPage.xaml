@@ -79,6 +79,18 @@
 
             </Button>
 
+            <Button 
+                 HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+          
+                    Content="back"
+                    Margin="210,232,0,0"
+                    Command="{Binding BackCommand}"
+                    FontSize="18"
+                    Style="{StaticResource LightweightButton}">
+
+            </Button>
+
 
 
 
