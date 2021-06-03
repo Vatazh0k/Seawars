@@ -67,8 +67,13 @@
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenueButtonTheme}"/>
+                             Style="{StaticResource MenueButtonTheme}">
+                    <RadioButton.Command>
+                        <cmd:SowRulesCommand/>
+                    </RadioButton.Command>
+                </RadioButton>
 
+                
                 <RadioButton Content="Delete account" 
                              Height="50"
                              Foreground="White"
