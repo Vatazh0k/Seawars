@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:Seawars.WPF.View.Pages"
       mc:Ignorable="d" 
       Height="500" Width="620"
-       DataContext="{Binding AuthorizationWindowViewModel, Mode=OneWay, Source={StaticResource Locator}}"
+       DataContext="{Binding UserPageViewModel, Mode=OneWay, Source={StaticResource Locator}}"
        Title="UserPage">
 
     <Border 
@@ -33,7 +33,7 @@
                 Foreground="White"
                 Margin="20,0,0,0"/>
 
-            <Label Content="Welcome " 
+            <Label Content="Welcome, " 
                    HorizontalAlignment="Left"
                    Grid.Column="1"
                    Grid.Row="0"
@@ -50,6 +50,13 @@
                    Margin="90,10,0,0"/>
 
             <StackPanel Grid.Row="1">
+                
+                <RadioButton Content="Start game" 
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenueButtonTheme}"/>                
+                
                 <RadioButton Content="Show statistic" 
                              Height="50"
                              Foreground="White"
@@ -62,11 +69,22 @@
                              FontSize="14"
                              Style="{StaticResource MenueButtonTheme}"/>
 
-                <RadioButton Content="Log out" 
+                <RadioButton Content="Delete account" 
                              Height="50"
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenueButtonTheme}"/>
+
+
+                <RadioButton Content="Log out" 
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenueButtonTheme}">
+                    <RadioButton.Command>
+                        <cmd:LogoutCommand/>
+                    </RadioButton.Command>
+                </RadioButton>
 
 
                 <RadioButton Content="Exit" 

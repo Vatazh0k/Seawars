@@ -48,6 +48,7 @@ namespace Seawars.WPF.ViewModels
             set => Set(ref _name, value);
         }
         #endregion
+
         public AuthorizationPageViewModel()
         {
             RegisterCommand = new Command(RegisterCommandAction, x=> true);
@@ -65,44 +66,40 @@ namespace Seawars.WPF.ViewModels
         {
             var Users = ServicesLocator.UserRepository.GetAll();
 
-                _ = Validator.NullExist(Username, Passwrod) is true
+             _ = Validator.NullExist(Username, Passwrod) is true
 
-                ? ErrorMessage("Please input all fields!") : Users.Exists(x => x.UserName == Username) is false
+             ? ErrorMessage("Please input all fields!") : Users.Exists(x => x.UserName == Username) is false
 
-                ? ErrorMessage($"Username '{Username}' doesnt exist!") : Users.Exists(x => x.Password == Passwrod) is false
+             ? ErrorMessage($"Username '{Username}' doesnt exist!") : Users.Exists(x => x.Password == Passwrod) is false
 
-                ? ErrorMessage($"Incorrect password!") : SuccsessLogin($"Wlcome, {Username}!");
+             ? ErrorMessage($"Incorrect password!") : SuccsessLogin($"Wlcome, {Username}!");
 
         }
         private void RegisterCommandAction(object obj)
         {
             _ = Validator.NullExist(Name, Username, Passwrod, RepeatedPassword) is true
 
-                ? ErrorMessage("Please input all fields!") : ServicesLocator.UserRepository.GetAll().Exists(x => x.UserName == Username) is true
+            ? ErrorMessage("Please input all fields!") : ServicesLocator.UserRepository.GetAll().Exists(x => x.UserName == Username) is true
 
-                ? ErrorMessage($"This Username '{Username}' is already used... Try another") : Passwrod != RepeatedPassword 
+            ? ErrorMessage($"This Username '{Username}' is already used... Try another") : Passwrod != RepeatedPassword 
 
-                ? ErrorMessage("Passwrods are diffrent. . .") : SuccsessRegister("Yout accaunt has been created!");           
+            ? ErrorMessage("Passwrods are diffrent. . .") : SuccsessRegister("Yout account has been created!");           
 
         }
 
         private MessageBoxResult SuccsessLogin(string message)
         {
-            var result = MessageBox.Show(message, "Succsess", MessageBoxButton.OK, MessageBoxImage.Information);
-
             ServicesLocator.PageService.SetPage(new UserPage());
 
-            return result;
+            return MessageBoxResult.OK;
         }
         private MessageBoxResult SuccsessRegister(string message)
         {
-            var result = MessageBox.Show(message, "Succsess", MessageBoxButton.OK, MessageBoxImage.Information);
-
             ServicesLocator.UserRepository.Add<User>(new User(Username, Name, Passwrod));
 
             ServicesLocator.PageService.SetPage(new UserPage());
 
-            return result;
+            return MessageBoxResult.OK;
         }
 
     }
