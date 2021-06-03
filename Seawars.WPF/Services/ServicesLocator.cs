@@ -30,5 +30,9 @@ namespace Seawars.WPF.Services
 
         public static StepRepository StepRepository =>
             App.Services.GetRequiredService<StepRepository>();
+
+
+        public static Repository Repository =>
+          App.Services.GetRequiredService<Repository>();
     }
 }

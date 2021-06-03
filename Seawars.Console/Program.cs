@@ -37,57 +37,57 @@ namespace Seawars.Console
         {
             var context = Connection.Hosting.Services.GetRequiredService<DataBaseContext>();
 
-            //var user = new User()
-            //{
-            //    Name = "Anton",
-            //    UserName = "Anton",
-            //    Password = "0601",
-            //    CountOfWonGames = 1,
-            //    GamesWithComputer = 1,
-            //    TotalGamesCount = 2,
+            var user = new User()
+            {
+                Name = "Anton",
+                UserName = "Anton",
+                Password = "0601",
+                CountOfWonGames = 1,
+                GamesWithComputer = 1,
+                TotalGamesCount = 2,
 
-            //};
+            };
 
-            //context.Users.Add(user);
-            //var game = new Game();
+            context.Users.Add(user);
+            var game = new Game();
 
-            //game.User = user;
-            //game.Steps = new List<Step>()
-            //{
+            game.User = user;
+            game.Steps = new List<Step>()
+            {
 
-            //        new Step()
-            //        {
-            //            X = 7,
-            //            Y = 9,
-            //            Game =game,
-            //        },
-            //           new Step()
-            //        {
-            //            X = 6,
-            //            Y = 8,
-            //           Game =game,
-            //        },
+                    new Step()
+                    {
+                        X = 7,
+                        Y = 9,
+                        Game =game,
+                    },
+                       new Step()
+                    {
+                        X = 6,
+                        Y = 8,
+                       Game =game,
+                    },
 
-            //          new Step()
-            //        {
-            //            X = 9,
-            //            Y = 7,
-            //              Game =game,
-            //        },
-            //           new Step()
-            //        {
-            //            X = 3,
-            //            Y = 4,
-            //              Game =game,
+                      new Step()
+                    {
+                        X = 9,
+                        Y = 7,
+                          Game =game,
+                    },
+                       new Step()
+                    {
+                        X = 3,
+                        Y = 4,
+                          Game =game,
 
-            //        }
+                    }
 
-            //};
+            };
 
-            //context.Games.Add(game);
+            context.Games.Add(game);
 
 
-            //context.SaveChanges();
+            context.SaveChanges();
 
 
             //var Game = context.Games.FirstOrDefault(x => x.Id == 4);

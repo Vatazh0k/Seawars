@@ -13,7 +13,7 @@ namespace Seawars.Interfaces.Repositories
         T GetById(int id);
         void Add<T>(T entity);
         void Update();
-        void Delete();
+        void Delete<T>(T entity);
         void DeleteById(int id);
         bool ExistId(int id);
 

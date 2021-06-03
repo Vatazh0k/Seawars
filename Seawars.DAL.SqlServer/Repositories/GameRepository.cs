@@ -37,9 +37,10 @@ namespace Seawars.DAL.SqlServer.Repositories
             throw new NotImplementedException();
         }
 
-        public void Delete()
+        public void Delete<T>(T entity)
         {
-            throw new NotImplementedException();
+            if (entity is null) return;
+            _context.Games.Remove(entity as Game);
         }
 
         public void DeleteById(int id)
