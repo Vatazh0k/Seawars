@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Seawars.WPF.View.UserControls;
 
 namespace Seawars.WPF.ViewModels
 {
@@ -94,6 +95,8 @@ namespace Seawars.WPF.ViewModels
 
             ServicesLocator.PageService.SetPage(new UserPage());
 
+            ServicesLocator.UserPageViewModel.CurrentViewControl = new ProfileControl();
+
             return MessageBoxResult.OK;
         }
         private MessageBoxResult SuccsessRegister(string message)
@@ -103,6 +106,8 @@ namespace Seawars.WPF.ViewModels
             App.CuurentUser = ServicesLocator.UserRepository.GetAll().FirstOrDefault(x => x.UserName == Username);
 
             ServicesLocator.PageService.SetPage(new UserPage());
+
+            ServicesLocator.UserPageViewModel.CurrentViewControl = new ProfileControl();
 
             return MessageBoxResult.OK;
         }
