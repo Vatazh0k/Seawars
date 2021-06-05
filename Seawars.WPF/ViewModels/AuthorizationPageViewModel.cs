@@ -24,19 +24,20 @@ namespace Seawars.WPF.ViewModels
         #region Data
         private string _name;
         private string _username;
-        private string _passwords;
+        private string _password;
         private string _repeatedPassword;
 
         public string RepeatedPassword
         {
-            get => _repeatedPassword;
-            set => Set(ref _repeatedPassword, value);
+            get => _repeatedPassword is not null ? new string('*', _repeatedPassword.Length) : _repeatedPassword;
+            set => AddLastSymbol(ref _repeatedPassword, value);
         }
         public string Passwrod
         {
-            get => _passwords;
-            set => Set(ref _passwords, value);
+            get => _password is not null? new string('*', _password.Length):string.Empty;
+            set => AddLastSymbol(ref _password, value);
         }
+
         public string Username
         {
             get => _username;
@@ -66,22 +67,22 @@ namespace Seawars.WPF.ViewModels
         {
             var Users = ServicesLocator.UserRepository.GetAll();
 
-             _ = Validator.NullExist(Username, Passwrod) is true
+             _ = Validator.NullExist(Username, _password) is true
 
              ? ErrorMessage("Please input all fields!") : Users.Exists(x => x.UserName == Username) is false
 
-             ? ErrorMessage($"Username '{Username}' doesnt exist!") : Users.Exists(x => x.Password == Passwrod) is false
+             ? ErrorMessage($"Username '{Username}' doesnt exist!") : Users.Exists(x => x.Password == _password) is false
 
              ? ErrorMessage($"Incorrect password!") : SuccsessLogin($"Wlcome, {Username}!");
 
         }
         private void RegisterCommandAction(object obj)
         {
-            _ = Validator.NullExist(Name, Username, Passwrod, RepeatedPassword) is true
+            _ = Validator.NullExist(Name, Username, _password, _repeatedPassword) is true
 
             ? ErrorMessage("Please input all fields!") : ServicesLocator.UserRepository.GetAll().Exists(x => x.UserName == Username) is true
 
-            ? ErrorMessage($"This Username '{Username}' is already used... Try another") : Passwrod != RepeatedPassword 
+            ? ErrorMessage($"This Username '{Username}' is already used... Try another") : _password != _repeatedPassword 
 
             ? ErrorMessage("Passwrods are diffrent. . .") : SuccsessRegister("Yout account has been created!");           
 
@@ -89,19 +90,19 @@ namespace Seawars.WPF.ViewModels
 
         private MessageBoxResult SuccsessLogin(string message)
         {
-            ServicesLocator.PageService.SetPage(new UserPage());
-
             App.CuurentUser = ServicesLocator.UserRepository.GetAll().FirstOrDefault(x => x.UserName == Username);
+
+            ServicesLocator.PageService.SetPage(new UserPage());
 
             return MessageBoxResult.OK;
         }
         private MessageBoxResult SuccsessRegister(string message)
         {
-            ServicesLocator.UserRepository.Add<User>(new User(Username, Name, Passwrod));
-
-            ServicesLocator.PageService.SetPage(new UserPage());
+            ServicesLocator.UserRepository.Add<User>(new User(Username, Name, _password));
 
             App.CuurentUser = ServicesLocator.UserRepository.GetAll().FirstOrDefault(x => x.UserName == Username);
+
+            ServicesLocator.PageService.SetPage(new UserPage());
 
             return MessageBoxResult.OK;
         }

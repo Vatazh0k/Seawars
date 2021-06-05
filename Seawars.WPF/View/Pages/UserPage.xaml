@@ -22,7 +22,9 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
-                <RowDefinition/>
+                <RowDefinition Height="50*"/>
+
+
             </Grid.RowDefinitions>
 
             <TextBlock
@@ -33,35 +35,35 @@
                 Foreground="White"
                 Margin="20,0,0,0"/>
 
-            <Label Content="Welcome, " 
-                   HorizontalAlignment="Left"
+            <Label Content="Yout profile" 
+                   HorizontalAlignment="Center"
                    Grid.Column="1"
                    Grid.Row="0"
-                   FontSize="18"
+                   FontSize="18" 
+                   Margin="0,20,0,0"
+                   Foreground="AntiqueWhite"
                    VerticalAlignment="Center"
-                   Margin="10,10,0,0"/>
+                   />
 
-            <Label Content="{Binding AuthorizationWindowViewModel.Username, Source={StaticResource Locator}}" 
-                   HorizontalAlignment="Left"
-                   Grid.Column="1"
-                   Grid.Row="0"
-                   FontSize="18"
-                   VerticalAlignment="Center"
-                   Margin="90,10,0,0"/>
 
-            <StackPanel Grid.Row="1">
-                
+
+            <StackPanel Grid.Row="1" Grid.RowSpan="6" >
+
                 <RadioButton Content="Start game" 
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenueButtonTheme}"/>                
-                
+                             Style="{StaticResource MenueButtonTheme}"/>
+
+
                 <RadioButton Content="Show statistic" 
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenueButtonTheme}"/>
+                             Style="{StaticResource MenueButtonTheme}">
+                  
+                </RadioButton>
+
 
                 <RadioButton Content="Rules" 
                              Height="50"
@@ -73,7 +75,7 @@
                     </RadioButton.Command>
                 </RadioButton>
 
-                
+
                 <RadioButton Content="Delete account" 
                              Height="50"
                              Foreground="White"
@@ -107,6 +109,60 @@
                 </RadioButton>
             </StackPanel>
 
+            <Border Grid.Row="1" Grid.Column="1" BorderThickness="1,0,0,0" BorderBrush="Black">
+                <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="52*"/>
+                    <RowDefinition Height="52*"/>
+                    <RowDefinition Height="49*"/>
+                    <RowDefinition Height="49*"/>
+                    <RowDefinition Height="51*"/>
+                    <RowDefinition Height="172*"/>
+                </Grid.RowDefinitions>
+
+                <Label
+                   Grid.Row="0"
+                   FontSize="16"
+                   Foreground="AntiqueWhite"
+                   VerticalAlignment="Center"
+                   Content="{Binding Name,UpdateSourceTrigger=PropertyChanged}" Margin="0,6,0,0"/>
+
+                <Label
+                   Grid.Row="1"
+                   FontSize="16"
+                   Foreground="AntiqueWhite"
+                   VerticalAlignment="Center"
+                   Content="{Binding Username,UpdateSourceTrigger=PropertyChanged}" Margin="0,6,0,0"/>
+
+
+
+                <Label
+                   Grid.Row="2"
+                   FontSize="16"
+                   Foreground="AntiqueWhite"
+                   VerticalAlignment="Center"
+                   Content="{Binding TotalGamesCount,UpdateSourceTrigger=PropertyChanged}" Margin="0,6,0,0"/>
+
+
+                <Label
+                   Grid.Row="3"
+                   FontSize="16"
+                   Foreground="AntiqueWhite"
+                   VerticalAlignment="Center"
+                   Content="{Binding GamesWithComputer,UpdateSourceTrigger=PropertyChanged}" Margin="0,6,0,0"/>
+
+
+                <Label
+                   Grid.Row="4"
+                   FontSize="16"
+                   Foreground="AntiqueWhite"
+                   VerticalAlignment="Center"
+                   Content="{Binding CountOfWonGames,UpdateSourceTrigger=PropertyChanged}" Margin="0,6,0,0"/>
+
+                </Grid>
+            </Border>
+
+
             <!--<TextBox Width="250" Height="40"
                      VerticalContentAlignment="Center"
                      HorizontalAlignment="Left"
@@ -131,7 +187,7 @@
                 </Button.Command>
             </Button>
 
-           
+
 
         </Grid>
 

@@ -14,8 +14,8 @@ namespace Seawars.WPF.Common.Commands
         public override void Execute(object parameter)
         {
             ServicesLocator.PageService.SetPage<LoginPage>(new LoginPage());
-            ServicesLocator.AuthorizationWindowViewModel.Passwrod = string.Empty;
-            ServicesLocator.AuthorizationWindowViewModel.RepeatedPassword = string.Empty;
+            ServicesLocator.AuthorizationWindowViewModel.Passwrod = new ("*");
+            ServicesLocator.AuthorizationWindowViewModel.RepeatedPassword = new ("*");
             ServicesLocator.AuthorizationWindowViewModel.Name = string.Empty;
         }
     }

@@ -23,6 +23,28 @@ namespace Seawars.WPF.Common
             OnPropertyChanged(propertName);
             return true;
         }
+        protected virtual bool AddLastSymbol(ref string field, string value, [CallerMemberName] string propertName = null)
+        {
+            if (Equals(field, value)) return false;
+            if (value is "*")
+            {
+                field = string.Empty;
+                goto PropertyChanged;
+            }
+            if (field is not null && value.Length < field.Length)
+            {
+                field = field.Remove(field.Length - 1);
+                goto PropertyChanged;
+            }
+
+            field += value[value.Length-1];
+
+            PropertyChanged:
+
+            OnPropertyChanged(propertName);
+            return true;
+        }
+
     }
 }
 
