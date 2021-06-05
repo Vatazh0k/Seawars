@@ -16,7 +16,6 @@ namespace Seawars.WPF.ViewModels
     public class UserPageViewModel : ViewModelBase
     {
         #region Profile data
-
         public string Name => $"Name:  {App.CuurentUser.Name}";
         public string Username => $"Username:  {App.CuurentUser.UserName}";
         public string TotalGamesCount => $"Total games count:  {App.CuurentUser.TotalGamesCount}";
@@ -24,7 +23,6 @@ namespace Seawars.WPF.ViewModels
         public string CountOfWonGames => $"Win games count:  {App.CuurentUser.CountOfWonGames}";
 
         #endregion
-
 
         #region View
         private object _CurrentViewControl;
@@ -35,11 +33,27 @@ namespace Seawars.WPF.ViewModels
         }
         #endregion
 
+        #region Commands
+
+        public ICommand ShowStatisticCommand { get; }
+        public ICommand StartGameCommand { get; }
+        
+        #endregion
+
         public UserPageViewModel()
         {
-
+            ShowStatisticCommand = new Command(ShowStatistic, x => true);
+            StartGameCommand = new Command(StartGame, x => true);
         }
 
-       
+        private void ShowStatistic(object obj)
+        {
+            
+        }
+
+        private void StartGame(object obj)
+        {
+            
+        }
     }
 }

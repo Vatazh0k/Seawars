@@ -15,10 +15,10 @@ namespace Seawars.WPF.ViewModels
     internal class AuthorizationPageViewModel : ViewModelBase
     {
         #region Commands
-        public ICommand RegisterCommand { get; set; }
-        public ICommand GoToLoginWindowCommand { get; set; }
-        public ICommand LoginCommand { get; set; }
-        public ICommand BackCommand { get; set; }
+        public ICommand RegisterCommand { get; }
+        public ICommand GoToLoginWindowCommand { get; }
+        public ICommand LoginCommand { get; }
+        public ICommand BackCommand { get; }
 
         #endregion
 

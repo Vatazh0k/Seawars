@@ -43,14 +43,14 @@ namespace Seawars.WPF
 
             services.AddSingleton<PageService>();
             services.AddSingleton<Repository>();
-
+     
             services.AddScoped<UserRepository>();
             services.AddScoped<GameRepository>();
             services.AddScoped<StepRepository>();   
 
             services.AddDbContext<DataBaseContext>(x =>
                 x.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Seawars;Trusted_Connection=True", o =>
-                    o.MigrationsAssembly("Seawars.DAL.SqlServer")));
+                    o.MigrationsAssembly("Seawars.DAL.SqlServer")));//GetConnectionString;
         }
 
         protected override async void OnStartup(StartupEventArgs e)
