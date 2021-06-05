@@ -47,13 +47,12 @@
 
 
 
-            <StackPanel Grid.Row="1" >
+            <StackPanel Grid.Row="1" Grid.RowSpan="6" >
 
                 <RadioButton Content="Start game" 
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Command="{Binding StartGameCommand}"
                              Style="{StaticResource MenueButtonTheme}"/>
 
 
@@ -61,7 +60,6 @@
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Command="{Binding ShowStatisticCommand}"
                              Style="{StaticResource MenueButtonTheme}">
                   
                 </RadioButton>
@@ -112,15 +110,55 @@
             </StackPanel>
 
             <Border Grid.Row="1" Grid.Column="1" BorderThickness="1,0,0,0" BorderBrush="Black">
-             
                 <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="52*"/>
+                    <RowDefinition Height="52*"/>
+                    <RowDefinition Height="49*"/>
+                    <RowDefinition Height="49*"/>
+                    <RowDefinition Height="51*"/>
+                    <RowDefinition Height="172*"/>
+                </Grid.RowDefinitions>
 
-                    <ContentControl Content="{Binding CurrentViewControl}">
+                <Label
+                   Grid.Row="0"
+                   FontSize="16"
+                   Foreground="AntiqueWhite"
+                   VerticalAlignment="Center"
+                   Content="{Binding Name,UpdateSourceTrigger=PropertyChanged}" Margin="0,6,0,0"/>
+
+                <Label
+                   Grid.Row="1"
+                   FontSize="16"
+                   Foreground="AntiqueWhite"
+                   VerticalAlignment="Center"
+                   Content="{Binding Username,UpdateSourceTrigger=PropertyChanged}" Margin="0,6,0,0"/>
 
 
-                    </ContentControl>
 
-                  
+                <Label
+                   Grid.Row="2"
+                   FontSize="16"
+                   Foreground="AntiqueWhite"
+                   VerticalAlignment="Center"
+                   Content="{Binding TotalGamesCount,UpdateSourceTrigger=PropertyChanged}" Margin="0,6,0,0"/>
+
+
+                <Label
+                   Grid.Row="3"
+                   FontSize="16"
+                   Foreground="AntiqueWhite"
+                   VerticalAlignment="Center"
+                   Content="{Binding GamesWithComputer,UpdateSourceTrigger=PropertyChanged}" Margin="0,6,0,0"/>
+
+
+                <Label
+                   Grid.Row="4"
+                   FontSize="16"
+                   Foreground="AntiqueWhite"
+                   VerticalAlignment="Center"
+                   Content="{Binding CountOfWonGames,UpdateSourceTrigger=PropertyChanged}" Margin="0,6,0,0"/>
+
                 </Grid>
             </Border>
 
