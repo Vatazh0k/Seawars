@@ -23,7 +23,7 @@ namespace Seawars.WPF.ViewModels
 
         public UserPageViewModel()
         {
-            
+             
         }
 
        
