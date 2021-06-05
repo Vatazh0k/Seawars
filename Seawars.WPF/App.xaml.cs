@@ -42,6 +42,7 @@ namespace Seawars.WPF
             services.AddScoped<UserPageViewModel>();
 
             services.AddSingleton<PageService>();
+
             services.AddScoped<Repository>();
      
             services.AddScoped<UserRepository>();

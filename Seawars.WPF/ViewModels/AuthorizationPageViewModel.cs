@@ -74,7 +74,7 @@ namespace Seawars.WPF.ViewModels
 
              ? ErrorMessage($"Username '{Username}' doesnt exist!") : Users.Exists(x => x.Password == _password) is false
 
-             ? ErrorMessage($"Incorrect password!") : SuccsessLogin($"Wlcome, {Username}!");
+             ? ErrorMessage($"Incorrect password!") : SuccessLogin($"Welcome, {Username}!");
 
         }
         private void RegisterCommandAction(object obj)
@@ -85,11 +85,11 @@ namespace Seawars.WPF.ViewModels
 
             ? ErrorMessage($"This Username '{Username}' is already used... Try another") : _password != _repeatedPassword 
 
-            ? ErrorMessage("Passwrods are diffrent. . .") : SuccsessRegister("Yout account has been created!");           
+            ? ErrorMessage("Passwords are different. . .") : SuccessRegister("Account has been created!");           
 
         }
 
-        private MessageBoxResult SuccsessLogin(string message)
+        private MessageBoxResult SuccessLogin(string message)
         {
             App.CuurentUser = ServicesLocator.UserRepository.GetAll().FirstOrDefault(x => x.UserName == Username);
 
@@ -99,7 +99,7 @@ namespace Seawars.WPF.ViewModels
 
             return MessageBoxResult.OK;
         }
-        private MessageBoxResult SuccsessRegister(string message)
+        private MessageBoxResult SuccessRegister(string message)
         {
             ServicesLocator.UserRepository.Add<User>(new User(Username, Name, _password));
 
@@ -112,5 +112,5 @@ namespace Seawars.WPF.ViewModels
             return MessageBoxResult.OK;
         }
 
-    }
+    }  
 }

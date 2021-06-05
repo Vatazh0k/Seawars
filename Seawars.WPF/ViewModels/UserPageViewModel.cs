@@ -113,7 +113,7 @@ namespace Seawars.WPF.ViewModels
 
         private void StartGame(object obj)
         {
-            
+             
         }
     }
 }
