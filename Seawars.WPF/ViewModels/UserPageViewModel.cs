@@ -4,11 +4,14 @@ using Seawars.WPF.Services;
 using Seawars.WPF.View.Pages;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Seawars.Domain.Entities;
+using Seawars.WPF.Authorization.Model;
+using Seawars.WPF.Authorization.View.UserControls;
 using Seawars.WPF.View.UserControls;
 
 namespace Seawars.WPF.ViewModels
@@ -33,10 +36,37 @@ namespace Seawars.WPF.ViewModels
         }
         #endregion
 
+        #region Collections
+
+        private ObservableCollection<Games> _Games;
+
+        public ObservableCollection<Games> Games
+        {
+            get => _Games;
+            set => Set(ref _Games, value);
+        }
+
+        private ObservableCollection<Steps> _Steps;
+
+        public ObservableCollection<Steps> Steps
+        {
+            get => _Steps;
+            set => Set(ref _Steps, value);
+        }
+
+        #endregion
+
+        #region DataGrid
+
+        public Games SelectedGame { get; set; }
+        #endregion
+
         #region Commands
 
         public ICommand ShowStatisticCommand { get; }
         public ICommand StartGameCommand { get; }
+        public ICommand BackCommand { get; }
+        public ICommand GameDetailsCommand { get; }
         
         #endregion
 
@@ -44,11 +74,26 @@ namespace Seawars.WPF.ViewModels
         {
             ShowStatisticCommand = new Command(ShowStatistic, x => true);
             StartGameCommand = new Command(StartGame, x => true);
+            BackCommand = new Command(Back, x => true);
+            GameDetailsCommand = new Command(GameDetails, x => true);
         }
+
+        private void Back(object obj) =>
+            _ = CurrentViewControl is GamesStatisticControl
+                ? CurrentViewControl = new ProfileControl()
+                : CurrentViewControl = new GamesStatisticControl();
+
+        private void GameDetails(object obj) => CurrentViewControl = new StepsStatisticControl();
 
         private void ShowStatistic(object obj)
         {
-            
+            var steps = Enumerable.Range(1, 10).Select(x => new Steps(x + 2, x + 3));
+            var games = Enumerable.Range(0, 60).Select(x => new Games(x));
+
+            Games = new ObservableCollection<Games>(games);
+            Steps = new ObservableCollection<Steps>(steps);
+            CurrentViewControl = new GamesStatisticControl();
+
         }
 
         private void StartGame(object obj)

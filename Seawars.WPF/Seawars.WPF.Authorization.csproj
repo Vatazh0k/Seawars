@@ -27,4 +27,10 @@
     <Folder Include="Infrastructure\Extentions\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\..\SeaBattle2\SeaBattle2\Lib\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

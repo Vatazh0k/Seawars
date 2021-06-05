@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Seawars.WPF.Game
+namespace Seawars.WPF.Authorization.View.UserControls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for StepsStatisticControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StepsStatisticControl : UserControl
     {
-        public MainWindow()
+        public StepsStatisticControl()
         {
             InitializeComponent();
         }
