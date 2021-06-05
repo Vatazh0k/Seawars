@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Seawars.DAL.SqlServer.Repositories;
 using Seawars.Domain.Entities;
 using Seawars.WPF.Authorization.Model;
 using Seawars.WPF.Authorization.View.UserControls;
@@ -83,16 +84,30 @@ namespace Seawars.WPF.ViewModels
                 ? CurrentViewControl = new ProfileControl()
                 : CurrentViewControl = new GamesStatisticControl();
 
-        private void GameDetails(object obj) => CurrentViewControl = new StepsStatisticControl();
+        private void GameDetails(object obj)
+        {
+            var steps = ServicesLocator.StepRepository
+                .GetAll()
+                .Where(x => x.Game.Id == SelectedGame.Id)
+                .Select((x, y) => new Steps(x.X, x.Y, y + 1, x.Move))
+                .ToList();
+
+            Steps = new ObservableCollection<Steps>(steps);
+
+            CurrentViewControl = new StepsStatisticControl();
+        }
 
         private void ShowStatistic(object obj)
         {
-            var steps = Enumerable.Range(1, 10).Select(x => new Steps(x + 2, x + 3));
-            var games = Enumerable.Range(0, 60).Select(x => new Games(x));
+            var games = ServicesLocator.GameRepository
+                .GetAll()
+                .Where(x => x.User.Id == App.CuurentUser.Id)
+                .Select((x,y) => new Games(y+1, x.Id))
+                .ToList();
 
-            Games = new ObservableCollection<Games>(games);
-            Steps = new ObservableCollection<Steps>(steps);
-            CurrentViewControl = new GamesStatisticControl();
+                Games = new ObservableCollection<Games>(games);
+
+                CurrentViewControl = new GamesStatisticControl();
 
         }
 

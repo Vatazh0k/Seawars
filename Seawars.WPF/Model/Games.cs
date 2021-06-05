@@ -10,6 +10,7 @@ namespace Seawars.WPF.Authorization.Model
     {
         public string Game { get; set; } = "Game";
         public int Number { get; set; }
+        public int Id { get; set; }
         public string Hint { get; set; } = "double click to open game details";
 
         public Games()
@@ -17,9 +18,10 @@ namespace Seawars.WPF.Authorization.Model
             
         }
 
-        public Games(int Number)
+        public Games(int Number, int Id)
         {
             this.Number = Number;
+            this.Id = Id;
         }
     }
 }

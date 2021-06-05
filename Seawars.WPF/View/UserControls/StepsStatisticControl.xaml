@@ -28,9 +28,7 @@
             CanUserAddRows="False"
             CanUserResizeColumns="False"
             CanUserResizeRows="False"
-            Margin="0,30,0,0"
-            SelectedValue="{Binding SelectedGame}"
-        >
+            Margin="0,30,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="X" Width="80" Binding="{Binding X}"/>
                 <DataGridTextColumn Header="Y" Width="80" Binding="{Binding Y}"/>

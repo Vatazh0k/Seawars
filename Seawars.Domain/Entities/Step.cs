@@ -14,6 +14,14 @@ namespace Seawars.Domain.Entities
         public int Id { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
+        public Move? Move { get; set; }
         public Game Game { get; set; }
+
+    }
+
+    public enum Move
+    {
+        Enimy = 1,
+        Your = 2,
     }
 }

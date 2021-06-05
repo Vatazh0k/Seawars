@@ -14,5 +14,10 @@ namespace Seawars.Domain.Entities
         public int Id { get; set; }
         public User User { get; set; }
         public List<Step> Steps { get; set; }
+
+        public Game()
+        {
+            
+        }
     }
 }
