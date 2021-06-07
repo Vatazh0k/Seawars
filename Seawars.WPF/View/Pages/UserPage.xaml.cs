@@ -21,9 +21,9 @@ namespace Seawars.WPF.View.Pages
     /// </summary>
     public partial class UserPage : Page
     {
-        public UserPage(User CurrentUser)
+        public UserPage(User currentUser)
         {
-            App.CuurentUser = CurrentUser;
+            App.CuurentUser = currentUser;
             InitializeComponent();
         }
     }

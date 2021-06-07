@@ -1,12 +1,15 @@
-﻿using Seawars.WPF.Services;
+﻿using System;
+using Seawars.WPF.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using Seawars.WPF.Authorization.Model;
 using System.Windows.Input;
 using Seawars.WPF.Authorization.View.UserControls;
 using Seawars.WPF.Common;
 using Seawars.WPF.Common.Commands.Base;
 using Seawars.WPF.View.UserControls;
+using Seawars.WPF.View.Windows;
 
 namespace Seawars.WPF.ViewModels
 {
@@ -108,8 +111,9 @@ namespace Seawars.WPF.ViewModels
 
         private void StartGame(object obj)
         {
-           
+            App.UserProfileWindow.Hide();
 
+            new GameWindow().Show();
         }
     }
 }

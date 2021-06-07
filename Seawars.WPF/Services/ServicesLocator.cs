@@ -20,6 +20,7 @@ namespace Seawars.WPF.Services
            App.Services.GetRequiredService<PageService>();
 
 
+
         public static UserRepository UserRepository =>
             App.Services.GetRequiredService<UserRepository>();
 

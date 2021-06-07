@@ -14,8 +14,11 @@ namespace Seawars.WPF
 {
     public partial class App : Application
     {
-        public static Domain.Entities.User CuurentUser;
-        public static Domain.Entities.Game CurrentGame;
+        public static Domain.Entities.User CuurentUser { get; set; }
+        public static Domain.Entities.Game CurrentGame { get; set; }
+
+        public static Window UserProfileWindow { get; set; }
+
         public static Window WindowActive => Current.Windows.Cast<Window>().FirstOrDefault(w => w.IsActive);
         public static Window WindowFocused => Current.Windows.Cast<Window>().FirstOrDefault(w => w.IsFocused);
         public static Window WindowCurrent => WindowFocused ?? WindowActive;
@@ -38,7 +41,8 @@ namespace Seawars.WPF
             services.AddScoped<AuthorizationPageViewModel>();
             services.AddScoped<UserPageViewModel>();
 
-            services.AddSingleton<PageService>();
+            services.AddScoped<PageService>();
+
 
             services.AddScoped<Repository>();
      

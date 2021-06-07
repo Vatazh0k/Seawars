@@ -90,25 +90,29 @@ namespace Seawars.WPF.ViewModels
 
         private MessageBoxResult SuccessLogin(string message)
         {
-            var CurrentUser = ServicesLocator.UserRepository.GetAll().FirstOrDefault(x => x.UserName == Username);
-
-            ServicesLocator.PageService.SetPage(new UserPage(CurrentUser));
-
-            ServicesLocator.UserPageViewModel.CurrentViewControl = new ProfileControl();
+            UserProfileSettings();
 
             return MessageBoxResult.OK;
         }
+
         private MessageBoxResult SuccessRegister(string message)
         {
             ServicesLocator.UserRepository.Add<User>(new User(Username, Name, _password));
 
-            var CurrentUser = ServicesLocator.UserRepository.GetAll().FirstOrDefault(x => x.UserName == Username);
+            UserProfileSettings();
 
-            ServicesLocator.PageService.SetPage(new UserPage(CurrentUser));
+            return MessageBoxResult.OK;
+        }
+
+        private void UserProfileSettings()
+        {
+            var currentUser = ServicesLocator.UserRepository.GetAll().FirstOrDefault(x => x.UserName == Username);
+
+            ServicesLocator.PageService.SetPage(new UserPage(currentUser));
 
             ServicesLocator.UserPageViewModel.CurrentViewControl = new ProfileControl();
 
-            return MessageBoxResult.OK;
+            App.UserProfileWindow = App.WindowCurrent;
         }
 
     }  
