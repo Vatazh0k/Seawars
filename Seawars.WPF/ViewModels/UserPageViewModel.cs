@@ -88,6 +88,8 @@ namespace Seawars.WPF.ViewModels
 
         private void GameDetails(object obj)
         {
+            if(SelectedGame is null) return;
+
             var steps = ServicesLocator.StepRepository
                 .GetAll()
                 .Where(x => x.Game.Id == SelectedGame.Id)
@@ -97,6 +99,8 @@ namespace Seawars.WPF.ViewModels
             Steps = new ObservableCollection<Steps>(steps);
 
             CurrentViewControl = new StepsStatisticControl();
+
+            SelectedGame = null;
         }
 
         private void ShowStatistic(object obj)

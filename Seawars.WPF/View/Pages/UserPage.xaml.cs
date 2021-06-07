@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Seawars.Domain.Entities;
 
 namespace Seawars.WPF.View.Pages
 {
@@ -20,8 +21,9 @@ namespace Seawars.WPF.View.Pages
     /// </summary>
     public partial class UserPage : Page
     {
-        public UserPage()
+        public UserPage(User CurrentUser)
         {
+            App.CuurentUser = CurrentUser;
             InitializeComponent();
         }
     }
