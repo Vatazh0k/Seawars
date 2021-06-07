@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Seawars.WPF.Common
+namespace Seawars.WPF.Base.ViewModel
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
@@ -37,7 +37,7 @@ namespace Seawars.WPF.Common
                 goto PropertyChanged;
             }
 
-            field += value[value.Length-1];
+            field += value[value.Length - 1];
 
             PropertyChanged:
 

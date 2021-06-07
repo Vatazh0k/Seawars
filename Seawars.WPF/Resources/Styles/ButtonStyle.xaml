@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
+
+
     <Style TargetType="Button" x:Key="LightweightButton">
         <Setter Property="Template">
             <Setter.Value>
@@ -11,5 +13,6 @@
             </Setter.Value>
         </Setter>
     </Style>
+
 
 </ResourceDictionary>

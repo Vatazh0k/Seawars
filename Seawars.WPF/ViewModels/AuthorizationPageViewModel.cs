@@ -8,7 +8,9 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Seawars.WPF.Base.ViewModel;
 using Seawars.WPF.View.UserControls;
+using Seawars.WPF.Base.Commands;
 
 namespace Seawars.WPF.ViewModels
 {

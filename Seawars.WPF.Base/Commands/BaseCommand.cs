@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Seawars.WPF.Common.Commands
+namespace Seawars.WPF.Base.Commands
 {
     public class BaseCommand : ICommand
     {

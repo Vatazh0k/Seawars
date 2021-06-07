@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Seawars.WPF.Common.Commands
+namespace Seawars.WPF.Base.Commands
 {
-    class Command : BaseCommand
+    public class Command : BaseCommand
     {
         private readonly Action<object> _execute;
         private readonly Func<object, bool> _canExecute;

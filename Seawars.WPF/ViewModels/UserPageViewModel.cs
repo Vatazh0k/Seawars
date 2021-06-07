@@ -12,7 +12,9 @@ using System.Windows.Input;
 using Seawars.DAL.SqlServer.Repositories;
 using Seawars.Domain.Entities;
 using Seawars.WPF.Authorization.Model;
+using Seawars.WPF.Base.Commands;
 using Seawars.WPF.Authorization.View.UserControls;
+using Seawars.WPF.Base.ViewModel;
 using Seawars.WPF.View.UserControls;
 
 namespace Seawars.WPF.ViewModels
