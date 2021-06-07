@@ -21,7 +21,6 @@
     <ProjectReference Include="..\Seawars.Infrastructure\Seawars.Infrastructure.csproj" />
     <ProjectReference Include="..\Seawars.Interfaces\Seawars.Interfaces.csproj" />
     <ProjectReference Include="..\Seawars.WebApi.Clients\Seawars.WebApi.Clients.csproj" />
-    <ProjectReference Include="..\Seawars.WPF.Base\Seawars.WPF.Base.csproj" />
   </ItemGroup>
 
   <ItemGroup>

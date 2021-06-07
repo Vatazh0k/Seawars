@@ -1,11 +1,6 @@
 ﻿using Seawars.WPF.Services;
 using Seawars.WPF.View.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Seawars.WPF.Base.Commands;
+using Seawars.WPF.Common.Commands.Base;
 
 namespace Seawars.WPF.Common.Commands
 {

@@ -1,20 +1,11 @@
-﻿using Seawars.WPF.Common;
-using Seawars.WPF.Common.Commands;
-using Seawars.WPF.Services;
-using Seawars.WPF.View.Pages;
-using System;
-using System.Collections.Generic;
+﻿using Seawars.WPF.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Seawars.DAL.SqlServer.Repositories;
-using Seawars.Domain.Entities;
 using Seawars.WPF.Authorization.Model;
-using Seawars.WPF.Base.Commands;
+using System.Windows.Input;
 using Seawars.WPF.Authorization.View.UserControls;
-using Seawars.WPF.Base.ViewModel;
+using Seawars.WPF.Common;
+using Seawars.WPF.Common.Commands.Base;
 using Seawars.WPF.View.UserControls;
 
 namespace Seawars.WPF.ViewModels
@@ -85,7 +76,6 @@ namespace Seawars.WPF.ViewModels
             _ = CurrentViewControl is GamesStatisticControl
                 ? CurrentViewControl = new ProfileControl()
                 : CurrentViewControl = new GamesStatisticControl();
-
         private void GameDetails(object obj)
         {
             if(SelectedGame is null) return;
@@ -102,7 +92,6 @@ namespace Seawars.WPF.ViewModels
 
             SelectedGame = null;
         }
-
         private void ShowStatistic(object obj)
         {
             var games = ServicesLocator.GameRepository
@@ -119,7 +108,8 @@ namespace Seawars.WPF.ViewModels
 
         private void StartGame(object obj)
         {
-             
+           
+
         }
     }
 }

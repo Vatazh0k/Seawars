@@ -3,22 +3,19 @@ using System.Configuration;
 using System.Linq;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Seawars.DAL.Context;
-using Seawars.WPF.View.Windows;
 using Seawars.WPF.ViewModels;
 using Seawars.DAL.SqlServer.Repositories;
 using Seawars.WPF.Services;
-using Seawars.Domain.Entities;
 
 namespace Seawars.WPF
 {
     public partial class App : Application
     {
-        public static User CuurentUser;
-        public static Game CurrentGame;
+        public static Domain.Entities.User CuurentUser;
+        public static Domain.Entities.Game CurrentGame;
         public static Window WindowActive => Current.Windows.Cast<Window>().FirstOrDefault(w => w.IsActive);
         public static Window WindowFocused => Current.Windows.Cast<Window>().FirstOrDefault(w => w.IsFocused);
         public static Window WindowCurrent => WindowFocused ?? WindowActive;

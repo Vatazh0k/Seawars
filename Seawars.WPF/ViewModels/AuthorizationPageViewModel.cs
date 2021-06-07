@@ -1,16 +1,13 @@
 ﻿using Seawars.Domain.Entities;
 using Seawars.Infrastructure.Validation;
 using Seawars.WPF.Common;
-using Seawars.WPF.Common.Commands;
 using Seawars.WPF.Services;
 using Seawars.WPF.View.Pages;
-using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using Seawars.WPF.Base.ViewModel;
 using Seawars.WPF.View.UserControls;
-using Seawars.WPF.Base.Commands;
+using Seawars.WPF.Common.Commands.Base;
 
 namespace Seawars.WPF.ViewModels
 {
