@@ -10,6 +10,11 @@
        DataContext="{Binding AuthorizationWindowViewModel, Mode=OneWay, Source={StaticResource Locator}}"
       Title="AuthorizationPage">
 
+    <Page.InputBindings>
+        <KeyBinding Command="{Binding LoginCommand}" Key="Return"/>
+        <KeyBinding Command="{Binding BackCommand}" Key="Escape"/>
+    </Page.InputBindings>
+
 
     <Border 
         Background="#272537"
