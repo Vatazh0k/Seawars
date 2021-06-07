@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Seawars.Domain.Enums;
 using Seawars.Interfaces.Entities;
 
 namespace Seawars.Domain.Entities
@@ -17,11 +18,5 @@ namespace Seawars.Domain.Entities
         public Move? Move { get; set; }
         public Game Game { get; set; }
 
-    }
-
-    public enum Move
-    {
-        Enimy = 1,
-        Your = 2,
     }
 }

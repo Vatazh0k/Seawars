@@ -35,7 +35,7 @@
             >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Number" Width="80" Binding="{Binding Number}"/>
-                <DataGridTextColumn Header="Game" Width="80" Binding="{Binding Game}"/>
+                <DataGridTextColumn Header="Status" Width="80" Binding="{Binding Status}"/>
                 <DataGridTextColumn Header="" Width="*"  Binding="{Binding Hint}"/>
             </DataGrid.Columns>
             <DataGrid.InputBindings>

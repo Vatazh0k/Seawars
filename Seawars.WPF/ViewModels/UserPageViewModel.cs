@@ -102,7 +102,7 @@ namespace Seawars.WPF.ViewModels
             var games = ServicesLocator.GameRepository
                 .GetAll()
                 .Where(x => x.User.Id == App.CuurentUser.Id)
-                .Select((x,y) => new Games(y+1, x.Id))
+                .Select((x,y) => new Games(y+1, x.Status, x.Id))
                 .ToList();
 
                 Games = new ObservableCollection<Games>(games);

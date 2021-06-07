@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Seawars.Domain.Entities;
+using Seawars.Domain.Enums;
 
 namespace Seawars.WPF.Authorization.Model
 {

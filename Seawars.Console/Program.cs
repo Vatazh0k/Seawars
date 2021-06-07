@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using System.Linq;
 using Seawars.DAL.Context;
 using Seawars.Domain.Entities;
+using Seawars.Domain.Enums;
 
 namespace Seawars.Console
 {
@@ -35,99 +36,100 @@ namespace Seawars.Console
     {
         static void Main(string[] args)//Выяснить проблему с айдишкой(при удалении записи айди продолжает инкриментиться с той итерации что и была до удаления)
         {                              //Как сделать систему оплаты?) при премиум аккаунте можна смотреть статистику других 
+           
             var context = Connection.Hosting.Services.GetRequiredService<DataBaseContext>();
+            
+            // var user = new User()
+            // {
+            //     Name = "Anton",
+            //     UserName = "Anton",
+            //     Password = "0601",
+            //     CountOfWonGames = 1,
+            //     GamesWithComputer = 1,
+            //     TotalGamesCount = 2,
 
-           // var user = new User()
-           // {
-           //     Name = "Anton",
-           //     UserName = "Anton",
-           //     Password = "0601",
-           //     CountOfWonGames = 1,
-           //     GamesWithComputer = 1,
-           //     TotalGamesCount = 2,
+            // };
 
-           // };
+            // context.Users.Add(user);
+            //// var user = context.Users.FirstOrDefault(x => x.Name == "Anton");
+            // var game = new Game();
 
-           // context.Users.Add(user);
-           //// var user = context.Users.FirstOrDefault(x => x.Name == "Anton");
-           // var game = new Game();
+            // game.User = user;
+            // game.Steps = new List<Step>()
+            // {
 
-           // game.User = user;
-           // game.Steps = new List<Step>()
-           // {
+            //     new Step()
+            //     {
+            //         X = 5,
+            //         Y = 6,
+            //         Game =game,
+            //         Move = (Move)2
+            //     },
+            //     new Step()
+            //     {
+            //         X = 7,
+            //         Y = 8,
+            //         Game =game,
+            //         Move = (Move)1
+            //     },
+            //     new Step()
+            //     {
+            //         X = 9,
+            //         Y = 5,
+            //           Game =game,
+            //           Move = (Move)2
+            //     }, 
+            //     new Step()
+            //     {
+            //         X = 9,
+            //         Y = 4,
+            //           Game =game,
+            //           Move = (Move)2
+            //     }
 
-           //     new Step()
-           //     {
-           //         X = 5,
-           //         Y = 6,
-           //         Game =game,
-           //         Move = (Move)2
-           //     },
-           //     new Step()
-           //     {
-           //         X = 7,
-           //         Y = 8,
-           //         Game =game,
-           //         Move = (Move)1
-           //     },
-           //     new Step()
-           //     {
-           //         X = 9,
-           //         Y = 5,
-           //           Game =game,
-           //           Move = (Move)2
-           //     }, 
-           //     new Step()
-           //     {
-           //         X = 9,
-           //         Y = 4,
-           //           Game =game,
-           //           Move = (Move)2
-           //     }
+            // };
 
-           // };
+            // var game1 = new Game();
 
-           // var game1 = new Game();
+            // game1.User = user;
+            // game1.Steps = new List<Step>()
+            // {
 
-           // game1.User = user;
-           // game1.Steps = new List<Step>()
-           // {
+            //     new Step()
+            //     {
+            //         X = 4,
+            //         Y = 4,
+            //         Game =game,
+            //         Move = (Move)1
+            //     },
+            //     new Step()
+            //     {
+            //         X = 1,
+            //         Y = 1,
+            //         Game =game,
+            //         Move = (Move)2
+            //     },
+            //     new Step()
+            //     {
+            //         X = 2,
+            //         Y = 2,
+            //         Game =game,
+            //         Move = (Move)1
+            //     },
+            //     new Step()
+            //     {
+            //         X = 3,
+            //         Y = 3,
+            //         Game =game,
+            //         Move = (Move)2
+            //     }
 
-           //     new Step()
-           //     {
-           //         X = 4,
-           //         Y = 4,
-           //         Game =game,
-           //         Move = (Move)1
-           //     },
-           //     new Step()
-           //     {
-           //         X = 1,
-           //         Y = 1,
-           //         Game =game,
-           //         Move = (Move)2
-           //     },
-           //     new Step()
-           //     {
-           //         X = 2,
-           //         Y = 2,
-           //         Game =game,
-           //         Move = (Move)1
-           //     },
-           //     new Step()
-           //     {
-           //         X = 3,
-           //         Y = 3,
-           //         Game =game,
-           //         Move = (Move)2
-           //     }
-
-           // };
-           // context.Games.Add(game);
-           // context.Games.Add(game1);
+            // };
+            // context.Games.Add(game);
+            // context.Games.Add(game1);
 
 
-           // context.SaveChanges();
+            // context.SaveChanges();
 
 
 
