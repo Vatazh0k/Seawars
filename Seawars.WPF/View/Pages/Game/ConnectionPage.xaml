@@ -6,8 +6,10 @@
       xmlns:local="clr-namespace:Seawars.WPF.View.Pages.Game"
       xmlns:commands="clr-namespace:Seawars.WPF.Common.Commands"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="620"
-      Title="ConnectionPage">
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="ConnectionPage"
+      DataContext="{Binding ConnectionPageViewModel, Mode=OneWay, Source={StaticResource Locator}}"
+      >
 
     <Border 
         Background="#272537"
@@ -16,9 +18,33 @@
         <Grid>
 
             <Label
-                >
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                FontSize="23"
+                FontFamily="MC=V Boli"
+                Foreground="White"
+                Margin="160">Choose game mode</Label>
 
-            </Label>
+            <Button VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    Content="Play with computer"
+                    FontSize="18"
+                    Width="180"
+                    Command="{Binding StartGameCommand}"
+                    FontFamily="MV Boli"
+                    Margin="0,230,0,0">
+
+            </Button>
+
+            <Button VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Content="Play with User"
+                    FontSize="18"
+                    Width="180"
+                    Command="{Binding PlayWithUserCommand}"
+                    FontFamily="MV Boli">
+
+            </Button>
 
             <Button
                 HorizontalAlignment="Right"

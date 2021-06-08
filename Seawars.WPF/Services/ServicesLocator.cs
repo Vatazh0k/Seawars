@@ -10,6 +10,10 @@ namespace Seawars.WPF.Services
 {
     internal class ServicesLocator
     {
+        public static ConnectionPageViewModel ConnectionPageViewModel =>
+            App.Services.GetRequiredService<ConnectionPageViewModel>();
+
+
         public static AuthorizationPageViewModel AuthorizationWindowViewModel =>
             App.Services.GetRequiredService<AuthorizationPageViewModel>();
 
