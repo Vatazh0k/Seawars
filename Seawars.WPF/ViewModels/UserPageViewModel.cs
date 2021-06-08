@@ -76,7 +76,7 @@ namespace Seawars.WPF.ViewModels
         }
 
         private void Back(object obj) =>
-            _ = CurrentViewControl is GamesStatisticControl
+            _   = CurrentViewControl is GamesStatisticControl
                 ? CurrentViewControl = new ProfileControl()
                 : CurrentViewControl = new GamesStatisticControl();
         private void GameDetails(object obj)

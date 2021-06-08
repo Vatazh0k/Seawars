@@ -25,15 +25,6 @@ namespace Seawars.WPF.View.Windows
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            App.WindowCurrent.Close();
-            App.UserProfileWindow.Show();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
+     
     }
 }

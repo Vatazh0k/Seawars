@@ -9,6 +9,8 @@ using Seawars.DAL.Context;
 using Seawars.WPF.ViewModels;
 using Seawars.DAL.SqlServer.Repositories;
 using Seawars.WPF.Services;
+using Seawars.WPF.Services.AuthorizationPageServices;
+using Seawars.WPF.Services.GamePagesService;
 
 namespace Seawars.WPF
 {
@@ -42,6 +44,7 @@ namespace Seawars.WPF
             services.AddScoped<UserPageViewModel>();
 
             services.AddScoped<PageService>();
+            services.AddScoped<GamePageService>();
 
 
             services.AddScoped<Repository>();

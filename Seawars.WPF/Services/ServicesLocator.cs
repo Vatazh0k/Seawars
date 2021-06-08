@@ -3,6 +3,8 @@ using Seawars.WPF.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Seawars.DAL.Context;
 using Seawars.DAL.SqlServer.Repositories;
+using Seawars.WPF.Services.AuthorizationPageServices;
+using Seawars.WPF.Services.GamePagesService;
 
 namespace Seawars.WPF.Services
 {
@@ -19,6 +21,9 @@ namespace Seawars.WPF.Services
         public static PageService PageService =>
            App.Services.GetRequiredService<PageService>();
 
+
+        public static GamePageService GamePageService =>
+            App.Services.GetRequiredService<GamePageService>();
 
 
         public static UserRepository UserRepository =>

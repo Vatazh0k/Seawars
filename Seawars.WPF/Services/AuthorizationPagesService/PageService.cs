@@ -2,7 +2,7 @@
 using Seawars.WPF.View.Pages;
 using System.Windows.Controls;
 
-namespace Seawars.WPF.Services
+namespace Seawars.WPF.Services.AuthorizationPageServices
 {
     public class PageService : ViewModelBase
     {
