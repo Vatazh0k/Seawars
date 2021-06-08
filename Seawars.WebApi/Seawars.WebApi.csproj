@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Seawars.DAL.SqlServer\Seawars.DAL.SqlServer.csproj" />
     <ProjectReference Include="..\Seawars.Domain\Seawars.Domain.csproj" />
+    <ProjectReference Include="..\Seawars.WebApi.Clients\Seawars.WebApi.Clients.csproj" />
   </ItemGroup>
 
 </Project>
