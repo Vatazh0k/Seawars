@@ -29,4 +29,8 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="View\Pages\Game\BattleGround\" />
+  </ItemGroup>
+
 </Project>

@@ -36,7 +36,7 @@ namespace Seawars.WPF
             .ConfigureServices(ConfigureServices);
 
 
-       private static readonly string MsSqlConnectionString = ConfigurationManager.ConnectionStrings["MsSqlConnectionString"].ConnectionString;
+       private static readonly string MsSqlConnectionString = ConfigurationManager.AppSettings["MsSqlConnectionString"];
 
         private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
@@ -55,7 +55,7 @@ namespace Seawars.WPF
             services.AddScoped<StepRepository>();   
 
             services.AddDbContext<DataBaseContext>(x =>
-                x.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Seawars;Trusted_Connection=True", o =>
+                x.UseSqlServer(MsSqlConnectionString, o =>
                     o.MigrationsAssembly("Seawars.DAL.SqlServer")));//GetConnectionString;
         }
 
