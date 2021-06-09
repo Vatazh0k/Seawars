@@ -20,7 +20,7 @@ namespace Seawars.Domain.Models
 
         private string Id;
         public Field(string Id) => this.Id = Id;
-
+        public Field() { }
 
         public Field ChangeShipDirection(int _cell)
         {

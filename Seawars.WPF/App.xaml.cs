@@ -8,7 +8,6 @@ using Microsoft.Extensions.Hosting;
 using Seawars.DAL.Context;
 using Seawars.WPF.ViewModels;
 using Seawars.DAL.SqlServer.Repositories;
-using Seawars.WPF.Services;
 using Seawars.WPF.Services.AuthorizationPageServices;
 using Seawars.WPF.Services.GamePagesService;
 
