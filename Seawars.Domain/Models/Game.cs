@@ -12,8 +12,8 @@
         public bool IsSecondUserReadyToStartGame { get; set; }
         public bool IsGameOver { get; set; }
         public bool IsFirstUserWin { get; set; }
-        public bool DidEnemyConnect { get; set; } = false;
-        public bool IsGameWithComputer { get; set; } = true;
+        public bool DidEnemyConnect { get; set; }
+        public bool IsGameWithComputer { get; set; }
 
 
         public Game(string Id)

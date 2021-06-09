@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Seawars.DAL.Context;
 using Seawars.Domain.Entities;
 using Seawars.Interfaces.Repositories;
@@ -29,7 +27,8 @@ namespace Seawars.DAL.SqlServer.Repositories
 
         public void Add<T>(T Game)
         {
-            throw new NotImplementedException();
+            _context.Games.Add(Game as Game);
+            _context.SaveChanges();
         }
 
         public void Update()

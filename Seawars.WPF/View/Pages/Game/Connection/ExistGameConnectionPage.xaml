@@ -37,7 +37,7 @@
                     Content="Connect"
                     Margin="0,303,0,0"
                     FontSize="20"
-                    Command="{Binding StartGameCommand}" Height="33" Width="100"/>
+                    Command="{Binding ConnectAndStartCommand}" Height="33" Width="100"/>
 
 
 

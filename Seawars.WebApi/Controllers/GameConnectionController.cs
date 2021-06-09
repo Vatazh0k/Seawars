@@ -23,6 +23,6 @@ namespace Seawars.WebApi.Controllers
         public ActionResult<string> Create() => _connection.CreateGame();
 
         [HttpGet("JoinToGame")]
-        public ActionResult<string> JoinAnExistingGame(string Id) => _connection.JoinGame(Id);
+        public ActionResult<string> JoinAnExistingGame([FromHeader]string Id) => _connection.JoinGame(Id);
     }
 }
