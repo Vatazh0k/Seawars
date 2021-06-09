@@ -53,8 +53,8 @@ namespace Seawars.WPF
             services.AddScoped<GameRepository>();
             services.AddScoped<StepRepository>();   
 
-            services.AddDbContext<DataBaseContext>(x =>
-                x.UseSqlServer(MsSqlConnectionString, o =>
+            services.AddDbContext<MsSqlContext>(x =>
+                x.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Seawars;Trusted_Connection=True", o =>
                     o.MigrationsAssembly("Seawars.DAL.SqlServer")));//GetConnectionString;
         }
 

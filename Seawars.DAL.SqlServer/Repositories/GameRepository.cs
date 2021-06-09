@@ -11,8 +11,8 @@ namespace Seawars.DAL.SqlServer.Repositories
 {
     public class GameRepository : IRepository<Game>
     {
-        private readonly DataBaseContext _context;
-        public GameRepository(DataBaseContext context)
+        private readonly MsSqlContext _context;
+        public GameRepository(MsSqlContext context)
         {
             _context = context;
         }

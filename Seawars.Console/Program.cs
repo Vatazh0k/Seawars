@@ -26,7 +26,7 @@ namespace Seawars.Console
         private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
 
-            services.AddDbContext<DataBaseContext>(x =>
+            services.AddDbContext<MsSqlContext>(x =>
                 x.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Seawars;Trusted_Connection=True", o =>
                     o.MigrationsAssembly("Seawars.DAL.SqlServer")));
         }
@@ -37,7 +37,7 @@ namespace Seawars.Console
         static void Main(string[] args)//Выяснить проблему с айдишкой(при удалении записи айди продолжает инкриментиться с той итерации что и была до удаления)
         {                              //Как сделать систему оплаты?) при премиум аккаунте можна смотреть статистику других 
            
-            var context = Connection.Hosting.Services.GetRequiredService<DataBaseContext>();
+            var context = Connection.Hosting.Services.GetRequiredService<MsSqlContext>();
             
             // var user = new User()
             // {

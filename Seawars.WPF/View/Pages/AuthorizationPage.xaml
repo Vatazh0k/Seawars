@@ -22,6 +22,7 @@
 
             <Label Content="Create accaunt!"
                FontSize="24"
+               Foreground="White"
                VerticalAlignment="Top"
                HorizontalAlignment="Center"
                Margin="50"
@@ -102,7 +103,7 @@
             <Button 
                     HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-          
+                    Foreground="White"
                     Content="register"
                     Margin="343,379,0,0"
                     Command="{Binding RegisterCommand}"
@@ -118,6 +119,7 @@
                    HorizontalAlignment="Left"
                    Margin="34,0,0,33"
                    FontSize="24"
+                 Foreground="White"
                  Command="{Binding GoToLoginWindowCommand}"
                     Style="{StaticResource LightweightButton}">
 

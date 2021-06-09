@@ -8,12 +8,12 @@ using Seawars.Domain.Entities;
 
 namespace Seawars.DAL.Context
 {
-    public class DataBaseContext : DbContext
+    public class MsSqlContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Step> Steps { get; set; }
-        public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
+        public MsSqlContext(DbContextOptions<MsSqlContext> options) : base(options)
         {
             
         }

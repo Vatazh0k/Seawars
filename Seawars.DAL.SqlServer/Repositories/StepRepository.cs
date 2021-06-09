@@ -11,8 +11,8 @@ namespace Seawars.DAL.SqlServer.Repositories
 {
     public class StepRepository : IRepository<Step>
     {
-        private readonly DataBaseContext _context;
-        public StepRepository(DataBaseContext context)
+        private readonly MsSqlContext _context;
+        public StepRepository(MsSqlContext context)
         {
             _context = context;
         }

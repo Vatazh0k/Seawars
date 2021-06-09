@@ -9,8 +9,8 @@ namespace Seawars.DAL.SqlServer.Repositories
 {
     public class Repository
     {
-        private readonly DataBaseContext _context;
-        public Repository(DataBaseContext context)
+        private readonly MsSqlContext _context;
+        public Repository(MsSqlContext context)
         {
             _context = context;
         }

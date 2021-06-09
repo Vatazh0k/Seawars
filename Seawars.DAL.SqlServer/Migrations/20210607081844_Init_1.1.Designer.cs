@@ -9,7 +9,7 @@ using Seawars.DAL.Context;
 
 namespace Seawars.DAL.SqlServer.Migrations
 {
-    [DbContext(typeof(DataBaseContext))]
+    [DbContext(typeof(MsSqlContext))]
     [Migration("20210607081844_Init_1.1")]
     partial class Init_11
     {

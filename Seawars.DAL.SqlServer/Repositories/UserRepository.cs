@@ -12,16 +12,13 @@ namespace Seawars.DAL.SqlServer.Repositories
 {
     public class UserRepository : IRepository<User>
     {
-        private readonly DataBaseContext _context;
-        public UserRepository(DataBaseContext context)
+        private readonly MsSqlContext _context;
+        public UserRepository(MsSqlContext context)
         {
             _context = context;
         }
 
-        public List<User> GetAll()
-        {
-            return _context.Users.Select(x => x).ToList();
-        }
+        public List<User> GetAll() => _context.Users.Select(x => x).ToList();
 
         public User GetById(int id)
         {

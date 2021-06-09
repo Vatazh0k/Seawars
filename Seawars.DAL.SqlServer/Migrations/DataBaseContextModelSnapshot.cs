@@ -8,7 +8,7 @@ using Seawars.DAL.Context;
 
 namespace Seawars.DAL.SqlServer.Migrations
 {
-    [DbContext(typeof(DataBaseContext))]
+    [DbContext(typeof(MsSqlContext))]
     partial class DataBaseContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

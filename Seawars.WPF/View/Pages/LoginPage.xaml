@@ -24,6 +24,7 @@
 
             <Label Content="Login here!"
                FontSize="24"
+               Foreground="White"
                VerticalAlignment="Top"
                HorizontalAlignment="Center"
                Margin="50"
@@ -75,7 +76,7 @@
             <Button 
                     HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-          
+                    Foreground="White"
                     Content="login"
                     Margin="340,232,0,0"
                     Command="{Binding LoginCommand}"
@@ -87,8 +88,8 @@
             <Button 
                  HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-          
-                    Content="back"
+                 Foreground="White"
+                 Content="back"
                     Margin="210,232,0,0"
                     Command="{Binding BackCommand}"
                     FontSize="18"
