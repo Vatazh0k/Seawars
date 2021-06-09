@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Seawars.Application\Seawars.Application.csproj" />
+    <ProjectReference Include="..\Seawars.Infrastructure\Seawars.Infrastructure.csproj" />
     <ProjectReference Include="..\Seawars.Interfaces\Seawars.Interfaces.csproj" />
   </ItemGroup>
 

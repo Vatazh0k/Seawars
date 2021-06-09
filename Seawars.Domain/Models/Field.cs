@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using Seawars.Infrastructure.Data;
 using Seawars.Infrastructure.Extentions;
 
-namespace Seawars.Application.GameLogic
+namespace Seawars.Domain.Models
 {
+
     public class Field
     {
         public string[,] field { get; set; } = new string[11, 11];
@@ -19,7 +20,8 @@ namespace Seawars.Application.GameLogic
 
         private string Id;
         public Field(string Id) => this.Id = Id;
-        public Field() { }
+
+
         public Field ChangeShipDirection(int _cell)
         {
             ResetTimer();
@@ -28,63 +30,71 @@ namespace Seawars.Application.GameLogic
 
             var items = _cell.ConvertCellToIndexes();
 
-            var indexes = new Cell()
+            var indexes = new Cell(items.Item1, items.Item2);
 
             var ship = ShowShipsOptions(indexes);
 
             ShipsModification(indexes, ship.NumberOfHintDeck, ship.DecksCount, mark: null, ship.isHorizontal);
 
-            bool canPutShip = CanPutShip(indexes.I_index, indexes.J_index, ship.DecksCount, !ship.isHorizontal);
+            bool canPutShip = CanPutShip(indexes.Y, indexes.X, ship.DecksCount, !ship.isHorizontal);
 
-            if (canPutShip is false) ShipsModification(indexes, ship.NumberOfHintDeck, ship.DecksCount, mark: ShipsMark.Ship, ship.isHorizontal);
+            if (canPutShip is false)
+                ShipsModification(indexes, ship.NumberOfHintDeck, ship.DecksCount, mark: ShipsMark.Ship,
+                    ship.isHorizontal);
 
             else field = PutShip(_cell, ship.DecksCount, !ship.isHorizontal).field;
 
             return this;
         }
-        public Ship ShowShipsOptions(CellIndex cellIndexes)
+
+        public Ship ShowShipsOptions(Cell cellIndexes)
         {
             var Ship = new Ship();
 
             Ship.NumberOfHintDeck = SearchTheFirstShipsDeck(cellIndexes);
 
-            Ship.isHorizontal = DeterminingTheDirection(cellIndexes.I_index, cellIndexes.J_index);
+            Ship.isHorizontal = DeterminingTheDirection(cellIndexes.Y, cellIndexes.X);
 
             Ship.DecksCount = CountingDecks(cellIndexes);
 
-            Ship.X = cellIndexes.J_index;
+            Ship.Position.X = cellIndexes.X;
 
-            Ship.Y = cellIndexes.I_index;
+            Ship.Position.Y = cellIndexes.Y;
 
-            Ship.isOnField = true;//TODO: condition
+            Ship.isOnField = true; //TODO: condition
 
             return Ship;
 
         }
+
         public Field PutShip(int Cell, int DecksCount, bool Direction)
         {
             ResetTimer();
-            var Indexes = Cell.ConvertCellToIndexes();
-            bool canPut = CanPutShip(Indexes.I_index, Indexes.J_index, DecksCount, Direction);
+
+            var items = Cell.ConvertCellToIndexes();
+
+            var Indexes = new Cell(items.Item1, items.Item2);
+
+            bool canPut = CanPutShip(Indexes.Y, Indexes.X, DecksCount, Direction);
 
             if (canPut is true)
             {
                 for (int i = 0; i < DecksCount; i++)
                 {
-                    int firstIndex = Indexes.I_index;
-                    int secondIndex = Indexes.J_index;
+                    int firstIndex = Indexes.Y;
+                    int secondIndex = Indexes.X;
 
-                    _ = Direction is true ?
-                     secondIndex = Indexes.J_index + i :
-                     firstIndex = Indexes.I_index + i;
+                    _ = Direction is true ? secondIndex = Indexes.X + i : firstIndex = Indexes.Y + i;
 
                     field[firstIndex, secondIndex] = ShipsMark.Ship;
                 }
+
                 ReduceShipsCount(DecksCount);
             }
 
             return this;
         }
+
         public bool CanPutShip(int Current_I, int Current_J, int DeksCount, bool isHorizontal)
         {
             int CellsToCheckIn_X_Axis = 2;
@@ -93,9 +103,7 @@ namespace Seawars.Application.GameLogic
             int J_Iteration_Count = 0;
             int I_teration_Count = 0;
 
-            _ = isHorizontal is false ?
-              CellsToCheckIn_Y_Axis += DeksCount - 1 :
-              CellsToCheckIn_X_Axis += DeksCount - 1;
+            _ = isHorizontal is false ? CellsToCheckIn_Y_Axis += DeksCount - 1 : CellsToCheckIn_X_Axis += DeksCount - 1;
 
 
             for (int i = Current_I - 1; i < Current_I + CellsToCheckIn_Y_Axis; i++)
@@ -110,12 +118,15 @@ namespace Seawars.Application.GameLogic
                     if (J_Iteration_Count == CellsToCheckIn_X_Axis && j == 10)
                         break;
                 }
+
                 I_teration_Count++;
                 if (I_teration_Count == CellsToCheckIn_Y_Axis && i == 10)
                     break;
             }
+
             return true;
         }
+
         public Field FieldAutoGeneration()
         {
             ReloadField();
@@ -136,7 +147,11 @@ namespace Seawars.Application.GameLogic
 
                     bool canPutShip = CanPutShip(firstIndex, secondIndex, DeksCount, isHorizontal);
 
-                    if (canPutShip is false) { j--; continue; }
+                    if (canPutShip is false)
+                    {
+                        j--;
+                        continue;
+                    }
 
                     if (canPutShip is true)
                     {
@@ -155,21 +170,27 @@ namespace Seawars.Application.GameLogic
                 ShipCount++;
                 DeksCount--;
             }
+
             OneDeckShip = 0;
             TwoDeckShip = 0;
             ThrieDeckShip = 0;
             FourDeckShip = 0;
             return this;
         }
+
         public bool CanAttackCell(int Cell)
         {
-            CellIndex Indexes = Cell.ConvertCellToIndexes();
-            if (field[Indexes.I_index, Indexes.J_index] is ShipsMark.DeadShip ||
-                field[Indexes.I_index, Indexes.J_index] is ShipsMark.Missed)
+            var items = Cell.ConvertCellToIndexes();
+
+            var Indexes = new Cell(items.Item1, items.Item2);
+
+            if (field[Indexes.Y, Indexes.X] is ShipsMark.DeadShip ||
+                field[Indexes.Y, Indexes.X] is ShipsMark.Missed)
                 return false;
             return true;
         }
-        public (Field, bool) Attack(CellIndex Indexes)
+
+        public (Field, bool) Attack(Cell Indexes)
         {
             ResetTimer();
 
@@ -180,6 +201,7 @@ namespace Seawars.Application.GameLogic
                 MarkTheShip(Indexes, ShipsMark.Missed);
                 return (this, isMissed);
             }
+
             var ship = ShowShipsOptions(Indexes);
 
             bool isShipKilled = IsKilled(Indexes, ship);
@@ -188,6 +210,7 @@ namespace Seawars.Application.GameLogic
 
             return (this, isMissed);
         }
+
         public Field ReloadField()
         {
             ResetTimer();
@@ -195,6 +218,7 @@ namespace Seawars.Application.GameLogic
             field = new string[11, 11];
             return this;
         }
+
         public void ResetShips()
         {
             ResetTimer();
@@ -205,31 +229,41 @@ namespace Seawars.Application.GameLogic
         }
 
         #region Private Methods
-        private void ShipsFuneral(CellIndex Indexes, Ship ship)
+
+        private void ShipsFuneral(Cell Indexes, Ship ship)
         {
             switch (ship.DecksCount)
             {
                 default: break;
-                case 1: OneDeckShip--; break;
-                case 2: TwoDeckShip--; break;
-                case 3: ThrieDeckShip--; break;
-                case 4: FourDeckShip--; break;
+                case 1:
+                    OneDeckShip--;
+                    break;
+                case 2:
+                    TwoDeckShip--;
+                    break;
+                case 3:
+                    ThrieDeckShip--;
+                    break;
+                case 4:
+                    FourDeckShip--;
+                    break;
             }
 
-            int Y_Axis_ShipsCount = Indexes.I_index + 1;
-            int X_Axis_ShipsCount = Indexes.J_index + ship.DecksCount - ship.NumberOfHintDeck;
+            int Y_Axis_ShipsCount = Indexes.Y + 1;
+            int X_Axis_ShipsCount = Indexes.X + ship.DecksCount - ship.NumberOfHintDeck;
 
-            int FirstDeckIn_Y_Axis = Indexes.I_index - 1;
-            int FirstDeckIn_X_Axis = Indexes.J_index - 1 - ship.NumberOfHintDeck;
+            int FirstDeckIn_Y_Axis = Indexes.Y - 1;
+            int FirstDeckIn_X_Axis = Indexes.X - 1 - ship.NumberOfHintDeck;
 
             if (ship.isHorizontal is false)
             {
-                FirstDeckIn_Y_Axis = Indexes.I_index - 1 - ship.NumberOfHintDeck;
-                FirstDeckIn_X_Axis = Indexes.J_index - 1;
+                FirstDeckIn_Y_Axis = Indexes.Y - 1 - ship.NumberOfHintDeck;
+                FirstDeckIn_X_Axis = Indexes.X - 1;
 
-                Y_Axis_ShipsCount = Indexes.I_index + ship.DecksCount - ship.NumberOfHintDeck;
-                X_Axis_ShipsCount = Indexes.J_index + 1;
+                Y_Axis_ShipsCount = Indexes.Y + ship.DecksCount - ship.NumberOfHintDeck;
+                X_Axis_ShipsCount = Indexes.X + 1;
             }
+
             for (int N = FirstDeckIn_Y_Axis; N <= Y_Axis_ShipsCount; N++)
             {
                 for (int M = FirstDeckIn_X_Axis; M <= X_Axis_ShipsCount; M++)
@@ -242,22 +276,24 @@ namespace Seawars.Application.GameLogic
             }
 
         }
-        private void MarkTheShip(CellIndex Indexes, string Mark)
+
+        private void MarkTheShip(Cell Indexes, string Mark)
         {
-            field[Indexes.I_index, Indexes.J_index] = Mark;
+            field[Indexes.Y, Indexes.X] = Mark;
         }
-        private bool IsKilled(CellIndex Indexes, Ship ship)
+
+        private bool IsKilled(Cell Indexes, Ship ship)
         {
             MarkTheShip(Indexes, ShipsMark.DeadShip);
 
             for (int i = 0; i < ship.DecksCount; i++)
             {
-                int I = Indexes.I_index;
-                int J = Indexes.J_index;
+                int I = Indexes.Y;
+                int J = Indexes.X;
 
-                _ = ship.isHorizontal is true ?
-                    J = Indexes.J_index - ship.NumberOfHintDeck + i :
-                    I = Indexes.I_index - ship.NumberOfHintDeck + i;
+                _ = ship.isHorizontal is true
+                    ? J = Indexes.X - ship.NumberOfHintDeck + i
+                    : I = Indexes.Y - ship.NumberOfHintDeck + i;
 
                 if (field[I, J] is ShipsMark.DeadShip)
                     continue;
@@ -265,56 +301,57 @@ namespace Seawars.Application.GameLogic
                 return false;
 
             }
+
             return true;
         }
-        private bool IsMissed(CellIndex indexes)
+
+        private bool IsMissed(Cell indexes)
         {
-            if (field[indexes.I_index, indexes.J_index] is ShipsMark.Ship)
+            if (field[indexes.Y, indexes.X] is ShipsMark.Ship)
                 return false;
             return true;
         }
-        private int SearchTheFirstShipsDeck(CellIndex indexes)
+
+        private int SearchTheFirstShipsDeck(Cell indexes)
         {
             int firstDeck = 0;
-            bool Direction = DeterminingTheDirection(indexes.I_index, indexes.J_index);
+            bool Direction = DeterminingTheDirection(indexes.Y, indexes.X);
 
             for (int k = -1; k >= -4; k--)
             {
-                int firstIndex = indexes.I_index;
-                int secondIndex = indexes.J_index;
+                int firstIndex = indexes.Y;
+                int secondIndex = indexes.X;
 
-                _ = Direction is true ?
-                 secondIndex = indexes.J_index + k :
-                 firstIndex = indexes.I_index + k;
+                _ = Direction is true ? secondIndex = indexes.X + k : firstIndex = indexes.Y + k;
 
                 if (secondIndex < 0 || firstIndex < 0) break;
 
                 if (String.IsNullOrEmpty(field[firstIndex, secondIndex]) ||
-                   (field[firstIndex, secondIndex] == ShipsMark.Missed))
+                    (field[firstIndex, secondIndex] == ShipsMark.Missed))
                     break;
 
                 firstDeck++;
             }
+
             return firstDeck;
         }
-        private int CountingDecks(CellIndex indexes)
+
+        private int CountingDecks(Cell indexes)
         {
-            bool Direction = DeterminingTheDirection(indexes.I_index, indexes.J_index);
+            bool Direction = DeterminingTheDirection(indexes.Y, indexes.X);
             int GeneralDeksCountInShip = 1;
 
             for (int k = 1; k <= 4; k++)
             {
-                int firstIndex = indexes.I_index;
-                int secondIndex = indexes.J_index;
+                int firstIndex = indexes.Y;
+                int secondIndex = indexes.X;
 
-                _ = Direction is true ?
-                 secondIndex = indexes.J_index + k :
-                 firstIndex = indexes.I_index + k;
+                _ = Direction is true ? secondIndex = indexes.X + k : firstIndex = indexes.Y + k;
 
                 if (secondIndex > 10 || firstIndex > 10) break;
 
                 if (String.IsNullOrEmpty(field[firstIndex, secondIndex]) ||
-                   (field[firstIndex, secondIndex] == ShipsMark.Missed))
+                    (field[firstIndex, secondIndex] == ShipsMark.Missed))
                     break;
 
                 GeneralDeksCountInShip++;
@@ -322,17 +359,15 @@ namespace Seawars.Application.GameLogic
 
             for (int k = -1; k >= -4; k--)
             {
-                int firstIndex = indexes.I_index;
-                int secondIndex = indexes.J_index;
+                int firstIndex = indexes.Y;
+                int secondIndex = indexes.X;
 
-                _ = Direction is true ?
-                 secondIndex = indexes.J_index + k :
-                 firstIndex = indexes.I_index + k;
+                _ = Direction is true ? secondIndex = indexes.X + k : firstIndex = indexes.Y + k;
 
                 if (secondIndex < 0 || firstIndex < 0) break;
 
                 if (String.IsNullOrEmpty(field[firstIndex, secondIndex]) ||
-                   (field[firstIndex, secondIndex] == ShipsMark.Missed))
+                    (field[firstIndex, secondIndex] == ShipsMark.Missed))
                     break;
 
                 GeneralDeksCountInShip++;
@@ -342,6 +377,7 @@ namespace Seawars.Application.GameLogic
             return GeneralDeksCountInShip;
 
         }
+
         private bool DeterminingTheDirection(int firstIndex, int secondIndex)
         {
             bool isHorizontal = true;
@@ -350,43 +386,61 @@ namespace Seawars.Application.GameLogic
             {
                 for (int j = secondIndex; j < 11; j++)
                 {
-                    if (field[i, j - 1] is ShipsMark.Ship || (j + 1 <= 10 && field[i, j + 1] is ShipsMark.Ship)) return true;
-                    if (field[i, j - 1] is ShipsMark.DeadShip || (j + 1 <= 10 && field[i, j + 1] is ShipsMark.DeadShip)) return true;
+                    if (field[i, j - 1] is ShipsMark.Ship || (j + 1 <= 10 && field[i, j + 1] is ShipsMark.Ship))
+                        return true;
+                    if (field[i, j - 1] is ShipsMark.DeadShip || (j + 1 <= 10 && field[i, j + 1] is ShipsMark.DeadShip))
+                        return true;
 
-                    if (field[i - 1, j] is ShipsMark.DeadShip || (i + 1 <= 10 && field[i + 1, j] is ShipsMark.DeadShip)) return false;
-                    if (field[i - 1, j] is ShipsMark.Ship || (i + 1 <= 10 && field[i + 1, j] is ShipsMark.Ship)) return false;
+                    if (field[i - 1, j] is ShipsMark.DeadShip || (i + 1 <= 10 && field[i + 1, j] is ShipsMark.DeadShip))
+                        return false;
+                    if (field[i - 1, j] is ShipsMark.Ship || (i + 1 <= 10 && field[i + 1, j] is ShipsMark.Ship))
+                        return false;
                 }
             }
 
             return isHorizontal;
         }
+
         private void ReduceShipsCount(int decksCount)
         {
             switch (decksCount)
             {
                 default: break;
-                case 1: OneDeckShip--; break;
-                case 2: TwoDeckShip--; break;
-                case 3: ThrieDeckShip--; break;
-                case 4: FourDeckShip--; break;
+                case 1:
+                    OneDeckShip--;
+                    break;
+                case 2:
+                    TwoDeckShip--;
+                    break;
+                case 3:
+                    ThrieDeckShip--;
+                    break;
+                case 4:
+                    FourDeckShip--;
+                    break;
             }
         }
-        private void ShipsModification(CellIndex indexes, int CurrentDeck, int DecksCount, string mark, bool direction)
+
+        private void ShipsModification(Cell indexes, int CurrentDeck, int DecksCount, string mark, bool direction)
         {
             if (direction is true)
             {
-                int FirstDeckOfHorizontalShip = indexes.J_index - CurrentDeck;
+                int FirstDeckOfHorizontalShip = indexes.X - CurrentDeck;
                 for (int i = 0; i < DecksCount; i++)
-                    field[indexes.I_index, FirstDeckOfHorizontalShip + i] = mark;
+                    field[indexes.Y, FirstDeckOfHorizontalShip + i] = mark;
             }
 
             if (direction is false)
             {
-                int FirstDeckOfVerticalShip = indexes.I_index - CurrentDeck;
+                int FirstDeckOfVerticalShip = indexes.Y - CurrentDeck;
                 for (int i = 0; i < DecksCount; i++)
-                    field[FirstDeckOfVerticalShip + i, indexes.J_index] = mark;
+                    field[FirstDeckOfVerticalShip + i, indexes.X] = mark;
             }
         }
+
         private void ResetTimer() => Timer = DateTime.Now;
+
         #endregion
     }
+
+}

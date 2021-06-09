@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Seawars.Application.GameLogic;
-
-namespace Seawars.Domain.Models
+﻿namespace Seawars.Domain.Models
 {
     public class Game
     {
