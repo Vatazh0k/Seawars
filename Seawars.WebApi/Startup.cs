@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Seawars.Interfaces.Services;
-using Seawars.WebApi.Clients.Connection;
 
 namespace Seawars.WebApi
 {
@@ -13,8 +11,6 @@ namespace Seawars.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            services.AddScoped<IConnection, GameConnection>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
