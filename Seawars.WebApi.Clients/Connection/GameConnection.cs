@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Seawars.DAL.GamesBase;
 using Seawars.Domain.Models;
 using Seawars.Infrastructure.Encryption;
+using Seawars.Infrastructure.Validation;
 using Seawars.Interfaces.Services;
 
 namespace Seawars.WebApi.Clients.Connection
@@ -33,9 +34,22 @@ namespace Seawars.WebApi.Clients.Connection
            
         }
 
-        public string JoinGame(string Id)
+        public string JoinGame(string Id)       
         {
-            throw new NotImplementedException();
+            Collection collection = Collection.GetGame();
+
+            var DecryptedId = TripleDes.Decrypted(Id);
+
+            bool isCorectId = Validator.DoesTheIdExist(collection.Games.Keys.ToArray(), DecryptedId);
+
+            if (isCorectId is false) return null;
+
+            if (collection.Games[DecryptedId].DidEnemyConnect is true) return null;
+
+            collection.Games[DecryptedId].DidEnemyConnect = true;
+            collection.Games[DecryptedId].IsGameWithComputer = false;
+
+            return JsonConvert.SerializeObject(collection.Games[DecryptedId]);
         }
 
     }

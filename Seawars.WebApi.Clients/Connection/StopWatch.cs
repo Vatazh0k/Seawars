@@ -10,7 +10,7 @@ namespace Seawars.WebApi.Clients.Connection
     public static class StopWatch
     {
         private static Timer timer;
-        private static readonly int AvaibleMinutes = 1;//10
+        private static readonly int AvaibleMinutes = 10;
 
         static StopWatch() => TotalGamesCounnt = 1;
 
@@ -21,7 +21,7 @@ namespace Seawars.WebApi.Clients.Connection
         {
             IsActive = true;
 
-            timer = new Timer(30000);//6
+            timer = new Timer(60000);
 
             timer.Elapsed += (s, e) => Tick();
 
