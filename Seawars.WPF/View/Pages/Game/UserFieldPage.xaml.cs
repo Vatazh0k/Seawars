@@ -102,35 +102,35 @@ namespace Seawars.WPF.View.Pages.Game
             button[i, j].BorderBrush = Brushes.Gray;
             button[i, j].Background = Brushes.White;
 
-            //Binding BorderBinding = new Binding();
-            //BorderBinding.Source = vm;
-            //BorderBinding.Path = new PropertyPath($"Buttons[{i * 11 + j}].Border");
-            //BorderBinding.Mode = BindingMode.OneWay;
-            //button[i, j].SetBinding(Button.BorderThicknessProperty, BorderBinding);
+            Binding BorderBinding = new Binding();
+            BorderBinding.Source = vm;
+            BorderBinding.Path = new PropertyPath($"Buttons[{i * 11 + j}].Border");
+            BorderBinding.Mode = BindingMode.OneWay;
+            button[i, j].SetBinding(Button.BorderThicknessProperty, BorderBinding);
 
-            //Binding BackGroundBinding = new Binding();
-            //BackGroundBinding.Source = vm;
-            //BackGroundBinding.Path = new PropertyPath($"Color[{i * 11 + j}]");
-            //BackGroundBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-            //BackGroundBinding.Mode = BindingMode.OneWay;
-            //button[i, j].SetBinding(Button.BackgroundProperty, BackGroundBinding);
+            Binding BackGroundBinding = new Binding();
+            BackGroundBinding.Source = vm;
+            BackGroundBinding.Path = new PropertyPath($"Color[{i * 11 + j}]");
+            BackGroundBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            BackGroundBinding.Mode = BindingMode.OneWay;
+            button[i, j].SetBinding(Button.BackgroundProperty, BackGroundBinding);
 
-            //Binding ContentBinding = new Binding();
-            //ContentBinding.Source = vm;
-            //ContentBinding.Path = new PropertyPath($"Buttons[{i * 11 + j}].Content");
-            //ContentBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-            //ContentBinding.Mode = BindingMode.OneWay;
-            //button[i, j].SetBinding(Button.ContentProperty, ContentBinding);
+            Binding ContentBinding = new Binding();
+            ContentBinding.Source = vm;
+            ContentBinding.Path = new PropertyPath($"Buttons[{i * 11 + j}].Content");
+            ContentBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            ContentBinding.Mode = BindingMode.OneWay;
+            button[i, j].SetBinding(Button.ContentProperty, ContentBinding);
 
             button[i, j].Name = $"C{i * 11 + j}";
             button[i, j].Width = 40;
             button[i, j].Height = 40;
             button[i, j].CommandParameter = button[i, j].Name;
             button[i, j].AllowDrop = true;
-            //button[i, j].PreviewMouseLeftButtonDown += vm.DragTheShipOnTheFieldAction;
-            //button[i, j].DragEnter += vm.DragEnter;
-            //button[i, j].DragLeave += vm.DragLeave;
-            //button[i, j].Drop += vm.DropAction;
+            button[i, j].PreviewMouseLeftButtonDown += vm.DragTheShipOnTheFieldAction;
+            button[i, j].DragEnter += vm.DragEnter;
+            button[i, j].DragLeave += vm.DragLeave;
+            button[i, j].Drop += vm.DropAction;
 
         }
         #endregion

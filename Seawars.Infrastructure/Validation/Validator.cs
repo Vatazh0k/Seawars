@@ -9,6 +9,7 @@ namespace Seawars.Infrastructure.Validation
     public static class Validator
     {
         public static bool NullExist(params string[] elements) => elements.ToList().Exists(x => string.IsNullOrWhiteSpace(x));
+        public static bool NullExist(params int[] elements) => elements.ToList().Exists(x => x > 1);
         public static bool DoesTheIdExist(int[] ExitstingId, int CurrentId) => ExitstingId.Contains(CurrentId);
     }
 }

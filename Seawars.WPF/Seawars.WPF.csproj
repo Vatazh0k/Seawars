@@ -14,6 +14,56 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\DragDropShips\DoubleDeckShip.png" />
+    <None Remove="Resources\Images\DragDropShips\FourDeckShip.png" />
+    <None Remove="Resources\Images\DragDropShips\OneDeckShip.png" />
+    <None Remove="Resources\Images\DragDropShips\ThrieDeckShip.png" />
+    <None Remove="Resources\Images\HorizontalShips\EmptyCell.png" />
+    <None Remove="Resources\Images\HorizontalShips\FirstDeck_DoubleDeckShip.png" />
+    <None Remove="Resources\Images\HorizontalShips\FirstDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\HorizontalShips\FirstDeck_ThrieDeckShip.png" />
+    <None Remove="Resources\Images\HorizontalShips\FourDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\HorizontalShips\MissedMark.png" />
+    <None Remove="Resources\Images\HorizontalShips\OneDeckShip.png" />
+    <None Remove="Resources\Images\HorizontalShips\SecondDeck_DoubleDeckShip.png" />
+    <None Remove="Resources\Images\HorizontalShips\SecondDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\HorizontalShips\SecondDeck_ThrieDeckShip.png" />
+    <None Remove="Resources\Images\HorizontalShips\ThirdDeck_ThrieDeckShip.png" />
+    <None Remove="Resources\Images\HorizontalShips\ThrieDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\HorizontalShips\Vertical_KilledShip.png" />
+    <None Remove="Resources\Images\Horizontal_DeadShip\FirstDeck_DoubleDeckShip.png" />
+    <None Remove="Resources\Images\Horizontal_DeadShip\FirstDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\Horizontal_DeadShip\FirstDeck_ThrieDeckShip.png" />
+    <None Remove="Resources\Images\Horizontal_DeadShip\FourDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\Horizontal_DeadShip\OneDeckShip.png" />
+    <None Remove="Resources\Images\Horizontal_DeadShip\SecondDeck_DoubleDeckShip.png" />
+    <None Remove="Resources\Images\Horizontal_DeadShip\SecondDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\Horizontal_DeadShip\SecondDeck_ThrieDeckShip.png" />
+    <None Remove="Resources\Images\Horizontal_DeadShip\ThirdDeck_ThrieDeckShip.png" />
+    <None Remove="Resources\Images\Horizontal_DeadShip\ThrieDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\VerticalShips\FirstDeck_DoubleDeckShip.png" />
+    <None Remove="Resources\Images\VerticalShips\FirstDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\VerticalShips\FirstDeck_ThrieDeckShip.png" />
+    <None Remove="Resources\Images\VerticalShips\FourDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\VerticalShips\OneDeckShip.png" />
+    <None Remove="Resources\Images\VerticalShips\SecondDeck_DoubleDeckShip.png" />
+    <None Remove="Resources\Images\VerticalShips\SecondDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\VerticalShips\SecondDeck_ThrieDeckShip.png" />
+    <None Remove="Resources\Images\VerticalShips\ThirdDeck_ThrieDeckShip.png" />
+    <None Remove="Resources\Images\VerticalShips\ThrieDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\Vertical_DeadShip\FirstDeck_DoubleDeckShip.png" />
+    <None Remove="Resources\Images\Vertical_DeadShip\FirstDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\Vertical_DeadShip\FirstDeck_ThrieDeckShip.png" />
+    <None Remove="Resources\Images\Vertical_DeadShip\FourDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\Vertical_DeadShip\OneDeckShip.png" />
+    <None Remove="Resources\Images\Vertical_DeadShip\SecondDeck_DoubleDeckShip.png" />
+    <None Remove="Resources\Images\Vertical_DeadShip\SecondDeck_FourDeckShip.png" />
+    <None Remove="Resources\Images\Vertical_DeadShip\SecondDeck_ThrieDeckShip.png" />
+    <None Remove="Resources\Images\Vertical_DeadShip\ThirdDeck_ThrieDeckShip.png" />
+    <None Remove="Resources\Images\Vertical_DeadShip\ThrieDeck_FourDeckShip.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Gu.Wpf.Adorners" Version="2.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.6">
       <PrivateAssets>all</PrivateAssets>
@@ -34,6 +84,150 @@
     <Reference Include="System.Windows.Interactivity">
       <HintPath>..\..\SeaBattle2\SeaBattle2\Lib\System.Windows.Interactivity.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\DragDropShips\DoubleDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\DragDropShips\FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\DragDropShips\OneDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\DragDropShips\ThrieDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\HorizontalShips\EmptyCell.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\HorizontalShips\FirstDeck_DoubleDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\HorizontalShips\FirstDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\HorizontalShips\FirstDeck_ThrieDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\HorizontalShips\FourDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\HorizontalShips\MissedMark.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\HorizontalShips\OneDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\HorizontalShips\SecondDeck_DoubleDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\HorizontalShips\SecondDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\HorizontalShips\SecondDeck_ThrieDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\HorizontalShips\ThirdDeck_ThrieDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\HorizontalShips\ThrieDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\HorizontalShips\Vertical_KilledShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Horizontal_DeadShip\FirstDeck_DoubleDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Horizontal_DeadShip\FirstDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Horizontal_DeadShip\FirstDeck_ThrieDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Horizontal_DeadShip\FourDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Horizontal_DeadShip\OneDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Horizontal_DeadShip\SecondDeck_DoubleDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Horizontal_DeadShip\SecondDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Horizontal_DeadShip\SecondDeck_ThrieDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Horizontal_DeadShip\ThirdDeck_ThrieDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Horizontal_DeadShip\ThrieDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\VerticalShips\FirstDeck_DoubleDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\VerticalShips\FirstDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\VerticalShips\FirstDeck_ThrieDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\VerticalShips\FourDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\VerticalShips\OneDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\VerticalShips\SecondDeck_DoubleDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\VerticalShips\SecondDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\VerticalShips\SecondDeck_ThrieDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\VerticalShips\ThirdDeck_ThrieDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\VerticalShips\ThrieDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Vertical_DeadShip\FirstDeck_DoubleDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Vertical_DeadShip\FirstDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Vertical_DeadShip\FirstDeck_ThrieDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Vertical_DeadShip\FourDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Vertical_DeadShip\OneDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Vertical_DeadShip\SecondDeck_DoubleDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Vertical_DeadShip\SecondDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Vertical_DeadShip\SecondDeck_ThrieDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Vertical_DeadShip\ThirdDeck_ThrieDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Vertical_DeadShip\ThrieDeck_FourDeckShip.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

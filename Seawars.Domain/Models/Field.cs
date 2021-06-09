@@ -57,9 +57,7 @@ namespace Seawars.Domain.Models
 
             Ship.DecksCount = CountingDecks(cellIndexes);
 
-            Ship.Position.X = cellIndexes.X;
-
-            Ship.Position.Y = cellIndexes.Y;
+            Ship.Position = new Cell(cellIndexes.Y, cellIndexes.X);
 
             Ship.isOnField = true; //TODO: condition
 

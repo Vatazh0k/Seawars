@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:commands="clr-namespace:Seawars.WPF.Common.Commands"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1000"
       DataContext="{Binding UserFieldPageViewModel, Mode=OneWay, Source={StaticResource Locator}}">
@@ -20,6 +21,115 @@
                   Height="454"
                   Width="500"
                   Margin="20,50,0,0">
+            </Grid>
+
+
+            <Grid x:Name="ShipsChoise"
+              VerticalAlignment="Bottom"
+              HorizontalAlignment="Left"
+              Height="670"
+              Width="520">
+
+                <Image Name="OneDeckShip"
+                  Source="/Resources/Images/DragDropShips/OneDeckShip.png"
+                  Width="58" 
+                  Height="41"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Bottom" 
+                  Margin="16,0,0,137">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDown" >
+                            <i:InvokeCommandAction Command="{Binding TakeShipCommand}" CommandParameter="{x:Reference OneDeckShip}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
+
+                <Label VerticalAlignment="Bottom"
+                   HorizontalAlignment="Left"
+                   Margin="40,0,0,81"
+                   FontSize="18"
+                   Foreground="White"
+                   Content="{Binding OneDeckShip, 
+                    UpdateSourceTrigger=PropertyChanged}" RenderTransformOrigin="0.508,0.666">
+                </Label>
+
+
+
+                <Image Name="DoubleDeckShip"
+                   
+                 Source="/Resources/Images/DragDropShips/DoubleDeckShip.png"
+                   Width="94" 
+                   Height="45"
+                   Margin="101,0,0,136"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDown" >
+                            <i:InvokeCommandAction Command="{Binding TakeShipCommand}" CommandParameter="{x:Reference DoubleDeckShip}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                </Image>
+
+                <Label VerticalAlignment="Bottom"
+                       HorizontalAlignment="Left"
+                       Margin="148,0,0,81"
+                       FontSize="18"
+                       Foreground="White"
+                       Content="{Binding TwoDeckShip}">
+                </Label>
+
+
+
+                <Image Name="ThrieDeckShip"
+               
+                   Source="/Resources/Images/DragDropShips/ThrieDeckShip.png"
+                   Width="114" 
+                   Height="44"
+                   Margin="218,0,0,136"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDown" >
+                            <i:InvokeCommandAction Command="{Binding TakeShipCommand}" CommandParameter="{x:Reference ThrieDeckShip}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
+
+                <Label VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Margin="268,555,0,0"
+                       FontSize="18"
+                       Foreground="White"
+                       Content="{Binding ThrieDeckShip}">
+                </Label>
+
+                <Image Name="FourDeckShip"
+            
+                   Source="/Resources/Images/DragDropShips/FourDeckShip.png"
+                   Width="144" 
+                   Height="45"
+                   Margin="0,0,32,136"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDown" >
+                            <i:InvokeCommandAction Command="{Binding TakeShipCommand}" CommandParameter="{x:Reference FourDeckShip}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
+
+                <Label VerticalAlignment="Bottom"
+                       HorizontalAlignment="Right"
+                       Margin="0,0,90,81"
+                       FontSize="18"
+                       Foreground="White"
+                       Content="{Binding FourDeckShip}">
+
+                </Label>
+
             </Grid>
 
 
@@ -47,7 +157,7 @@
                         Foreground="White"
                         FontSize="20"
                         FontStyle="Italic"                          
-                        Command="{Binding ShipsAutoGeneration}">
+                        Command="{Binding ShipsAutoGenerationCommand}">
                     <Underline>Field autogeneration</Underline>
                 </Button>
 
@@ -60,7 +170,7 @@
                          Margin="12,374,0,0"
                          FontSize="20"
                          FontStyle="Italic"
-                         Command="{Binding CleanField}">
+                         Command="{Binding CleanFieldCommand}">
                     <Underline>CelanField</Underline>
                 </Button>
 
