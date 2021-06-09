@@ -42,6 +42,7 @@ namespace Seawars.WPF
             services.AddScoped<AuthorizationPageViewModel>();
             services.AddScoped<UserPageViewModel>();
             services.AddScoped<ConnectionPageViewModel>();
+            services.AddScoped<UserFieldPageViewModel>();
 
             services.AddScoped<PageService>();
             services.AddScoped<GamePageService>();

@@ -3,12 +3,97 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Seawars.WPF.View.Pages.Game"
+      xmlns:commands="clr-namespace:Seawars.WPF.Common.Commands"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="UserFieldPage">
+      d:DesignHeight="700" d:DesignWidth="1000"
+      DataContext="{Binding UserFieldPageViewModel, Mode=OneWay, Source={StaticResource Locator}}">
 
-    <Grid>
-        
-    </Grid>
+    <Border 
+        Background="#272537"
+        CornerRadius="40">
+
+        <Grid>
+
+            <Grid x:Name="Field" 
+                  VerticalAlignment="Top"
+                  HorizontalAlignment="Left"
+                  Height="454"
+                  Width="500"
+                  Margin="20,50,0,0">
+            </Grid>
+
+
+            <Grid x:Name="AdditionalFunctions"
+                  HorizontalAlignment="Right"
+                  Width="480"
+                  Height="670"
+                  VerticalAlignment="Bottom">
+
+                <Label 
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    FontFamily="MV Boli"
+                    FontSize="24"
+                    Foreground="White"
+                    Margin="100"
+                >Fill in the field!
+                </Label>
+
+                <Button VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Width="209"
+                        Height="30"
+                        Style="{StaticResource LightweightButton}"
+                        Foreground="White"
+                        FontSize="20"
+                        FontStyle="Italic"                          
+                        Command="{Binding ShipsAutoGeneration}">
+                    <Underline>Field autogeneration</Underline>
+                </Button>
+
+                <Button  VerticalAlignment="Top"
+                         HorizontalAlignment="Left"
+                         Width="92"
+                         Foreground="White"
+                         Height="30"
+                         Style="{StaticResource LightweightButton}"
+                         Margin="12,374,0,0"
+                         FontSize="20"
+                         FontStyle="Italic"
+                         Command="{Binding CleanField}">
+                    <Underline>CelanField</Underline>
+                </Button>
+
+                <Button
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0,200,80,0"
+                    FontStyle="Italic"
+                    Foreground="White"
+                    Command="{Binding ReadyCommand, UpdateSourceTrigger=PropertyChanged}"
+                    Style="{StaticResource LightweightButton}"
+                    FontSize="20" >
+                    <Underline>Ready!</Underline>
+                </Button>
+
+                <Button
+                    HorizontalAlignment="Right"
+                    Width="40"
+                    VerticalAlignment="Top"
+                    Content="X"
+                    Margin="0,0,10,20"
+                    FontSize="26"
+                    FontFamily="Bahnschrift SemiBold"
+                    Style="{StaticResource LightweightButton}">
+                    <Button.Command>
+                        <commands:CloseCommand/>
+                    </Button.Command>
+                </Button>
+
+            </Grid>
+
+        </Grid>
+
+    </Border>
+
 </Page>
