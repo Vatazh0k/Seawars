@@ -20,6 +20,7 @@ using Seawars.WPF.Common.Commands.Base;
 using Seawars.WPF.Common.Data;
 using Seawars.WPF.Infrastructure;
 using Seawars.WPF.Model;
+using Seawars.WPF.View.Pages.Game;
 
 namespace Seawars.WPF.ViewModels
 {
@@ -260,13 +261,17 @@ namespace Seawars.WPF.ViewModels
 
         private void CreateShip(int Cell, string Path, Ship ship)
         {
+            var myImage3 = new System.Windows.Controls.Image();
+            BitmapImage bi3 = new BitmapImage();
+            bi3.BeginInit();
+            bi3.UriSource = new Uri(Path, UriKind.Relative);
+            bi3.EndInit();
+            myImage3.Stretch = Stretch.Fill;
+            myImage3.Source = bi3;
+
             Buttons[Cell] = new Button
             {
-                Content = new System.Windows.Controls.Image
-                {
-                    Source = new BitmapImage(new Uri(Path, UriKind.Relative)),
-                    Stretch = Stretch.Fill
-                },
+                Content = myImage3,
                 Border = new Thickness(1)
             };
             Ships[Cell] = new Ship
@@ -276,6 +281,7 @@ namespace Seawars.WPF.ViewModels
                 DecksCount = ship.DecksCount,
                 Position = new Cell(Cell % 11, Cell / 11)
             };
+
         }
 
         private void CloneShipsCount()

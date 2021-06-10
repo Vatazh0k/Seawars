@@ -105,7 +105,7 @@ namespace Seawars.WPF.View.Pages.Game
             Binding BorderBinding = new Binding();
             BorderBinding.Source = vm;
             BorderBinding.Path = new PropertyPath($"Buttons[{i * 11 + j}].Border");
-            BorderBinding.Mode = BindingMode.OneWay;
+            BorderBinding.Mode = BindingMode.OneWay;    
             button[i, j].SetBinding(Button.BorderThicknessProperty, BorderBinding);
 
             Binding BackGroundBinding = new Binding();
@@ -121,7 +121,7 @@ namespace Seawars.WPF.View.Pages.Game
             ContentBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
             ContentBinding.Mode = BindingMode.OneWay;
             button[i, j].SetBinding(Button.ContentProperty, ContentBinding);
-
+            
             button[i, j].Name = $"C{i * 11 + j}";
             button[i, j].Width = 40;
             button[i, j].Height = 40;
