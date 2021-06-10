@@ -261,17 +261,13 @@ namespace Seawars.WPF.ViewModels
 
         private void CreateShip(int Cell, string Path, Ship ship)
         {
-            var img = new System.Windows.Controls.Image();
-            BitmapImage btm = new BitmapImage();
-            btm.BeginInit();
-            btm.UriSource = new Uri(Path, UriKind.Relative);
-            btm.EndInit();
-            img.Stretch = Stretch.Fill;
-            img.Source = btm;
-
             Buttons[Cell] = new Button
             {
-                Content = img,
+                Content = new System.Windows.Controls.Image
+                {
+                    Source = new BitmapImage(new Uri(Path, UriKind.Relative)),
+                    Stretch = Stretch.Fill
+                },
                 Border = new Thickness(1)
             };
             Ships[Cell] = new Ship

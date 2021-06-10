@@ -187,7 +187,7 @@ namespace Seawars.WPF.Infrastructure
                 for (int i = 0; i < ship.DecksCount; i++)
                 {
                     field.field[FirstDeckOfVerticalShip + i, ship.Position.X] = null;
-                    vm.Buttons[Cell.ConverIndexToCell(FirstDeckOfVerticalShip + i, ship.Position.Y)] = new Button();
+                    vm.Buttons[Cell.ConverIndexToCell(FirstDeckOfVerticalShip + i, ship.Position.X)] = new Button();
                     vm.Ships[Cell.ConverIndexToCell(FirstDeckOfVerticalShip + i, ship.Position.X)] = new Ship();
                 }
             }
