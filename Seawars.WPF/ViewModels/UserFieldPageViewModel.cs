@@ -20,16 +20,19 @@ using Seawars.WPF.Common.Commands.Base;
 using Seawars.WPF.Common.Data;
 using Seawars.WPF.Infrastructure;
 using Seawars.WPF.Model;
+using Seawars.WPF.Services;
 using Seawars.WPF.View.Pages.Game;
 
 namespace Seawars.WPF.ViewModels
 {
     public class UserFieldPageViewModel : ViewModelBase
     {
+        #region Commands
         public ICommand ShipsAutoGenerationCommand { get; }
         public ICommand CleanFieldCommand { get; }
         public ICommand ReadyCommand { get; }
         public ICommand TakeShipCommand { get; }
+        #endregion
 
         public Field Field { get; set; }
 
@@ -37,12 +40,14 @@ namespace Seawars.WPF.ViewModels
         public IEnumerable<Ship> _ships { get; set; }
         public IEnumerable<SolidColorBrush> _colors { get; set; }
 
+        #region Private Data
         private bool Direction = true;
         private int DecksInShipCount = default;
         private int FieldNumber;
         private bool CanUseCommands = true;
 
         private string Path = ConfigurationManager.AppSettings["Url"];
+        #endregion
 
         #region Ships
 
@@ -105,10 +110,10 @@ namespace Seawars.WPF.ViewModels
 
         public UserFieldPageViewModel()
         {
-            TakeShipCommand = new Command(TakeShipCommandAction, x => true);
-            ShipsAutoGenerationCommand = new Command(ShipsAutoGenerationAction, x => true);
+            TakeShipCommand = new Command(TakeShipCommandAction, x => CanUseCommands);
+            ShipsAutoGenerationCommand = new Command(ShipsAutoGenerationAction, x => CanUseCommands);
             ReadyCommand = new Command(ReadyCommandAction, x => true);
-            CleanFieldCommand = new Command(CleanFieldCommandAction, x => true);
+            CleanFieldCommand = new Command(CleanFieldCommandAction, x => CanUseCommands);
 
             _buttons = Enumerable.Range(0, 121).Select(i => new Button());
             _ships = Enumerable.Range(0, 121).Select(i => new Ship());
@@ -135,6 +140,16 @@ namespace Seawars.WPF.ViewModels
         {
             if (CanUseCommands is false) return;
 
+            if (GameState.GetState().IsGameWithComputer is true)
+            {
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    Field = UpdateFieldState();
+                    CloneShipsCount();
+                    ServicesLocator.GamePageService.SetPage(new BattleGroundPage());
+                }));
+            }
+
             Task.Run(() =>
             {
                 CanUseCommands = false;
@@ -147,7 +162,7 @@ namespace Seawars.WPF.ViewModels
                     return;
                 }
 
-                string response = HttpRequest.GetRequest(Path + "fieldcreating/ReadyToStart",
+                string response = HttpRequest.GetRequest(Path + "FieldCreation/ReadyToStart",
                     $"?fields={FieldNumber}&Field={field}");
 
                 var _game = JsonConvert.DeserializeObject<GameState>(response);
@@ -156,27 +171,23 @@ namespace Seawars.WPF.ViewModels
 
                 StopWatch.StartTimer();
 
-                if (GameState.GetState().IsGameWithComputer is false)
+                MessageBox.Show("Wait for your oponent");
+
+                do
                 {
-                    MessageBox.Show("Wait for your oponent");
+                    Thread.Sleep(500);
+                } while (GameState.GetState().IsFirstUserReadyToStartGame != true ||
+                         GameState.GetState().IsSecondUserReadyToStartGame != true);
 
-                    do
-                    {
-                        Thread.Sleep(500);
-                    } while (GameState.GetState().IsFirstUserReadyToStartGame != true ||
-                             GameState.GetState().IsSecondUserReadyToStartGame != true);
-
-                }
 
                 Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     Field = UpdateFieldState();
                     CloneShipsCount();
-                    //ServicesLocator.GamePageService.SetPage(new BattleGroundPage());
+                    ServicesLocator.GamePageService.SetPage(new BattleGroundPage());
                 }));
             });
-        }//TODO: 
-
+        } 
         private void Take(object obj)
         {
             var ship = obj as System.Windows.Controls.Image;
@@ -189,7 +200,6 @@ namespace Seawars.WPF.ViewModels
 
             ShowShipsOnField();
         }
-
         private void AutoGeneration()
         {
             Buttons = new ObservableCollection<Button>(_buttons);
@@ -199,7 +209,6 @@ namespace Seawars.WPF.ViewModels
 
             ShowShipsOnField();
         }
-
         private void CleanField()
         {
             Color = new ObservableCollection<Brush>(_colors);
@@ -232,7 +241,6 @@ namespace Seawars.WPF.ViewModels
             CloneShipsCount();
 
         }
-
         private void ShowShips(int Cell, Ship ship, Dictionary<int, string> Path, int nextCell)
         {
             switch (ship.DecksCount)
@@ -258,7 +266,6 @@ namespace Seawars.WPF.ViewModels
                     break;
             }
         }
-
         private void CreateShip(int Cell, string Path, Ship ship)
         {
             Buttons[Cell] = new Button
@@ -279,7 +286,6 @@ namespace Seawars.WPF.ViewModels
             };
 
         }
-
         private void CloneShipsCount()
         {
             OneDeckShip = Field.OneDeckShip;
@@ -287,7 +293,6 @@ namespace Seawars.WPF.ViewModels
             ThrieDeckShip = Field.ThrieDeckShip;
             FourDeckShip = Field.FourDeckShip;
         }
-
         private void ResetShipsCount()
         {
             OneDeckShip = 4;
@@ -295,14 +300,12 @@ namespace Seawars.WPF.ViewModels
             ThrieDeckShip = 2;
             FourDeckShip = 1;
         }
-
         private Field UpdateFieldState()
         {
             return GameState.GetState().CurrentUserIsHost is true
                 ? GameState.GetState().FirstUserField
                 : GameState.GetState().SecondUserField;
         }
-
         private int DetermineShipSize(System.Windows.Controls.Image ship)
         {
             string ShipsName = ship.Name.ToString();
@@ -334,22 +337,18 @@ namespace Seawars.WPF.ViewModels
         #endregion
 
         #region DragDrop
-
         internal void DropAction(object sender, DragEventArgs args)
         {
             DragAndDrop.Drop(args);
         }
-
         internal void DragEnter(object sender, DragEventArgs args)
         {
             DragAndDrop.Enter(args, DecksInShipCount, Direction);
         }
-
         internal void DragLeave(object sender, DragEventArgs args)
         {
             DragAndDrop.Leave(args);
         }
-
         internal void DragTheShipOnTheFieldAction(object sender, MouseButtonEventArgs args)
         {
             if (CanUseCommands is false) return;
@@ -363,7 +362,6 @@ namespace Seawars.WPF.ViewModels
             DragAndDrop.Drag(ship, btn);
             ShowShipsOnField();
         }
-
         #endregion
     }
 }
