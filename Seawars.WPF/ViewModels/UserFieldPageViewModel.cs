@@ -175,7 +175,7 @@ namespace Seawars.WPF.ViewModels
                     //ServicesLocator.GamePageService.SetPage(new BattleGroundPage());
                 }));
             });
-        }
+        }//TODO: 
 
         private void Take(object obj)
         {
@@ -261,17 +261,17 @@ namespace Seawars.WPF.ViewModels
 
         private void CreateShip(int Cell, string Path, Ship ship)
         {
-            var myImage3 = new System.Windows.Controls.Image();
-            BitmapImage bi3 = new BitmapImage();
-            bi3.BeginInit();
-            bi3.UriSource = new Uri(Path, UriKind.Relative);
-            bi3.EndInit();
-            myImage3.Stretch = Stretch.Fill;
-            myImage3.Source = bi3;
+            var img = new System.Windows.Controls.Image();
+            BitmapImage btm = new BitmapImage();
+            btm.BeginInit();
+            btm.UriSource = new Uri(Path, UriKind.Relative);
+            btm.EndInit();
+            img.Stretch = Stretch.Fill;
+            img.Source = btm;
 
             Buttons[Cell] = new Button
             {
-                Content = myImage3,
+                Content = img,
                 Border = new Thickness(1)
             };
             Ships[Cell] = new Ship
