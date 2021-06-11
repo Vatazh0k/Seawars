@@ -16,9 +16,9 @@ namespace Seawars.WPF.View.Pages.Game
         {
             InitializeComponent();
 
-            IBattleGround vm = gameMode is GameMode.User
-                ? ServicesLocator.BattleGroundWithUserViewModel
-                : ServicesLocator.BattleGroundWithComputerViewModel;
+            IBattleGroundData vm = gameMode is GameMode.User
+                ? ServicesLocator.BattleGroundDataWithUserViewModel
+                : ServicesLocator.BattleGroundDataWithComputerViewModel;
 
             DataContext = vm;
 

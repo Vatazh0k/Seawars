@@ -1,4 +1,6 @@
-﻿namespace Seawars.Infrastructure.Extentions
+﻿using System;
+
+namespace Seawars.Infrastructure.Extentions
 {
     public static class ExtentionsForCell
     {
@@ -22,6 +24,13 @@
             if (isParsed is false) return -1;
 
             return NewCell;
+        }
+        public static bool IsAllElementsIsNull<T>(this object number, params T[] elems)
+        {
+            for (int i = 0; i < elems.Length; i++)
+                if (Convert.ToInt32(elems[i]) != 0 || elems[i] == null)
+                    return false;
+            return true;
         }
     }
 }

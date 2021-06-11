@@ -20,13 +20,14 @@ using Seawars.WPF.Common;
 using Seawars.WPF.Common.Commands.Base;
 using Seawars.WPF.Common.Data;
 using Seawars.WPF.Infrastructure;
+using Seawars.WPF.Interfaces;
 using Seawars.WPF.Model;
 using Seawars.WPF.Services;
 using Seawars.WPF.View.Pages.Game;
 
 namespace Seawars.WPF.ViewModels
 {
-    public class UserFieldPageViewModel : ViewModelBase
+    public class UserFieldPageViewModel : ViewModelBase, IViewModelData
     {
         #region Commands
         public ICommand ShipsAutoGenerationCommand { get; }

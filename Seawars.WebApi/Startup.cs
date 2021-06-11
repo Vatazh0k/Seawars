@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Seawars.Interfaces.Services;
 using Seawars.WebApi.Clients.Connection;
 using Seawars.WebApi.Clients.Field;
+using Seawars.WebApi.Clients.Game;
 
 namespace Seawars.WebApi
 {
@@ -17,6 +18,7 @@ namespace Seawars.WebApi
 
             services.AddScoped<IConnection, GameConnection>();
             services.AddScoped<IUserField, UserField>();
+            services.AddScoped<IBattleGround, BattleGround>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

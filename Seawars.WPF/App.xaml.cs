@@ -44,8 +44,8 @@ namespace Seawars.WPF
             services.AddScoped<ConnectionPageViewModel>();
             services.AddScoped<UserFieldPageViewModel>();
             services.AddScoped<EnemyFieldViewModel>();
-            services.AddScoped<BattleGroundWithUserViewModel>();
-            services.AddScoped<BattleGroundWithComputerViewModel>();
+            services.AddScoped<BattleGroundDataWithUserViewModel>();
+            services.AddScoped<BattleGroundDataWithComputerViewModel>();
 
             services.AddScoped<PageService>();
             services.AddScoped<GamePageService>();

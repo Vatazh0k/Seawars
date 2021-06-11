@@ -9,7 +9,7 @@ using Seawars.WPF.Common;
 
 namespace Seawars.WPF.ViewModels
 {
-    public class BattleGroundWithComputerViewModel : ViewModelBase, IBattleGround
+    public class BattleGroundDataWithComputerViewModel : ViewModelBase, IBattleGroundData
     {
         #region Data
         private string _attackHint = "A1";

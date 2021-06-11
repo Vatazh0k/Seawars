@@ -14,12 +14,12 @@ namespace Seawars.WPF.Services
             App.Services.GetRequiredService<EnemyFieldViewModel>();
 
 
-        public static BattleGroundWithUserViewModel BattleGroundWithUserViewModel =>
-            App.Services.GetRequiredService<BattleGroundWithUserViewModel>();
+        public static BattleGroundDataWithUserViewModel BattleGroundDataWithUserViewModel =>
+            App.Services.GetRequiredService<BattleGroundDataWithUserViewModel>();
 
 
-        public static BattleGroundWithComputerViewModel BattleGroundWithComputerViewModel =>
-            App.Services.GetRequiredService<BattleGroundWithComputerViewModel>();
+        public static BattleGroundDataWithComputerViewModel BattleGroundDataWithComputerViewModel =>
+            App.Services.GetRequiredService<BattleGroundDataWithComputerViewModel>();
 
 
         public static UserFieldPageViewModel UserFieldPageViewModel =>

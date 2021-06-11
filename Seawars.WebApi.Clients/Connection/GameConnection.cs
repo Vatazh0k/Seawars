@@ -24,7 +24,7 @@ namespace Seawars.WebApi.Clients.Connection
 
             var CryptedId = TripleDes.Encrypted(Id);
 
-            collection.Games.Add(Id, new Game(CryptedId));
+            collection.Games.Add(Id, new Domain.Models.Game(CryptedId));
 
             if(StopWatch.IsActive is not true) StopWatch.StartTimer();
 

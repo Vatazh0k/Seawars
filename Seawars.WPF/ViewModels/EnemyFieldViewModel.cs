@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 using Seawars.Domain.Models;
 using Seawars.Infrastructure.Data;
 using Seawars.WPF.Common;
+using Seawars.WPF.Interfaces;
 using Seawars.WPF.Model;
 
 namespace Seawars.WPF.ViewModels
 {
-    public class EnemyFieldViewModel : ViewModelBase
+    public class EnemyFieldViewModel : ViewModelBase, IViewModelData
     {
         private ObservableCollection<Ship> _Ships;
         private ObservableCollection<Button> _Buttons;
