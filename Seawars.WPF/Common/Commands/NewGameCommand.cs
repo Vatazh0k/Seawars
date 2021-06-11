@@ -29,4 +29,4 @@ namespace Seawars.WPF.Common.Commands
             App.UserProfileWindow.Show();
         }//TODO: add games and steps to db; make game with computer.
     }
-}
+} 
