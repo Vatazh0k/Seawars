@@ -24,7 +24,7 @@ namespace Seawars.WPF.Common.Commands
             //Application.Current.Shutdown();
 
             ServicesLocator.UserPageViewModel.CurrentViewControl = new ProfileControl();
-            //Reload all viewmodels S.*.Reload(); (App.ReloadGame)
+            //TODO: Reload all viewmodels S.*.Reload(); (App.ReloadGame)
             App.WindowCurrent.Close();
             App.UserProfileWindow.Show();
         }//TODO: add games and steps to db; make game with computer.

@@ -95,7 +95,7 @@ namespace Seawars.WPF.ViewModels
 
                 Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    ServicesLocator.GamePageService.SetPage(new UserFieldPage());
+                    StartGameCommandAction(null);
                 }));
 
             });
