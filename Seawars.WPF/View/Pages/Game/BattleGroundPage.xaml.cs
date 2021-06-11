@@ -6,6 +6,7 @@ using System.Windows.Media;
 using Seawars.Domain.Enums;
 using Seawars.Interfaces.Game;
 using Seawars.WPF.Services;
+using Seawars.WPF.ViewModels;
 
 namespace Seawars.WPF.View.Pages.Game
 {
@@ -21,15 +22,15 @@ namespace Seawars.WPF.View.Pages.Game
 
             DataContext = vm;
 
-            //CreateField<UserFieldPageViewModel>(UserField, ViewModelLocator.UserFieldPageViewModel, null);
-            //CreateField<ComputerFieldPageViewModel>(ComputerField, ViewModelLocator.ComputerFieldPageViewModel, vm.AttackCommand);
+            CreateField<UserFieldPageViewModel>(UserField, ServicesLocator.UserFieldPageViewModel, null);
+            CreateField<EnemyFieldViewModel>(ComputerField, ServicesLocator.EnemyFieldViewModel, vm.AttackCommand);
 
         }
         #region Private Methods
         private void CreateField<T>(Grid Field, T vm, ICommand cmd) where T : class
         {
-            Button[,] button = new Button[11, 11];
-            char[] Alphabet = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };
+            var button = new Button[11, 11];
+            char[] Alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };
 
             for (int i = 0; i < 11; i++)
             {
@@ -41,7 +42,7 @@ namespace Seawars.WPF.View.Pages.Game
 
                     if (i is 0)
                     {
-                        ButtonSettings_ForComputerField(i, j, button, vm, cmd);
+                        ButtonSettings(i, j, button, vm, cmd);
                         button[i, j].Content = Alphabet[j - 1];
                         button[i, j].Foreground = Brushes.Black;
                         button[i, j].FontFamily = new FontFamily("MV Boli");
@@ -52,10 +53,9 @@ namespace Seawars.WPF.View.Pages.Game
 
                         continue;
                     }
-
                     if (j is 0)
                     {
-                        ButtonSettings_ForComputerField(i, j, button, vm, cmd);
+                        ButtonSettings(i, j, button, vm, cmd);
                         button[i, j].Content = i;
                         button[i, j].Foreground = Brushes.Black;
                         button[i, j].FontFamily = new FontFamily("MV Boli");
@@ -67,8 +67,7 @@ namespace Seawars.WPF.View.Pages.Game
                         continue;
                     }
 
-
-                    ButtonSettings_ForComputerField(i, j, button, vm, cmd);
+                    ButtonSettings(i, j, button, vm, cmd);
 
                     ButtonAdd(i, j, button, Field);
 
@@ -90,7 +89,7 @@ namespace Seawars.WPF.View.Pages.Game
             Grid.SetColumn(button[i, j], j);
             Field.Children.Add(button[i, j]);
         }
-        private static void ButtonSettings_ForComputerField<T>(int i, int j, Button[,] button, T vm, ICommand Command)
+        private static void ButtonSettings<T>(int i, int j, Button[,] button, T vm, ICommand Command)
         {
             button[i, j] = new Button();
             button[i, j].BorderBrush = Brushes.Gray;

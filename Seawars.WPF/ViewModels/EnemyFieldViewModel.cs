@@ -32,7 +32,7 @@ namespace Seawars.WPF.ViewModels
             var _ships = Enumerable.Range(0, 121).Select(i => new Ship());
             var _buttons = Enumerable.Range(0, 121).Select(i => new Button()
             {
-                Border = new System.Windows.Thickness(0.5),
+                Border = new System.Windows.Thickness(0.3),
                 Content = new System.Windows.Controls.Image()
             });
 

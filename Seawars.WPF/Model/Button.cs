@@ -7,7 +7,7 @@ namespace Seawars.WPF.Model
 {
     public class Button : ViewModelBase
     {
-        public Thickness Border { get; set; } = new Thickness(0.5);
+        public Thickness Border { get; set; } = new Thickness(0.3);
         public Image Content { get; set; }
 
         private Boolean _CanUse = true;

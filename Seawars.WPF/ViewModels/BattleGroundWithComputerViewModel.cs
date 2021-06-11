@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Seawars.Interfaces.Game;
 using Seawars.WPF.Common;
 
@@ -10,6 +11,7 @@ namespace Seawars.WPF.ViewModels
 {
     public class BattleGroundWithComputerViewModel : ViewModelBase, IBattleGround
     {
+        #region Data
         private string _attackHint = "A1";
         private int _enemyShipsCount = 10;
         private int _missCounter = 0;
@@ -31,5 +33,8 @@ namespace Seawars.WPF.ViewModels
             get => _missCounter;
             set => Set(ref _missCounter, value);
         }
+        #endregion
+
+        public ICommand AttackCommand { get; set; }
     }
 }
