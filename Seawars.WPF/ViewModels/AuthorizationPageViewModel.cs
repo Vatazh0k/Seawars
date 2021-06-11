@@ -68,7 +68,7 @@ namespace Seawars.WPF.ViewModels
         {
             var Users = ServicesLocator.UserRepository.GetAll();
 
-             _ = Validator.NullExist(Username, _password) is true
+             _ = Validator.NotNullElementsExist(Username, _password) is true
 
              ? ErrorMessage("Please input all fields!") : Users.Exists(x => x.UserName == Username) is false
 
@@ -79,7 +79,7 @@ namespace Seawars.WPF.ViewModels
         }
         private void RegisterCommandAction(object obj)
         {
-            _ = Validator.NullExist(Name, Username, _password, _repeatedPassword) is true
+            _ = Validator.NotNullElementsExist(Name, Username, _password, _repeatedPassword) is true
 
             ? ErrorMessage("Please input all fields!") : ServicesLocator.UserRepository.GetAll().Exists(x => x.UserName == Username) is true
 

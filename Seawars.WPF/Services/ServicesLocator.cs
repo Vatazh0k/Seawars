@@ -10,6 +10,18 @@ namespace Seawars.WPF.Services
 {
     internal class ServicesLocator
     {
+        public static EnemyFieldViewModel ComputerFieldPageViewModel =>
+            App.Services.GetRequiredService<EnemyFieldViewModel>();
+
+
+        public static BattleGroundWithUserViewModel BattleGroundWithUserViewModel =>
+            App.Services.GetRequiredService<BattleGroundWithUserViewModel>();
+
+
+        public static BattleGroundWithComputerViewModel BattleGroundWithComputerViewModel =>
+            App.Services.GetRequiredService<BattleGroundWithComputerViewModel>();
+
+
         public static UserFieldPageViewModel UserFieldPageViewModel =>
             App.Services.GetRequiredService<UserFieldPageViewModel>();
 

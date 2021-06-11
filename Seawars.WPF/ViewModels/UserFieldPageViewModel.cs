@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Newtonsoft.Json;
+using Seawars.Domain.Enums;
 using Seawars.Domain.Models;
 using Seawars.Infrastructure.Data;
 using Seawars.Infrastructure.Extentions;
@@ -140,27 +141,20 @@ namespace Seawars.WPF.ViewModels
         {
             if (CanUseCommands is false) return;
 
-            if (GameState.GetState().IsGameWithComputer is true)
-            {
-                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    Field = UpdateFieldState();
-                    CloneShipsCount();
-                    ServicesLocator.GamePageService.SetPage(new BattleGroundPage());
-                }));
-            }
+            if (Validator.NotNullElementsExist(OneDeckShip, TwoDeckShip, ThrieDeckShip, FourDeckShip)) return;
 
+            if (GameState.GetState().IsGameWithComputer is true) GameWithComputer();
+
+            if (GameState.GetState().IsGameWithComputer is not true) GameWithUser();
+        }
+
+        private void GameWithUser()
+        {
             Task.Run(() =>
             {
                 CanUseCommands = false;
 
                 var field = JsonConvert.SerializeObject(Field);
-
-                if (Validator.NullExist(OneDeckShip, TwoDeckShip, ThrieDeckShip, FourDeckShip))
-                {
-                    CanUseCommands = true;
-                    return;
-                }
 
                 string response = HttpRequest.GetRequest(Path + "FieldCreation/ReadyToStart",
                     $"?fields={FieldNumber}&Field={field}");
@@ -184,13 +178,23 @@ namespace Seawars.WPF.ViewModels
                 {
                     Field = UpdateFieldState();
                     CloneShipsCount();
-                    ServicesLocator.GamePageService.SetPage(new BattleGroundPage());
+                    ServicesLocator.GamePageService.SetPage(new BattleGroundPage((GameMode)2));
                 }));
             });
-        } 
-        private void Take(object obj)
+        }
+        private void GameWithComputer()
         {
-            var ship = obj as System.Windows.Controls.Image;
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                ResetShipsCount();
+                ServicesLocator.GamePageService.SetPage(new BattleGroundPage((GameMode)1));
+            }));
+        }
+
+
+        private void Take(object _ship)
+        {
+            var ship = _ship as System.Windows.Controls.Image;
 
             if (ship is null) return;
 

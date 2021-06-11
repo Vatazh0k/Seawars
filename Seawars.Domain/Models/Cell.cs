@@ -15,6 +15,10 @@ namespace Seawars.Domain.Models
             Y = i;
             X = j;
         }
- 
+
+        public Cell()
+        {
+            
+        }
     }
 }
