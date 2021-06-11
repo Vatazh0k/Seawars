@@ -137,15 +137,15 @@ namespace Seawars.WPF.ViewModels
         }
         private void StartGameCommandAction(object obj)
         {
-            //var Game = new Domain.Entities.Game()
-            //{
-            //    Status = (Status?)3,
-            //    User = App.CuurentUser,
-            //};
+            var Game = new Domain.Entities.Game()
+            {
+                Status = (Status?)3,
+                User = App.CuurentUser,
+            };
 
-            //App.CurrentGame = Game;
+            App.CurrentGame = Game;
 
-            //ServicesLocator.GameRepository.Add(Game);
+            ServicesLocator.GameRepository.Add(Game);
 
             ServicesLocator.GamePageService.SetPage(new UserFieldPage());
         }

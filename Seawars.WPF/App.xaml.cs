@@ -62,6 +62,12 @@ namespace Seawars.WPF
                     o.MigrationsAssembly("Seawars.DAL.SqlServer")));//GetConnectionString;
         }
 
+        public static void ReloadGame()
+        {
+           
+
+        }
+
         protected override async void OnStartup(StartupEventArgs e)
         {
             var host = Hosting;

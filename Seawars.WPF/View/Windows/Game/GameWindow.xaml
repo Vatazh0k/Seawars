@@ -21,7 +21,7 @@
                "{Binding GamePageService.CurrentPage,
             Mode=TwoWay, UpdateSourceTrigger=Explicit, 
             Source={StaticResource Locator}}"
-
+            
                NavigationUIVisibility="Hidden">
 
         </Frame>

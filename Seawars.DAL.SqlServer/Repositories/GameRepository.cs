@@ -22,7 +22,7 @@ namespace Seawars.DAL.SqlServer.Repositories
 
         public Game GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Games.FirstOrDefault(x => x.Id == id);
         }
 
         public void Add<T>(T Game)

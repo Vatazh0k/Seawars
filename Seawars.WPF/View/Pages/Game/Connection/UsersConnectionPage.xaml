@@ -17,6 +17,29 @@
 
         <Grid>
 
+            <Menu 
+                Foreground="White" Background="Transparent" Margin="10,10,72,0" 
+                FontSize="16" Height="30" VerticalAlignment="Top" >
+                <MenuItem Header="Menu" Height="30" Width="51" HorizontalContentAlignment="Left">
+                    <MenuItem Header="New game" Foreground="Black">
+                        <MenuItem.Command>
+                            <commands:NewGameCommand/>
+                        </MenuItem.Command>
+                    </MenuItem>
+                    <MenuItem Header="Exit" Foreground="Black">
+                        <MenuItem.Command>
+                            <commands:CloseCommand/>
+                        </MenuItem.Command>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Help" Width="47">
+                    <MenuItem.Command>
+                        <commands:SowRulesCommand/>
+                    </MenuItem.Command>
+                </MenuItem>
+            </Menu>
+
+
             <Label
                 VerticalAlignment="Top"
                 HorizontalAlignment="Center"
