@@ -27,8 +27,9 @@ namespace Seawars.WPF.ViewModels
 {
     public class BattleGroundDataWithUserViewModel : ViewModelBase, IBattleGroundData
     {
-     
+
         #region Private data
+        private object locker = new object();
         private bool IsGameOver = default;
         private int NumberOfHostsField;
         private string Path = ConfigurationManager.AppSettings["Url"];
@@ -94,6 +95,7 @@ namespace Seawars.WPF.ViewModels
             Enemy.Buttons = ShipsAssignment(obj.DetermineCellNumber(), GameState.GetState()[FieldForAttack], Enemy);
 
         }
+
         private void NativeShipAssignment()
         {
             Game = GameState.GetState();
@@ -104,14 +106,16 @@ namespace Seawars.WPF.ViewModels
 
             bool isMissed = true;
 
-            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            lock (locker)
             {
-                isMissed = UpdateShipsViewState(isMissed);
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    isMissed = UpdateShipsViewState(isMissed);
 
-                UpdateMissedViewState(isMissed, Game[NumberOfHostsField], User);
+                    UpdateMissedViewState(isMissed, Game[NumberOfHostsField], User);
 
-            }), DispatcherPriority.Normal);
-
+                }), DispatcherPriority.Normal);
+            }
         }
         #endregion
 
