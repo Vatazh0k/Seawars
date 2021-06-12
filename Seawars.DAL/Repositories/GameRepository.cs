@@ -22,7 +22,7 @@ namespace Seawars.DAL.Repositories
 
         public Game GetById(int id)
         {
-            return _context.Games.FirstOrDefault(x => x.Id == id);
+            return _context.Games.FirstOrDefault(x => x.Id == id);  
         }
 
         public void Add<T>(T Game)

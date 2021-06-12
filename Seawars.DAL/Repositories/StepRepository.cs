@@ -29,7 +29,8 @@ namespace Seawars.DAL.Repositories
 
         public void Add<T>(T Steps)
         {
-            throw new NotImplementedException();
+            _context.Steps.Add(Steps as Step);
+            _context.SaveChanges();
         }
 
         public void Update()

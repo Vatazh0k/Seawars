@@ -86,7 +86,7 @@ namespace Seawars.WPF.ViewModels
 
             var steps = ServicesLocator.StepRepository
                 .GetAll()
-                .Where(x => x.Game.Id == SelectedGame.Id)
+                .Where(x => x.Game is not null && x.Game.Id == SelectedGame.Id)
                 .Select((x, y) => new Steps(x.X, x.Y, y + 1, x.Move))
                 .ToList();
 
@@ -100,7 +100,7 @@ namespace Seawars.WPF.ViewModels
         {
             var games = ServicesLocator.GameRepository
                 .GetAll()
-                .Where(x => x.User.Id == App.CuurentUser.Id)
+                .Where(x => x.User is not null &&  x.User.Id == App.CuurentUser.Id)
                 .Select((x,y) => new Games(y+1, x.Status, x.Id))
                 .ToList();
 

@@ -22,7 +22,7 @@ namespace Seawars.DAL.Repositories
 
         public User GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Users.FirstOrDefault(x => x.Id == id);
         }
 
         public void Add<T>(T User)

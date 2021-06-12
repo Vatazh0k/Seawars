@@ -12,6 +12,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using Application.BL;
 using Newtonsoft.Json;
+using Seawars.DAL.Repositories;
+using Seawars.Domain.Entities;
+using Seawars.Domain.Enums;
 using Seawars.Domain.Models;
 using Seawars.Infrastructure.Data;
 using Seawars.Infrastructure.Extentions;
@@ -87,35 +90,41 @@ namespace Seawars.WPF.ViewModels
         {
             int FieldForAttack = GameState.GetState().CurrentUserIsHost is true ? 2 : 1;
 
-            if (GameState.GetState()[FieldForAttack].CanAttackCell(obj.DetermineCellNumber()) is false) return;
+            var cell = obj.DetermineCellNumber();
 
-            var response = HttpRequest.GetRequest(Path + "battleground/Attack", $"?fields={FieldForAttack}&Cell={obj.DetermineCellNumber()}");
+            var game = GameState.GetState();
 
-            GameState.GetState()[FieldForAttack] = JsonConvert.DeserializeObject<Field>(response);
+            if (game[FieldForAttack].CanAttackCell(cell) is false) return;
 
-            Enemy.Buttons = ShipsAssignment(obj.DetermineCellNumber(), GameState.GetState()[FieldForAttack], Enemy);
+            var response = HttpRequest.GetRequest(Path + "battleground/Attack", $"?fields={FieldForAttack}&Cell={cell}");
+
+            game[FieldForAttack] = JsonConvert.DeserializeObject<Field>(response);
+
+            Enemy.Buttons = ShipsAssignment(cell, game[FieldForAttack], Enemy);
+
+            AddStepToDb(cell, Move.Your);
 
         }
 
         private void NativeShipAssignment()
         {
-            Game = GameState.GetState();
-
-            ChangeButtonView
-            (Game.CurrentUserIsHost && Game.IsFirstUserMove ||
-            !Game.CurrentUserIsHost && !Game.IsFirstUserMove);
-
-            bool isMissed = true;
-
             lock (locker)
             {
+                Game = GameState.GetState();
+
+                ChangeButtonView
+                (Game.CurrentUserIsHost && Game.IsFirstUserMove ||
+                 !Game.CurrentUserIsHost && !Game.IsFirstUserMove);
+
+                bool isMissed = true;
+
                 System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     isMissed = UpdateShipsViewState(isMissed);
 
                     UpdateMissedViewState(isMissed, Game[NumberOfHostsField], User);
 
-                }), DispatcherPriority.Normal);
+                }));
             }
         }
         #endregion
@@ -191,7 +200,11 @@ namespace Seawars.WPF.ViewModels
                     {
                         if (vm.Ships[Cell.ConverIndexToCell(i, j)].isDead is false && Field.field[i, j] is ShipsMark.Missed)
                         {
-                            if (isMissed is true) AttackHint = AttackHint.ShowAttackHint(i, j);
+                            if (isMissed is true)
+                            {
+                                AttackHint = AttackHint.ShowAttackHint(i, j);
+                                AddStepToDb(i.ConverIndexToCell(i, j), Move.Enimy);
+                            }
                             ShipsOptions(vm, Cell.ConverIndexToCell(i, j), PathToShipContent.MissedMark, 0.5, vm.Ships[Cell.ConverIndexToCell(i, j)]);
                         }
                     }
@@ -252,6 +265,35 @@ namespace Seawars.WPF.ViewModels
             return vm.Buttons;
         }
 
+        private void AddGameToDb(GameState _game)
+        {
+            var game = ServicesLocator.GameRepository.GetById(App.CurrentGame.Id);
+
+            game.Status = _game.CurrentUserIsHost is true && _game.IsFirstUserWin
+                          || !_game.CurrentUserIsHost && !_game.IsFirstUserWin
+                ? Status.Win
+                : Status.Loose;
+
+            var user = ServicesLocator.UserRepository.GetById(App.CuurentUser.Id);
+
+            user.CountOfWonGames += game.Status is Status.Win ? 1 : 0;
+            user.GamesWithComputer += Game.IsGameWithComputer is true ? 1 : 0;
+            user.TotalGamesCount++;
+
+            ServicesLocator.Repository.Save();
+        }
+        private void AddStepToDb(int cell, Move move)
+        {
+            var step = new Step()
+            {
+                Y = cell / 11,
+                X = cell % 11,
+                Move = move,
+                Game = App.CurrentGame,
+            };
+
+            ServicesLocator.StepRepository.Add(step);
+        }
 
 
         private bool UpdateShipsViewState(bool isMissed)
@@ -266,7 +308,7 @@ namespace Seawars.WPF.ViewModels
                         AttackHint = AttackHint.ShowAttackHint(i, j);
                         ShowKilledShip(i, j, User);
                         ReduceTheShipsCount(Game[NumberOfHostsField]);
-
+                        AddStepToDb(i.ConverIndexToCell(i, j), Move.Enimy);
                     }
                 }
             }
@@ -276,13 +318,14 @@ namespace Seawars.WPF.ViewModels
 
         private void GameOverSettings(string text, bool IsWin)
         {
+            var game = GameState.GetState();
             StopWatch.StopTimer();
             StopWatch.UpdateGameState -= NativeShipAssignment;
             MessageBox.Show(text, "", MessageBoxButton.OK, MessageBoxImage.Information);
             IsGameOver = true;
-            GameState.GetState().IsGameOver = true;
-            GameState.GetState().IsFirstUserWin = NumberOfHostsField is 1 ? IsWin : !IsWin;
-            //Занести результаты в базу
+            game.IsGameOver = true;
+            game.IsFirstUserWin = NumberOfHostsField is 1 ? IsWin : !IsWin;
+            AddGameToDb(game);
             //при нажатии ок перезапустить игру
         }
         private void ReduceTheShipsCount(Field field)
