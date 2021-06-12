@@ -43,7 +43,7 @@ namespace Seawars.WPF.ViewModels
         #endregion
 
         #region Public Data
-        private string _attackHint = "A1";
+        private string _attackHint = "";
         private int _enemyShipsCount = 10;
         private int _missCounter = 0;
 
@@ -165,9 +165,9 @@ namespace Seawars.WPF.ViewModels
         {
             _ = Enumerable.Range(0, 121).Select(x =>
             {
-                var indexes = x.ConvertCellToIndexes();
-                var y = new Cell(indexes.Item1, indexes.Item2);
-                if (y.Y != 0 && y.X != 0)
+                var _points = x.ConvertCellToIndexes();
+                var _indexes = new Cell(_points.Item1, _points.Item2);
+                if (_indexes.Y != 0 && _indexes.X != 0)
                     return Enemy.Buttons[x].CanUse = isEnabled;
                 return Enemy.Buttons[x].CanUse = false;
             }).ToArray();
@@ -295,7 +295,6 @@ namespace Seawars.WPF.ViewModels
             ServicesLocator.StepRepository.Add(step);
         }
 
-
         private bool UpdateShipsViewState(bool isMissed)
         {
             for (int i = 0; i < 11; i++)
@@ -412,4 +411,4 @@ namespace Seawars.WPF.ViewModels
         #endregion
         #endregion
     }
-}
+} 

@@ -16,6 +16,6 @@ namespace Seawars.WPF.Common.Commands
             //TODO: Reload all viewmodels S.*.Reload(); (App.ReloadGame)
             App.WindowCurrent.Close();
             App.UserProfileWindow.Show();
-        }//TODO: add games and steps to db; make game with computer.
+        }//TODO: make game with computer.
     }
 } 
