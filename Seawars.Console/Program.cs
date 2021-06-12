@@ -38,7 +38,9 @@ namespace Seawars.Console
         {                              //Как сделать систему оплаты?) при премиум аккаунте можна смотреть статистику других 
            
             var context = Connection.Hosting.Services.GetRequiredService<MsSqlContext>();
-            
+            var a = context.Steps.Where(x => x.Id >= 31).Select(x => x).ToList();
+            context.Steps.RemoveRange(a);
+            context.SaveChanges();
             // var user = new User()
             // {
             //     Name = "Anton",
@@ -151,7 +153,7 @@ namespace Seawars.Console
 
 
             //var user = context.Users.FirstOrDefault(x => x.UserName == "Vova");
-            //var game = context.Games.Include(x => x.Steps).FirstOrDefault(x => x.User == user);
+            //var game = context.Games.Include(x => x.Steps).FirstOrDefault(x => x.Id == 10);
 
             //context.Users.Remove(user);
             //context.Games.Remove(game);

@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Diagnostics;
-using System.Windows;
-using Microsoft.Extensions.DependencyInjection;
-using Seawars.WPF.Common.Commands.Base;
+﻿using Seawars.WPF.Common.Commands.Base;
 using Seawars.WPF.Services;
-using Seawars.WPF.View.Pages;
 using Seawars.WPF.View.UserControls;
-using Seawars.WPF.ViewModels;
 
 namespace Seawars.WPF.Common.Commands
 {
