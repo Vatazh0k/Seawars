@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using Application.BL;
 using Newtonsoft.Json;
 using Seawars.Domain.Models;
 using Seawars.Infrastructure.Data;
@@ -108,7 +109,7 @@ namespace Seawars.WPF.ViewModels
 
             lock (locker)
             {
-                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     isMissed = UpdateShipsViewState(isMissed);
 
@@ -182,7 +183,7 @@ namespace Seawars.WPF.ViewModels
         private void UpdateMissedViewState(bool isMissed, Field Field, IViewModelData vm)
         {
             int Cell = default;
-            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 for (int i = 0; i < 11; i++)
                 {

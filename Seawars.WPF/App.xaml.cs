@@ -6,14 +6,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Seawars.DAL.Context;
+using Seawars.DAL.Repositories;
 using Seawars.WPF.ViewModels;
-using Seawars.DAL.SqlServer.Repositories;
 using Seawars.WPF.Services.AuthorizationPageServices;
 using Seawars.WPF.Services.GamePagesService;
 
 namespace Seawars.WPF
 {
-    public partial class App : Application
+    public partial class App : System.Windows.Application
     {
         public static Domain.Entities.User CuurentUser { get; set; }
         public static Domain.Entities.Game CurrentGame { get; set; }

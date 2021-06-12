@@ -1,33 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Seawars.DAL.Context;
 using Seawars.Domain.Entities;
+using Seawars.Interfaces.Entities;
 using Seawars.Interfaces.Repositories;
 
-namespace Seawars.DAL.SqlServer.Repositories
+namespace Seawars.DAL.Repositories
 {
-    public class GameRepository : IRepository<Game>
+    public class UserRepository : IRepository<User>
     {
         private readonly MsSqlContext _context;
-        public GameRepository(MsSqlContext context)
+        public UserRepository(MsSqlContext context)
         {
             _context = context;
         }
-        
-        public List<Game> GetAll()
+
+        public List<User> GetAll() => _context.Users.Select(x => x).ToList();
+
+        public User GetById(int id)
         {
-            return _context.Games.Select(x => x).ToList();
+            throw new NotImplementedException();
         }
 
-        public Game GetById(int id)
+        public void Add<T>(T User)
         {
-            return _context.Games.FirstOrDefault(x => x.Id == id);
-        }
-
-        public void Add<T>(T Game)
-        {
-            _context.Games.Add(Game as Game);
+            _context.Users.Add(User as User);
             _context.SaveChanges();
         }
 
@@ -38,8 +38,7 @@ namespace Seawars.DAL.SqlServer.Repositories
 
         public void Delete<T>(T entity)
         {
-            if (entity is null) return;
-            _context.Games.Remove(entity as Game);
+            _context.Users.Remove(entity as User);
         }
 
         public void DeleteById(int id)

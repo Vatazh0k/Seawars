@@ -8,6 +8,7 @@ using Seawars.DAL.GamesBase;
 using Seawars.Domain.Models;
 using Seawars.Infrastructure.Encryption;
 using Seawars.Infrastructure.Validation;
+
 using Seawars.Interfaces.Services;
 
 namespace Seawars.WebApi.Clients.Connection
@@ -24,7 +25,7 @@ namespace Seawars.WebApi.Clients.Connection
 
             var CryptedId = TripleDes.Encrypted(Id);
 
-            collection.Games.Add(Id, new Domain.Models.Game(CryptedId));
+            collection.Games.Add(Id, new Application.BL.Game(CryptedId));
 
             if(StopWatch.IsActive is not true) StopWatch.StartTimer();
 

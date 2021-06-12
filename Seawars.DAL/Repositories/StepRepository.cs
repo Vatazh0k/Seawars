@@ -7,7 +7,7 @@ using Seawars.DAL.Context;
 using Seawars.Domain.Entities;
 using Seawars.Interfaces.Repositories;
 
-namespace Seawars.DAL.SqlServer.Repositories
+namespace Seawars.DAL.Repositories
 {
     public class StepRepository : IRepository<Step>
     {

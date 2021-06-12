@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
+using Seawars.Domain.Models;
 using Seawars.Infrastructure.Data;
 using Seawars.Infrastructure.Extentions;
 
-namespace Seawars.Domain.Models
+namespace Application.BL
 {
-
     public class Field
     {
         public string[,] field { get; set; } = new string[11, 11];
@@ -440,5 +437,4 @@ namespace Seawars.Domain.Models
 
         #endregion
     }
-
 }

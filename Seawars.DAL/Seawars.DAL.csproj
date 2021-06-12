@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Seawars.Domain\Seawars.Domain.csproj" />
     <ProjectReference Include="..\Seawars.Interfaces\Seawars.Interfaces.csproj" />
   </ItemGroup>

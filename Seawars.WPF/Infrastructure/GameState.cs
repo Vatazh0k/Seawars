@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.BL;
 using Seawars.Domain.Models;
 
 namespace Seawars.WPF.Infrastructure

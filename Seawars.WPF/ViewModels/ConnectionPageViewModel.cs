@@ -67,7 +67,7 @@ namespace Seawars.WPF.ViewModels
             {
                 GameId = string.Empty;
 
-                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     ServicesLocator.GamePageService.SetPage(new NewGameCreationPage());
                 }));
@@ -93,7 +93,7 @@ namespace Seawars.WPF.ViewModels
 
                 StopWatch.StopTimer();
 
-                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     StartGameCommandAction(null);
                 }));

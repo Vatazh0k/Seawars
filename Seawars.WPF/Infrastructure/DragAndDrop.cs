@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using Application.BL;
 using Seawars.Domain.Models;
 using Seawars.Infrastructure.Data;
 using Seawars.Infrastructure.Extentions;

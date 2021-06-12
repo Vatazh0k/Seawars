@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Application.BL;
 using Newtonsoft.Json;
 using Seawars.Domain.Enums;
 using Seawars.Domain.Models;
@@ -175,7 +176,7 @@ namespace Seawars.WPF.ViewModels
                          GameState.GetState().IsSecondUserReadyToStartGame != true);
 
 
-                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     Field = UpdateFieldState();
                     CloneShipsCount();
@@ -185,7 +186,7 @@ namespace Seawars.WPF.ViewModels
         }
         private void GameWithComputer()
         {
-            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 ResetShipsCount();
                 ServicesLocator.GamePageService.SetPage(new BattleGroundPage((GameMode)1));

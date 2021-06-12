@@ -1,10 +1,16 @@
-﻿namespace Seawars.Domain.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Application.BL
 {
     public class Game
     {
         public string CryptedGameId { get; set; }
 
-        public Field FirstUserField { get; set; } 
+        public Field FirstUserField { get; set; }
         public Field SecondUserField { get; set; }
 
         public bool IsFirstUserMove { get; set; } = true;
@@ -21,7 +27,7 @@
             CryptedGameId = Id;
 
             FirstUserField = new Field();
-            SecondUserField = new Field(); 
+            SecondUserField = new Field();
         }
 
         public Field this[int index]

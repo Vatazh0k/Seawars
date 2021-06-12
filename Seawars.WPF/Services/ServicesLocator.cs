@@ -1,8 +1,6 @@
-﻿using Seawars.WPF.View.Windows;
-using Seawars.WPF.ViewModels;
+﻿using Seawars.WPF.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
-using Seawars.DAL.Context;
-using Seawars.DAL.SqlServer.Repositories;
+using Seawars.DAL.Repositories;
 using Seawars.WPF.Services.AuthorizationPageServices;
 using Seawars.WPF.Services.GamePagesService;
 

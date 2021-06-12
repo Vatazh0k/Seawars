@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Seawars.DAL.SqlServer.Repositories
+namespace Seawars.DAL.Repositories
 {
     public class Repository
     {
