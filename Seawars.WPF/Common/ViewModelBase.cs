@@ -15,7 +15,7 @@ namespace Seawars.WPF.Common
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        } 
         protected virtual bool Set<T>(ref T field, T value, [CallerMemberName] string propertName = null)
         {
             if (Equals(field, value)) return false;

@@ -58,7 +58,7 @@ namespace Seawars.WPF
             services.AddScoped<StepRepository>();   
 
             services.AddDbContext<MsSqlContext>(x =>
-                x.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Seawars;Trusted_Connection=True", o =>
+                x.UseSqlServer("Server=tcp:seabattle-databse.database.windows.net,1433;Initial Catalog=Seawars;Persist Security Info=False;User ID=AntonAdmin;Password=Anton2003;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;", o =>
                     o.MigrationsAssembly("Seawars.DAL.SqlServer")));//GetConnectionString;
         }
 
