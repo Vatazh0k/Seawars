@@ -189,6 +189,7 @@ namespace Seawars.WPF.ViewModels
             System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 ResetShipsCount();
+                Field.ResetShips();
                 ServicesLocator.GamePageService.SetPage(new BattleGroundPage((GameMode)1));
             }));
         }
