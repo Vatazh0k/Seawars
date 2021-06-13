@@ -21,25 +21,31 @@ namespace Seawars.WPF.ViewModels
     class ConnectionPageViewModel : ViewModelBase
     {
         #region Commands
+
         public ICommand PlayWithUserCommand { get; }
         public ICommand StartGameCommand { get; }
 
         public ICommand CreateNewGameCommand { get; }
         public ICommand JoinTheExistGameCommand { get; }
         public ICommand BackCommand { get; }
-        public ICommand ConnectAndStartCommand { get;  }
+        public ICommand ConnectAndStartCommand { get; }
+
         #endregion
 
         #region Game id
+
         private string _gameId;
+
         public string GameId
         {
             get => _gameId;
             set => Set(ref _gameId, value);
         }
+
         #endregion
 
         #region MyRegion
+
         private readonly string Path = ConfigurationManager.AppSettings["Url"];
 
         #endregion
@@ -48,19 +54,23 @@ namespace Seawars.WPF.ViewModels
         {
             PlayWithUserCommand = new Command(PlayWithUserCommandAction, x => true);
             StartGameCommand = new Command(StartGameCommandAction, x => true);
-            CreateNewGameCommand = new Command(CreateNewGameCommandAction, x=> true);
+            CreateNewGameCommand = new Command(CreateNewGameCommandAction, x => true);
             JoinTheExistGameCommand = new Command(JoinTheGameCommandAction, x => true);
-            BackCommand = new Command(BackCommandAction, x=> true);
+            BackCommand = new Command(BackCommandAction, x => true);
             ConnectAndStartCommand = new Command(ConnectAndStartCommandAction, x => true);
         }
 
         #region Commands actions
-        private void PlayWithUserCommandAction(object obj) => ServicesLocator.GamePageService.SetPage(new UsersConnectionPage());
+
+        private void PlayWithUserCommandAction(object obj) =>
+            ServicesLocator.GamePageService.SetPage(new UsersConnectionPage());
+
         private void BackCommandAction(object obj)
         {
             StopWatch.StopTimer();
             ServicesLocator.GamePageService.SetPage(new ConnectionPage());
         }
+
         private void CreateNewGameCommandAction(object obj)
         {
             Task.Run(() =>
@@ -101,6 +111,7 @@ namespace Seawars.WPF.ViewModels
             });
 
         }
+
         private void ConnectAndStartCommandAction(object obj)
         {
             if (!int.TryParse(GameId, out int Id))
@@ -121,7 +132,8 @@ namespace Seawars.WPF.ViewModels
 
             if (Game is null)
             {
-                MessageBox.Show("This this game is already running", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("This this game is already running", "Error", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
                 return;
             }
 
@@ -129,17 +141,19 @@ namespace Seawars.WPF.ViewModels
 
             StartGameCommandAction(null);
         }
+
         private void JoinTheGameCommandAction(object obj)
         {
             GameId = string.Empty;
 
             ServicesLocator.GamePageService.SetPage(new ExistGameConnectionPage());
         }
+
         private void StartGameCommandAction(object obj)
         {
             var Game = new Domain.Entities.Game()
             {
-                Status = (Status?)3,
+                Status = (Status?) 3,
                 User = App.CuurentUser,
             };
 
@@ -149,6 +163,7 @@ namespace Seawars.WPF.ViewModels
 
             ServicesLocator.GamePageService.SetPage(new UserFieldPage());
         }
+
         #endregion
     }
-}
+} 

@@ -371,4 +371,4 @@ namespace Seawars.WPF.ViewModels
         }
         #endregion
     }
-}
+} 

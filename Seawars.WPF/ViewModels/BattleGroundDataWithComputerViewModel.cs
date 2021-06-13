@@ -60,19 +60,18 @@ namespace Seawars.WPF.ViewModels
 
         #endregion
 
+        #region Commands
         public ICommand AttackCommand { get; set; }
-
+        #endregion
 
         public BattleGroundDataWithComputerViewModel()
         {
-            AttackCommand = new Command(AttackCommandAction, CanUseAttackCommand);
+            AttackCommand = new Command(AttackCommandAction, x => !isComputerMove && !IsGameOver);
 
             Enemy = ServicesLocator.EnemyFieldViewModel;
+
             User = ServicesLocator.UserFieldPageViewModel;
         }
-
-        private bool CanUseAttackCommand(object arg) => !isComputerMove && !IsGameOver;
-
 
         private void AttackCommandAction(object obj)
         {
@@ -114,6 +113,7 @@ namespace Seawars.WPF.ViewModels
             User.Buttons = ShowUserShip();
         }
 
+        #region Private methods
         private ObservableCollection<Button> ShowUserShip()
         {
             bool isMissed = true;
@@ -127,6 +127,7 @@ namespace Seawars.WPF.ViewModels
                         {
                             isMissed = false;
                             AttackHint = AttackHint.ShowAttackHint(i, j);
+                            AddStepToDb(ConverIndexToCell(i,j), Move.Enimy);
                             System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                             {
                                 ShowKilledShip(i, j, User);
@@ -143,8 +144,6 @@ namespace Seawars.WPF.ViewModels
             });
             return User.Buttons;
         }
-
-
         private ObservableCollection<Button> ShowEnemyShips(Cell indexes, bool isMissed)
         {
             int _cell = ConverIndexToCell(indexes.Y, indexes.X);
@@ -298,7 +297,7 @@ namespace Seawars.WPF.ViewModels
                 return Enemy.Buttons[x].CanUse = false;
             }).ToArray();
         }
-        private void MissedMarkAssignment(bool isMissed)
+                                                                                                                                                                                                                                                                                        private void MissedMarkAssignment(bool isMissed)
         {
             int Cell = default;
             System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
@@ -309,7 +308,11 @@ namespace Seawars.WPF.ViewModels
                     {
                         if (User.Ships[ConverIndexToCell(i, j)].isDead is false && User.Field.field[i, j] is ShipsMark.Missed)
                         {
-                            if (isMissed is true) AttackHint = AttackHint.ShowAttackHint(i, j);
+                            if (isMissed is true)
+                            {
+                                AttackHint = AttackHint.ShowAttackHint(i, j);
+                                AddStepToDb(ConverIndexToCell(i,j), Move.Enimy);
+                            }
                             CreateShip(User, ConverIndexToCell(i, j), PathToShipContent.MissedMark, 0.5, User.Ships[ConverIndexToCell(i, j)]);
                         }
                     }
@@ -414,6 +417,6 @@ namespace Seawars.WPF.ViewModels
         }
 
         #endregion
-
+        #endregion
     }
 }

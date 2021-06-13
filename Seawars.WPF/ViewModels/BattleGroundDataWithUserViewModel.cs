@@ -129,7 +129,6 @@ namespace Seawars.WPF.ViewModels
         }
         #endregion
 
-
         #region Private methods
         private void ShowKilledShip(int i, int j, IViewModelData vm)
         {

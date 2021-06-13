@@ -109,7 +109,7 @@ namespace Seawars.WPF.ViewModels
                 CurrentViewControl = new GamesStatisticControl();
 
         }
-
+ 
         private void StartGame(object obj)
         {
             App.UserProfileWindow.Hide();

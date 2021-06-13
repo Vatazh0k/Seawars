@@ -95,7 +95,7 @@ namespace Seawars.WPF.ViewModels
 
             return MessageBoxResult.OK;
         }
-
+         
         private MessageBoxResult SuccessRegister(string message)
         {
             ServicesLocator.UserRepository.Add<User>(new User(Username, Name, _password));
