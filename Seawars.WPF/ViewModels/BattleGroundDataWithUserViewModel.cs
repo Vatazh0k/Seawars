@@ -319,12 +319,11 @@ namespace Seawars.WPF.ViewModels
             var game = GameState.GetState();
             StopWatch.StopTimer();
             StopWatch.UpdateGameState -= NativeShipAssignment;
-            MessageBox.Show(text, "", MessageBoxButton.OK, MessageBoxImage.Information);
             IsGameOver = true;
             game.IsGameOver = true;
             game.IsFirstUserWin = NumberOfHostsField is 1 ? IsWin : !IsWin;
             AddGameToDb(game);
-            //при нажатии ок перезапустить игру
+            MessageBox.Show(text, "", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void ReduceTheShipsCount(Field field)
         {
