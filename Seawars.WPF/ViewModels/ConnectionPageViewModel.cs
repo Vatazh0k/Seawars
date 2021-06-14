@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using Newtonsoft.Json;
 using Seawars.Domain.Enums;
+using Seawars.Infrastructure.Data;
 using Seawars.Infrastructure.Encryption;
 using Seawars.WPF.Services;
 using Seawars.WPF.Common;
@@ -44,10 +45,8 @@ namespace Seawars.WPF.ViewModels
 
         #endregion
 
-        #region MyRegion
-
-        private readonly string Path = ConfigurationManager.AppSettings["Url"];
-
+        #region Data
+        private readonly string Path = ConnectionStrings.ApiPath;
         #endregion
 
         public ConnectionPageViewModel()

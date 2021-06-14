@@ -36,7 +36,7 @@ namespace Seawars.WPF.ViewModels
         private object locker = new object();
         private bool IsGameOver = default;
         private int NumberOfHostsField;
-        private string Path = ConfigurationManager.AppSettings["Url"];
+        private string Path = ConnectionStrings.ApiPath;
         GameState Game = GameState.GetState();
         private EnemyFieldViewModel Enemy;
         private UserFieldPageViewModel User;
@@ -96,7 +96,7 @@ namespace Seawars.WPF.ViewModels
 
             if (game[FieldForAttack].CanAttackCell(cell) is false) return;
 
-            var response = HttpRequest.GetRequest(Path + "battleground/Attack", $"?fields={FieldForAttack}&Cell={cell}");
+            var response = HttpRequest.Get(Path + "battleground/Attack", $"?fields={FieldForAttack}&Cell={cell}");
 
             game[FieldForAttack] = JsonConvert.DeserializeObject<Field>(response);
 

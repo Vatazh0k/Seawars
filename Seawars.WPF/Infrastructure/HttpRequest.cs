@@ -9,7 +9,7 @@ namespace Seawars.WPF.Infrastructure
 {
     public class HttpRequest
     {
-        public static string GetRequest(string Path, string parametrs)
+        public static string Get(string Path, string parametrs)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, Path + parametrs);
 

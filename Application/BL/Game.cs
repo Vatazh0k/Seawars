@@ -31,14 +31,11 @@ namespace Application.BL
         }
 
         public Field this[int index]
-        {
-            get => index switch
+            => index switch
             {
                 1 => FirstUserField,
                 2 => SecondUserField,
                 { } => null
             };
-        }
-
     }
 }

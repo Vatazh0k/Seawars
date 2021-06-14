@@ -49,7 +49,7 @@ namespace Seawars.WPF.ViewModels
         private int FieldNumber;
         private bool CanUseCommands = true;
 
-        private string Path = ConfigurationManager.AppSettings["Url"];
+        private string Path = ConnectionStrings.ApiPath;
         #endregion
 
         #region Ships
@@ -158,7 +158,7 @@ namespace Seawars.WPF.ViewModels
 
                 var field = JsonConvert.SerializeObject(Field);
 
-                string response = HttpRequest.GetRequest(Path + "FieldCreation/ReadyToStart",
+                string response = HttpRequest.Get(Path + "FieldCreation/ReadyToStart",
                     $"?fields={FieldNumber}&Field={field}");
 
                 var _game = JsonConvert.DeserializeObject<GameState>(response);

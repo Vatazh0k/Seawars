@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using Newtonsoft.Json;
+using Seawars.Infrastructure.Data;
 
 namespace Seawars.WPF.Infrastructure
 {
@@ -14,7 +15,7 @@ namespace Seawars.WPF.Infrastructure
     {
         public static event Action UpdateGameState;
         private static Timer timer;
-        private static string Path = ConfigurationManager.AppSettings["Url"];
+        private static string Path = ConnectionStrings.ApiPath;
         public static void StartTimer()
         {
             timer = new Timer(500);

@@ -5,6 +5,7 @@ using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Seawars.Infrastructure.Data;
 using Seawars.DAL.Context;
 using Seawars.DAL.Repositories;
 using Seawars.WPF.ViewModels;
@@ -34,9 +35,6 @@ namespace Seawars.WPF
             .CreateDefaultBuilder(args)
             .ConfigureServices(ConfigureServices);
 
-
-       private static readonly string MsSqlConnectionString = ConfigurationManager.AppSettings["MsSqlConnectionString"];
-
         private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
             services.AddScoped<AuthorizationPageViewModel>();
@@ -58,7 +56,7 @@ namespace Seawars.WPF
             services.AddScoped<StepRepository>();   
 
             services.AddDbContext<MsSqlContext>(x =>
-                x.UseSqlServer("Server=tcp:seabattle-databse.database.windows.net,1433;Initial Catalog=Seawars;Persist Security Info=False;User ID=AntonAdmin;Password=Anton2003;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;", o =>
+                x.UseSqlServer(ConnectionStrings.MsSqlConnectionString, o =>
                     o.MigrationsAssembly("Seawars.DAL.SqlServer")));//GetConnectionString;
         }
 

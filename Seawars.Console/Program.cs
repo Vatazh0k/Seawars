@@ -38,9 +38,9 @@ namespace Seawars.Console
         {                              //Как сделать систему оплаты?) при премиум аккаунте можна смотреть статистику других 
            
             var context = Connection.Hosting.Services.GetRequiredService<MsSqlContext>();
-            var a = context.Steps.Where(x => x.Id >= 31).Select(x => x).ToList();
-            context.Steps.RemoveRange(a);
-            context.SaveChanges();
+            //var a = context.Steps.Where(x => x.Id >= 31).Select(x => x).ToList();
+            //context.Steps.RemoveRange(a);
+            //context.SaveChanges();
             // var user = new User()
             // {
             //     Name = "Anton",

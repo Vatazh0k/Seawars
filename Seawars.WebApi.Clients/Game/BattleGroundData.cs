@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Newtonsoft.Json;
 using Seawars.DAL.GamesBase;
 using Seawars.Domain.Models;
 using Seawars.Infrastructure.Encryption;
 using Seawars.Infrastructure.Extentions;
 using Seawars.Infrastructure.Validation;
-using Seawars.Interfaces.Game;
 using Seawars.Interfaces.Services;
 
 namespace Seawars.WebApi.Clients.Game
@@ -22,7 +17,7 @@ namespace Seawars.WebApi.Clients.Game
 
             var DecryptedId = TripleDes.Decrypted(Id);// 143 140
 
-            bool isCorectId = Validator.DoesTheIdExist(collection.Games.Keys.ToArray(), DecryptedId);//68 754
+            bool isCorectId = Validator.DoesTheGameExist(collection.Games.Keys.ToArray(), DecryptedId);//68 754
 
             if (isCorectId is false) return null;
 

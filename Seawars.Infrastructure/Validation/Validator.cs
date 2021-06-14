@@ -10,6 +10,6 @@ namespace Seawars.Infrastructure.Validation
     {
         public static bool NotNullElementsExist(params string[] elements) => elements.ToList().Exists(x => string.IsNullOrWhiteSpace(x));
         public static bool NotNullElementsExist(params int[] elements) => elements.ToList().Exists(x => x > 1);
-        public static bool DoesTheIdExist(int[] ExitstingId, int CurrentId) => ExitstingId.Contains(CurrentId);
+        public static bool DoesTheGameExist(int[] ExitstingId, int CurrentId) => ExitstingId.Contains(CurrentId);
     }
 }

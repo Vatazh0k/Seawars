@@ -41,7 +41,7 @@ namespace Seawars.WebApi.Clients.Connection
 
             var DecryptedId = TripleDes.Decrypted(Id);
 
-            bool isCorectId = Validator.DoesTheIdExist(collection.Games.Keys.ToArray(), DecryptedId);
+            bool isCorectId = Validator.DoesTheGameExist(collection.Games.Keys.ToArray(), DecryptedId);
 
             if (isCorectId is false) return null;
 
