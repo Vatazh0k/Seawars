@@ -76,10 +76,7 @@ namespace Seawars.WPF.ViewModels
             {
                 GameId = string.Empty;
 
-                System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    ServicesLocator.GamePageService.SetPage(new NewGameCreationPage());
-                }));
+                System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() => ServicesLocator.GamePageService.SetPage(new NewGameCreationPage())));
 
                 var content = new HttpRequestMessage(HttpMethod.Get, $"{Path}GameConnection/CreateGame");
 
@@ -89,23 +86,17 @@ namespace Seawars.WPF.ViewModels
 
                 var Game = JsonConvert.DeserializeObject<GameState>(response);
 
-                GameState.GetState(true, Game);
-
-                GameId = TripleDes.Decrypted(GameState.GetState().CryptedGameId).ToString();
+                GameId = TripleDes.Decrypted(Game.CryptedGameId).ToString();
 
                 StopWatch.StartTimer();
 
-                while (GameState.GetState().DidEnemyConnect != true)
-                {
-                    Thread.Sleep(500);
-                }
+                while (GameState.GetState().DidEnemyConnect != true) Thread.Sleep(500);
+
+                GameState.GetState(true, Game);
 
                 StopWatch.StopTimer();
 
-                System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    StartGameCommandAction(null);
-                }));
+                System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() => StartGameCommandAction(null)));
 
             });
 
