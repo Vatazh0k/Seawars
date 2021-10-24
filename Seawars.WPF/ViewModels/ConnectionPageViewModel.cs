@@ -88,6 +88,8 @@ namespace Seawars.WPF.ViewModels
 
                 GameId = TripleDes.Decrypted(Game.CryptedGameId).ToString();
 
+                GameState.GetState(true, Game);
+
                 StopWatch.StartTimer();
 
                 while (GameState.GetState().DidEnemyConnect != true) Thread.Sleep(500);
